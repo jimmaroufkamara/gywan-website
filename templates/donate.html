@@ -758,14 +758,14 @@ input[type="checkbox"]:checked + .checkmark::after {
                     <i class="fas fa-envelope"></i>
                 </div>
                 <h3>Mail a Check</h3>
-                <p>Send your donation to:<br>GYWAN, 1 Sillicon Hills, Mile 91, Sierra Leone</p>
+                <p>Send your donation to:<br>GYWAN at: <br> 4 Old Railway Line Tengbeh Town, Freetown, Sierra Leone</p>
             </div>
             <div class="way-card">
                 <div class="way-icon">
                     <i class="fas fa-phone"></i>
                 </div>
                 <h3>Call Us</h3>
-                <p>Donate by phone:<br><strong>+232 77491399</strong></p>
+                <p>Donate by phone:<br><strong>+232 78554262</strong></p>
             </div>
             <div class="way-card">
                 <div class="way-icon">
@@ -786,6 +786,89 @@ input[type="checkbox"]:checked + .checkmark::after {
         </div>
     </div>
 </section>
+
+<!-- PARTNERS SECTION ( with slider) -->
+<section class="partners scroll-reveal" style="background: #fff; padding: 48px 0 32px 0;">
+  <div class="container partners-container" style="text-align:center;">
+    <h2 style="font-size:2rem; color:#2c3e50; font-weight:700; margin-bottom:32px;">Our Partners</h2>
+    <div class="partners-slider-outer">
+      <div class="partners-slider-track">
+        <img src="{% static 'images/partner1.png' %}" alt="Partner 1" class="partner-logo">
+        <img src="{% static 'images/partner2.png' %}" alt="Partner 2" class="partner-logo">
+        <img src="{% static 'images/partner1.png' %}" alt="Partner 3" class="partner-logo">
+        <img src="{% static 'images/partner2.png' %}" alt="Partner 4" class="partner-logo">
+        <!-- Duplicate for seamless loop -->
+        <img src="{% static 'images/partner1.png' %}" alt="Partner 1" class="partner-logo">
+        <img src="{% static 'images/partner2.png' %}" alt="Partner 2" class="partner-logo">
+        <img src="{% static 'images/partner1.png' %}" alt="Partner 3" class="partner-logo">
+        <img src="{% static 'images/partner2.png' %}" alt="Partner 4" class="partner-logo">
+      </div>
+    </div>
+  </div>
+</section>
+<style>
+  .partners-slider-outer {
+    overflow: hidden;
+    width: 100%;
+    max-width: 1100px;
+    margin: 0 auto;
+    position: relative;
+    height: 90px;
+    display: flex;
+    align-items: center;
+  }
+  .partners-slider-track {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    animation: partners-slide 7s linear infinite;
+    will-change: transform;
+  }
+  .partner-logo {
+    height: 60px;
+    width: auto;
+    opacity: 0.7;
+    transition: filter 0.3s, opacity 0.3s;
+    max-width: 180px;
+    margin: 0 10px;
+    object-fit: contain;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(136,36,199,0.07);
+    padding: 8px 16px;
+    user-select: none;
+    pointer-events: auto;
+  }
+  .partner-logo:hover {
+    filter: grayscale(0%) brightness(1) contrast(1);
+    opacity: 1;
+  }
+  @keyframes partners-slide {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+  @media (max-width: 700px) {
+    .partners-slider-track { gap: 24px; }
+    .partner-logo { height: 40px; max-width: 110px; padding: 4px 8px; }
+    .partners-slider-outer { height: 60px; }
+  }
+</style>
+<script>
+  // Pause slider on hover for accessibility
+  document.addEventListener('DOMContentLoaded', function() {
+    var track = document.querySelector('.partners-slider-track');
+    var outer = document.querySelector('.partners-slider-outer');
+    if (track && outer) {
+      outer.addEventListener('mouseenter', function() {
+        track.style.animationPlayState = 'paused';
+      });
+      outer.addEventListener('mouseleave', function() {
+        track.style.animationPlayState = 'running';
+      });
+    }
+  });
+</script>
+
 {% endblock %}
 
 {% block extra_js %}

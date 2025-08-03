@@ -663,27 +663,27 @@
       <!-- Stats Row -->
       <div style="display: flex; flex-wrap: wrap; gap: 24px; margin-bottom: 32px;">
         <div style="flex: 1 1 120px; min-width: 120px; background: #f8f9fa; border-radius: 12px; text-align: center; padding: 18px 10px;">
-          <div style="font-size: 2rem; font-weight: 800; color: #8824C7;">50+</div>
+          <div style="font-size: 2rem; font-weight: 800; color: #8824C7;">4</div>
           <div style="font-size: 1rem; color: #2c3e50; font-weight: 600;">Programs</div>
         </div>
         <div style="flex: 1 1 120px; min-width: 120px; background: #f8f9fa; border-radius: 12px; text-align: center; padding: 18px 10px;">
-          <div style="font-size: 2rem; font-weight: 800; color: #8824C7;">200+</div>
-          <div style="font-size: 1rem; color: #2c3e50; font-weight: 600;">Resources</div>
+          <div style="font-size: 2rem; font-weight: 800; color: #8824C7;">90%</div>
+          <div style="font-size: 1rem; color: #2c3e50; font-weight: 600;">Success Rate</div>
         </div>
         <div style="flex: 1 1 120px; min-width: 120px; background: #f8f9fa; border-radius: 12px; text-align: center; padding: 18px 10px;">
-          <div style="font-size: 2rem; font-weight: 800; color: #8824C7;">100+</div>
+          <div style="font-size: 2rem; font-weight: 800; color: #8824C7;">50+</div>
           <div style="font-size: 1rem; color: #2c3e50; font-weight: 600;">Volunteers</div>
         </div>
         <div style="flex: 1 1 120px; min-width: 120px; background: #f8f9fa; border-radius: 12px; text-align: center; padding: 18px 10px;">
-          <div style="font-size: 2rem; font-weight: 800; color: #8824C7;">10K+</div>
-          <div style="font-size: 1rem; color: #2c3e50; font-weight: 600;">Beneficiaries</div>
+          <div style="font-size: 2rem; font-weight: 800; color: #8824C7;">500+</div>
+          <div style="font-size: 1rem; color: #2c3e50; font-weight: 600;">Girls Empowered</div>
         </div>
       </div>
       <a href="{% url 'about' %}" class="btn-primary">Learn More About Us</a>
     </div>
     <!-- Right: Image -->
     <div style="flex: 1 1 320px; text-align: center;">
-      <img src="{% static 'images/about-gywan.png' %}" alt="About GYWAN" style="max-width: 400px; width: 100%; border-radius: 18px; box-shadow: 0 4px 24px rgba(136,36,199,0.10); background: #fff;">
+      <img src="{% static 'images/millicentia.png' %}" alt="About GYWAN" style="max-width: 400px; width: 100%; border-radius: 18px; box-shadow: 0 4px 24px rgba(136,36,199,0.10); background: #fff;">
     </div>
   </div>
   <!-- Why Choose Us Row -->
@@ -1087,20 +1087,18 @@
 <!-- PARTNERS SECTION ( with slider) -->
 <section class="partners scroll-reveal" style="background: #fff; padding: 48px 0 32px 0;">
   <div class="container partners-container" style="text-align:center;">
-    <h2 style="font-size:2rem; color:#2c3e50; font-weight:700; margin-bottom:32px;">Partners With</h2>
+    <h2 style="font-size:2rem; color:#2c3e50; font-weight:700; margin-bottom:32px;">Our Partners</h2>
     <div class="partners-slider-outer">
       <div class="partners-slider-track">
         <img src="{% static 'images/partner1.png' %}" alt="Partner 1" class="partner-logo">
         <img src="{% static 'images/partner2.png' %}" alt="Partner 2" class="partner-logo">
-        <img src="{% static 'images/partner3.png' %}" alt="Partner 3" class="partner-logo">
-        <img src="{% static 'images/partner4.png' %}" alt="Partner 4" class="partner-logo">
-        <img src="{% static 'images/partner5.png' %}" alt="Partner 5" class="partner-logo">
+        <img src="{% static 'images/partner1.png' %}" alt="Partner 3" class="partner-logo">
+        <img src="{% static 'images/partner2.png' %}" alt="Partner 4" class="partner-logo">
         <!-- Duplicate for seamless loop -->
         <img src="{% static 'images/partner1.png' %}" alt="Partner 1" class="partner-logo">
         <img src="{% static 'images/partner2.png' %}" alt="Partner 2" class="partner-logo">
-        <img src="{% static 'images/partner3.png' %}" alt="Partner 3" class="partner-logo">
-        <img src="{% static 'images/partner4.png' %}" alt="Partner 4" class="partner-logo">
-        <img src="{% static 'images/partner5.png' %}" alt="Partner 5" class="partner-logo">
+        <img src="{% static 'images/partner1.png' %}" alt="Partner 3" class="partner-logo">
+        <img src="{% static 'images/partner2.png' %}" alt="Partner 4" class="partner-logo">
       </div>
     </div>
   </div>
@@ -1126,7 +1124,6 @@
   .partner-logo {
     height: 60px;
     width: auto;
-    filter: grayscale(100%) brightness(0.8) contrast(1.1);
     opacity: 0.7;
     transition: filter 0.3s, opacity 0.3s;
     max-width: 180px;

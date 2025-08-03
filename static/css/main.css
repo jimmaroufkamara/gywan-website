@@ -1962,6 +1962,7 @@ section {
 .page-subtitle {
   font-size: 1.2rem;
   opacity: 0.9;
+  color: var(--secondary-color);
   max-width: 600px;
   margin: 0 auto;
 }

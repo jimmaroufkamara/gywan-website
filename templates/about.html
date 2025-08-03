@@ -17,32 +17,44 @@
 <!-- Our Story Section -->
 <section class="story-section" data-aos="fade-up">
     <div class="container">
-        <div class="story-content">
-            <div class="story-text">
+        <!-- Flex Row: Text + Image -->
+        <div class="story-content" style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 40px;">
+            
+            <!-- Text Column -->
+            <div class="story-text" style="flex: 1 1 500px;">
                 <h2 class="section-title fade-in">Our Story</h2>
-                <div class="story-paragraphs fade-in">
-                    <p>Founded by Mellicentia Boateng, the Girls and Young Women's Advocacy Network (GYWAN) emerged from a deep understanding of the challenges facing girls and young women worldwide. Our journey began with a simple yet powerful vision: to create a world where every girl and young woman is confident, capable, and free from violence.</p>
-                    
-                    <p>Through years of grassroots work, advocacy, and community engagement, GYWAN has grown into a dynamic, young woman-led organization that champions the rights of girls and young women at international, national, and local levels.</p>
-                    
-                    <p>Our approach is holistic, addressing the intersectional challenges that girls face while building their capacity as leaders and changemakers. We believe that when girls are empowered, entire communities transform.</p>
+                <div class="story-paragraphs fade-in" style="line-height: 1.7; color: #333; font-size: 1rem;">
+                    <p>Girls and Young Women’s Advocacy Network (GYWAN) is a vibrant, young woman-led organization born out of lived experience, deep conviction, and a refusal to accept the status quo.</p>
+
+                    <p>Our founder, Mellicentia Boateng, grew up in a community where inequality was the norm, a place where girls were expected to remain silent, stay small, and survive systems built against them. For years, she believed this reality was unchangeable, until exposure to knowledge and advocacy opened her eyes. That awakening stirred something powerful: a commitment to raise her voice and never again be silent in the face of injustice.</p>
+
+                    <p>Coming from a home affected by gender-based violence, Mellicentia intimately understood the pain of silence, fear, and invisibility. She vowed not just to break that cycle for herself, but to build a movement where no girl or young woman would have to endure it again, alone or unheard.</p>
+
+                    <p>What began as a bold idea has grown into GYWAN, a fast-growing network of passionate young women and allies working to dismantle the barriers that hold girls back. Founded on the belief that every young person deserves to thrive in a safe, inclusive, and rights-respecting society, GYWAN emerged as a movement for gender equality, youth empowerment, and social justice.</p>
+
+                    <p>Our leadership is powered by vibrant, committed young women and men who bring their energy, experience, and vision to every space we occupy—from grassroots communities to national policy tables and international platforms. We design and lead campaigns, capacity-building initiatives, and advocacy efforts that amplify the voices of girls and young women, not just as beneficiaries, but as co-creators and leaders of lasting change.</p>
                 </div>
             </div>
 
-                <div class="story-image fade-in">
-                <img src="{% static 'images/millicentia.png' %}" alt="Mellicentia Boateng, Founder of GYWAN" class="fade-in">
-                 <div class="image-caption">
-                    <i class="fas fa-quote-left">
-
-                        <h3>Mellicentia Boateng</h3>
-                    <p>Founder & Executive Director</p>
-
-                    </i>
-
-                 </div>
-                    
+            <!-- Image Column -->
+            <div class="story-image fade-in" style="flex: 1 1 350px; display: flex; flex-direction: column; align-items: center; margin-top: 20px;">
+                <img src="{% static 'images/millicentia.png' %}" 
+                     alt="Mellicentia Boateng, Founder of GYWAN"
+                     style="width: 100%; max-width: 320px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); object-fit: cover;">
                 
+                <div class="image-caption" style="margin-top: 16px; text-align: center;">
+                    <i class="fas fa-quote-left" style="color: #8824C7; font-size: 1.2rem;"></i>
+                    <h3 style="margin: 8px 0 4px; font-size: 1.2rem; color: #8824C7;">Mellicentia Boateng</h3>
+                    <p style="margin: 0; font-size: 0.95rem; color: #555;">Founder & Executive Director</p>
+                </div>
             </div>
+        </div>
+
+        <!-- Centered Statement Below Image + Text -->
+        <div class="fade-in" style="margin-top: 50px; text-align: center;">
+            <p style="font-size: 1.25rem; color: #673ab7; max-width: 800px; margin: 0 auto;">
+                <em>Together, we are building a future where every girl and young woman can live free from violence, claim her rights, and boldly shape the world around her.</em>
+            </p>
         </div>
     </div>
 </section>
@@ -58,7 +70,10 @@
                 </div>
                 <div class="mvv-text">
                     <h2>Our Mission</h2>
-                    <p>To inspire, empower, and mobilize girls and young women to become confident leaders and changemakers who create positive impact in their communities and beyond.</p>
+                    <p>
+                        Our mission is to inspire, empower, and equip girls and young women to lead with confidence, advocate for their rights, and drive lasting change. 
+                        We are committed to fostering personal growth, promoting gender equality, and ensuring young women’s voices shape the future of their communities and our nation.
+                    </p>
                 </div>
             </div>
         </div>
@@ -71,7 +86,10 @@
                 </div>
                 <div class="mvv-text">
                     <h2>Our Vision</h2>
-                    <p>A world where every girl and young woman is confident, capable, and free from violence, empowered to lead and create the change she wishes to see.</p>
+                    <p>
+                        We envision a world where every girl and young woman is confident, capable, and free from violence. 
+                        It is a world where she is empowered to lead, supported to achieve her dreams, and equipped to shape a just, equitable, and inclusive future.
+                    </p>
                 </div>
             </div>
         </div>
@@ -86,28 +104,31 @@
                     <h2>Our Values</h2>
                     <div class="values-list">
                         <div class="value-item">
-                            <strong>Compassion:</strong> Leading with empathy and understanding
+                            <strong>Empowerment:</strong> We equip girls and young women with the tools, voice, and opportunities to transform their lives and lead boldly.
                         </div>
                         <div class="value-item">
-                            <strong>Empowerment:</strong> Equipping tools for transformation
+                            <strong>Gender Equality:</strong> We challenge discrimination, harmful norms, and power imbalances to ensure that girls and young women have equal rights, opportunities, and voices in all spheres of life.
                         </div>
                         <div class="value-item">
-                            <strong>Integrity:</strong> Transparency and accountability
+                            <strong>Compassion:</strong> We lead with empathy, kindness, and respect, placing people and dignity at the center of our work.
                         </div>
                         <div class="value-item">
-                            <strong>Collaboration:</strong> Partnerships and collective action
+                            <strong>Integrity:</strong> We uphold transparency, accountability, and strong ethical principles in everything we do.
                         </div>
                         <div class="value-item">
-                            <strong>Equity:</strong> Fairness and inclusion for all
+                            <strong>Equity & Inclusion:</strong> We fight for fairness and justice, especially for those who are most marginalized and excluded.
                         </div>
                         <div class="value-item">
-                            <strong>Resilience:</strong> Strength in facing challenges
+                            <strong>Transformative Leadership:</strong> We nurture servant leaders who uplift others, challenge injustice, and drive meaningful change.
                         </div>
                         <div class="value-item">
-                            <strong>Transformative Leadership:</strong> Servant leadership that uplifts
+                            <strong>Resilience:</strong> We rise with courage in the face of adversity and remain committed through challenges.
                         </div>
                         <div class="value-item">
-                            <strong>Sustainability:</strong> Solutions that endure
+                            <strong>Collaboration:</strong> We believe in the power of partnerships, community, and collective action to amplify our impact.
+                        </div>
+                        <div class="value-item">
+                            <strong>Sustainability & Innovation:</strong> We design solutions that are creative, lasting, and rooted in long-term community transformation.
                         </div>
                     </div>
                 </div>
@@ -125,16 +146,17 @@
                 <div class="stat-icon">
                     <i class="fas fa-users"></i>
                 </div>
-                <div class="stat-number" data-target="10000">0</div>
+                <div class="stat-number" data-target="500">0<span class="plus-sign" style="display:none;">+</span></div>
                 <div class="stat-label">Girls Empowered</div>
                 <div class="stat-description">Through our leadership development programs</div>
             </div>
+
             
             <div class="stat-card fade-in">
                 <div class="stat-icon">
                     <i class="fas fa-globe"></i>
                 </div>
-                <div class="stat-number" data-target="25">0</div>
+                <div class="stat-number" data-target="4">0<span class="plus-sign" style="display:none;">+</span></div>
                 <div class="stat-label">Countries Reached</div>
                 <div class="stat-description">Across Africa, Asia, and beyond</div>
             </div>
@@ -143,7 +165,7 @@
                 <div class="stat-icon">
                     <i class="fas fa-graduation-cap"></i>
                 </div>
-                <div class="stat-number" data-target="150">0</div>
+                <div class="stat-number" data-target="4">0<span class="plus-sign" style="display:none;">+</span></div>
                 <div class="stat-label">Programs Delivered</div>
                 <div class="stat-description">Workshops, training, and advocacy initiatives</div>
             </div>
@@ -152,7 +174,7 @@
                 <div class="stat-icon">
                     <i class="fas fa-handshake"></i>
                 </div>
-                <div class="stat-number" data-target="85">0</div>
+                <div class="stat-number" data-target="2">0</div>
                 <div class="stat-label">Partner Organizations</div>
                 <div class="stat-description">Collaborative relationships for greater impact</div>
             </div>
@@ -165,35 +187,38 @@
     <div class="container">
         <div class="section-header">
             <h2 class="section-title fade-in">Our Approach</h2>
-            <p class="section-subtitle fade-in">We work at multiple levels to create sustainable change</p>
+            <p class="section-subtitle fade-in">At GYWAN, our work is intentional and multi-layered, starting with the individual and expanding outward to systems and global networks. Here's how we create impact at every level:</p>
         </div>
         <div class="approach-grid">
             <div class="approach-item fade-in">
                 <div class="approach-number">01</div>
                 <div class="approach-content">
                     <h3>Individual Empowerment</h3>
-                    <p>Building confidence, skills, and leadership capacity in girls and young women through targeted programs and mentorship.</p>
+                    <p>We build the confidence, leadership, and life skills of girls and young women through mentorship, training, and capacity-building programs. We help them discover their voice, unlock their potential, and take charge of their futures.</p>
                 </div>
             </div>
             <div class="approach-item fade-in">
                 <div class="approach-number">02</div>
                 <div class="approach-content">
                     <h3>Community Engagement</h3>
-                    <p>Working with communities to address root causes and create supportive environments for girls' development.</p>
+                    <p>We work within communities to shift mindsets, challenge harmful social norms, and build collective support for girls’ rights. Through advocacy campaigns, dialogues, and partnerships with local leaders, we foster safe and inclusive environments where girls and young women can thrive.</p>
                 </div>
             </div>
+
             <div class="approach-item fade-in">
                 <div class="approach-number">03</div>
                 <div class="approach-content">
-                    <h3>Systemic Change</h3>
-                    <p>Advocating for policy changes and institutional reforms that protect and promote girls' rights.</p>
+                    <h3>Systematic Change</h3>
+                    <p>We engage in policy advocacy and institutional reform to address the root causes of inequality. By influencing national laws, programs, and power structures, we work to ensure that systems protect and promote the rights of girls and young women.</p>
                 </div>
             </div>
+
+
             <div class="approach-item fade-in">
                 <div class="approach-number">04</div>
                 <div class="approach-content">
                     <h3>Global Partnership</h3>
-                    <p>Collaborating with organizations worldwide to amplify impact and share best practices.</p>
+                    <p>We collaborate with regional and international networks, amplifying local voices in global platforms. Through solidarity, shared learning, and cross-border advocacy, we position girls and young women as global change makers shaping a more just and equitable world.</p>
                 </div>
             </div>
         </div>
@@ -207,6 +232,7 @@
             <h2 class="section-title fade-in">Our Leadership Team</h2>
             <p class="section-subtitle fade-in">Meet the passionate leaders driving our mission forward</p>
         </div>
+
         <div class="team-grid">
             {% for member in team_members %}
             <div class="team-member-card" data-aos="fade-up">
@@ -220,44 +246,107 @@
                 <div class="team-info">
                     <h3 class="team-name">{{ member.name }}</h3>
                     <span class="team-role">{{ member.role }}</span>
-                    <p class="team-bio">{{ member.bio }}</p>
-                    <div class="team-social">
-                        {% if member.twitter %}<a href="{{ member.twitter }}" class="social-link" target="_blank"><i class="fab fa-twitter"></i></a>{% endif %}
-                        {% if member.instagram %}<a href="{{ member.instagram }}" class="social-link" target="_blank"><i class="fab fa-instagram"></i></a>{% endif %}
-                        {% if member.facebook %}<a href="{{ member.facebook }}" class="social-link" target="_blank"><i class="fab fa-facebook-f"></i></a>{% endif %}
-                        {% if member.linkedin %}<a href="{{ member.linkedin }}" class="social-link" target="_blank"><i class="fab fa-linkedin"></i></a>{% endif %}
-                    </div>
                 </div>
             </div>
             {% endfor %}
         </div>
-    </div>
-</section>
 
-<!-- Call to Action -->
-<section id="cta-section" class="cta-section">
-    <div class="container">
-        <div class="cta-content">
-            <h2 class="fade-in">Join Our Movement</h2>
-            <p class="fade-in">Together, we can create a world where every girl has the opportunity to lead, dream, and thrive.</p>
-            <div class="cta-buttons fade-in">
-                <a href="{% url 'donate' %}" class="btn btn-primary btn-large">
-                    <i class="fas fa-heart"></i>
-                    <span>Support Our Mission</span>
-                </a>
-                <a href="{% url 'contact' %}" class="btn btn-outline btn-large">
-                    <span>Get Involved</span>
-                    <i class="fas fa-arrow-right"></i>
-                </a>
-            </div>
+        <!-- See More Button -->
+        <div class="see-more-wrapper">
+            <a href="{% url 'our_team' %}" class="btn-primary see-more-btn" aria-label="View Team Member Details">
+                See More
+            </a>
         </div>
     </div>
 </section>
-</div>
-{% endblock %}
+
+<!-- PARTNERS SECTION ( with slider) -->
+<section class="partners scroll-reveal" style="background: #fff; padding: 48px 0 32px 0;">
+  <div class="container partners-container" style="text-align:center;">
+    <h2 style="font-size:2rem; color:#2c3e50; font-weight:700; margin-bottom:32px;">Our Partners</h2>
+    <div class="partners-slider-outer">
+      <div class="partners-slider-track">
+        <img src="{% static 'images/partner1.png' %}" alt="Partner 1" class="partner-logo">
+        <img src="{% static 'images/partner2.png' %}" alt="Partner 2" class="partner-logo">
+        <img src="{% static 'images/partner1.png' %}" alt="Partner 3" class="partner-logo">
+        <img src="{% static 'images/partner2.png' %}" alt="Partner 4" class="partner-logo">
+        <!-- Duplicate for seamless loop -->
+        <img src="{% static 'images/partner1.png' %}" alt="Partner 1" class="partner-logo">
+        <img src="{% static 'images/partner2.png' %}" alt="Partner 2" class="partner-logo">
+        <img src="{% static 'images/partner1.png' %}" alt="Partner 3" class="partner-logo">
+        <img src="{% static 'images/partner2.png' %}" alt="Partner 4" class="partner-logo">
+      </div>
+    </div>
+  </div>
+</section>
+<style>
+  .partners-slider-outer {
+    overflow: hidden;
+    width: 100%;
+    max-width: 1100px;
+    margin: 0 auto;
+    position: relative;
+    height: 90px;
+    display: flex;
+    align-items: center;
+  }
+  .partners-slider-track {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    animation: partners-slide 7s linear infinite;
+    will-change: transform;
+  }
+  .partner-logo {
+    height: 60px;
+    width: auto;
+    opacity: 0.7;
+    transition: filter 0.3s, opacity 0.3s;
+    max-width: 180px;
+    margin: 0 10px;
+    object-fit: contain;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(136,36,199,0.07);
+    padding: 8px 16px;
+    user-select: none;
+    pointer-events: auto;
+  }
+  .partner-logo:hover {
+    filter: grayscale(0%) brightness(1) contrast(1);
+    opacity: 1;
+  }
+  @keyframes partners-slide {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+  @media (max-width: 700px) {
+    .partners-slider-track { gap: 24px; }
+    .partner-logo { height: 40px; max-width: 110px; padding: 4px 8px; }
+    .partners-slider-outer { height: 60px; }
+  }
+</style>
+<script>
+  // Pause slider on hover for accessibility
+  document.addEventListener('DOMContentLoaded', function() {
+    var track = document.querySelector('.partners-slider-track');
+    var outer = document.querySelector('.partners-slider-outer');
+    if (track && outer) {
+      outer.addEventListener('mouseenter', function() {
+        track.style.animationPlayState = 'paused';
+      });
+      outer.addEventListener('mouseleave', function() {
+        track.style.animationPlayState = 'running';
+      });
+    }
+  });
+</script>
+
 
 {% block extra_css %}
 <style>
+
+
 .team-section {
   background: #fff8fc;
   padding: 70px 0;
@@ -335,6 +424,42 @@
   color: #fff;
   transform: scale(1.1);
 }
+
+.see-more-wrapper {
+    display: flex;
+    justify-content: center;
+    margin-top: 3rem;
+}
+
+.see-more-btn {
+    width: 500px;
+    max-width: 90%;
+    display: inline-block;
+    padding: 12px 24px;
+    background-color: #6a1b9a;
+    color: white;
+    font-size: 1rem;
+    font-weight: 600;
+    text-decoration: none;
+    border-radius: 8px;
+    text-align: center;
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
+    box-shadow: 0 4px 10px rgba(106, 27, 154, 0.3);
+    letter-spacing: 1px;
+    text-shadow: 0 0 6px rgba(255, 255, 255, 0.1);
+}
+
+.see-more-btn:hover {
+    background-color: #7b1fa2;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 14px rgba(106, 27, 154, 0.4);
+}
+
+.see-more-btn:active {
+    transform: scale(0.97);
+    box-shadow: 0 2px 6px rgba(106, 27, 154, 0.2);
+}
+
 @media (max-width: 768px) {
   .team-member-card {
     padding: 24px 16px;
@@ -343,61 +468,74 @@
 </style>
 {% endblock %}
 
-{% block extra_js %}
 <script>
-// Fade-in animation observer
-const fadeObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
-        }
-    });
-}, {
-    threshold: 0.1,
-    rootMargin: '0px 0px -50px 0px'
-});
+document.addEventListener("DOMContentLoaded", () => {
+    const statsSection = document.querySelector('#impact-stats-section');
+    let counted = false;
 
-// Observe all fade-in elements
-document.addEventListener('DOMContentLoaded', function() {
-    const fadeElements = document.querySelectorAll('.fade-in');
-    fadeElements.forEach(element => {
-        fadeObserver.observe(element);
-    });
-});
-
-// Animate statistics counters
-function animateCounters() {
-    const counters = document.querySelectorAll('.stat-number[data-target]');
-    counters.forEach(counter => {
-        const target = parseInt(counter.getAttribute('data-target'));
-        const increment = target / 100;
-        let current = 0;
-        
-        const timer = setInterval(() => {
-            current += increment;
-            if (current >= target) {
-                counter.textContent = target.toLocaleString();
-                clearInterval(timer);
-            } else {
-                counter.textContent = Math.floor(current).toLocaleString();
+    function animateCounters() {
+        if (counted) return; // prevent multiple runs
+        const counters = document.querySelectorAll('.stat-number');
+        counters.forEach(counter => {
+            const target = +counter.getAttribute('data-target');
+            const hasPlus = counter.querySelector('.plus-sign') !== null;
+            let current = 0;
+            const increment = target / 100; // 100 increments for smooth count
+            counter.textContent = '0';
+            if (hasPlus) {
+                const plusSpan = document.createElement('span');
+                plusSpan.classList.add('plus-sign');
+                plusSpan.style.display = 'none';
+                plusSpan.textContent = '+';
+                counter.appendChild(plusSpan);
             }
-        }, 20);
-    });
-}
 
-// Initialize counters when stats section is visible
-const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
+            const updateCount = () => {
+                current += increment;
+                if (current >= target) {
+                    counter.textContent = target.toFixed(0);
+                    if (hasPlus) {
+                        const plusSpan = document.createElement('span');
+                        plusSpan.classList.add('plus-sign');
+                        plusSpan.style.display = 'inline';
+                        plusSpan.textContent = '+';
+                        counter.appendChild(plusSpan);
+                    }
+                } else {
+                    counter.textContent = Math.floor(current);
+                    if (hasPlus) {
+                        const plusSpan = document.createElement('span');
+                        plusSpan.classList.add('plus-sign');
+                        plusSpan.style.display = 'none';
+                        plusSpan.textContent = '+';
+                        counter.appendChild(plusSpan);
+                        setTimeout(updateCount, 20);
+                    } else {
+                        setTimeout(updateCount, 20);
+                    }
+                }
+            };
+            updateCount();
+        });
+        counted = true;
+    }
+
+    function isInViewport(element) {
+        const rect = element.getBoundingClientRect();
+        return rect.top < window.innerHeight && rect.bottom >= 0;
+    }
+
+    function onScroll() {
+        if (isInViewport(statsSection)) {
             animateCounters();
-            observer.unobserve(entry.target);
+            window.removeEventListener('scroll', onScroll);
         }
-    });
-});
+    }
 
-const statsSection = document.querySelector('.stats-grid');
-if (statsSection) {
-    observer.observe(statsSection);
-}
+    window.addEventListener('scroll', onScroll);
+    // Check immediately in case already in viewport
+    onScroll();
+});
 </script>
+
 {% endblock %}
