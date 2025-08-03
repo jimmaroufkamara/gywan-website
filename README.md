@@ -31,6 +31,7 @@ A modern, responsive Django website for the Girls and Young Women's Advocacy Net
 ### Installation
 
 1. **Clone the repository**
+
    \`\`\`bash
    git clone https://github.com/jimmaroufkamara/gywan-website.git
    cd gywan-website
