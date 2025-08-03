@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}GYWAN - Girls and Young Women's Advocacy Network{% endblock %}</title>
+    <title>{% block title %}GYWAN - Sierra Leone{% endblock %}</title>
     <meta name="description" content="{% block description %}Empowering girls and young women to become confident leaders and changemakers through advocacy, education, and community engagement.{% endblock %}">
     
     <!-- Open Graph Meta Tags -->
     <meta property="og:title" content="{% block og_title %}GYWAN - Girls and Young Women's Advocacy Network{% endblock %}">
     <meta property="og:description" content="{% block og_description %}Empowering girls and young women to become confident leaders and changemakers.{% endblock %}">
-    <meta property="og:image" content="{% block og_image %}{% load static %}{% static 'images/gywan-og-image.jpg' %}{% endblock %}">
+    <meta property="og:image" content="{% block og_image %}{% load static %}{% static 'images/logo1.png' %}{% endblock %}">
     <meta property="og:url" content="{{ request.build_absolute_uri }}">
     <meta property="og:type" content="website">
     
@@ -26,12 +26,13 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="{% static 'images/logo1.png' %}" />
     
     {% block extra_css %}{% endblock %}
     
     <!-- Loading Screen -->
     <style>
-    #preloader {
+    #preloaders {
       position: fixed;
       left: 0; top: 0;
       width: 100vw; height: 100vh;
@@ -41,19 +42,19 @@
       align-items: center;
       justify-content: center;
     }
-    .loader {
+    .loaders {
       display: flex;
       gap: 10px;
     }
-    .loader span {
+    .loaders span {
       display: block;
       width: 16px; height: 16px;
       background: #8824C7;
       border-radius: 50%;
       animation: bounce 1s infinite alternate;
     }
-    .loader span:nth-child(2) { animation-delay: 0.2s; }
-    .loader span:nth-child(3) { animation-delay: 0.4s; }
+    .loaders span:nth-child(2) { animation-delay: 0.2s; }
+    .loaders span:nth-child(3) { animation-delay: 0.4s; }
     @keyframes bounce {
       to { transform: translateY(-20px); opacity: 0.7; }
     }
@@ -61,8 +62,8 @@
 </head>
 <body>
     <!-- Loading Screen -->
-    <div id="preloader">
-      <div class="loader">
+    <div id="preloaders">
+      <div class="loaders">
         <span></span>
         <span></span>
         <span></span>
@@ -109,7 +110,7 @@
     <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
     <script>
     window.addEventListener('load', function() {
-      document.getElementById('preloader').style.display = 'none';
+      document.getElementById('preloaders').style.display = 'none';
     });
     AOS.init({
       duration: 900,

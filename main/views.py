@@ -30,23 +30,65 @@ class HomeView(TemplateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         # Get upcoming events (events with date >= today)
-        context['upcoming_events'] = Event.objects.filter(
+        context['upcoming_events'] = list(Event.objects.filter(
             date__gte=timezone.now(),
             is_active=True
-        ).order_by('date')[:6]
-        
-        # Get recent stories
-        context['recent_stories'] = Story.objects.filter(
+        ).order_by('date')[:6])
+
+        # Demo data for events
+        if not context['upcoming_events']:
+            context['upcoming_events'] = [
+                {'title': 'STEM Bootcamp for Girls', 'date': '2025-09-10', 'description': 'A week-long immersive bootcamp introducing girls to coding, robotics, and digital skills.', 'location': 'Freetown, Sierra Leone', 'get_absolute_url': '#'},
+                {'title': 'Young Women Leadership Summit', 'date': '2025-10-05', 'description': 'Empowering young women with leadership, advocacy, and public speaking skills.', 'location': 'Accra, Ghana', 'get_absolute_url': '#'},
+                {'title': 'Health & Hygiene Workshop', 'date': '2025-08-20', 'description': 'Interactive sessions on health, hygiene, and self-care for adolescent girls.', 'location': 'Monrovia, Liberia', 'get_absolute_url': '#'}
+            ]
+
+        context['recent_stories'] = list(Story.objects.filter(
             is_active=True
-        ).order_by('-created_at')[:6]
-        
-        # Get recent resources
-        context['recent_resources'] = Resource.objects.filter(
+        ).order_by('-created_at')[:6])
+        if not context['recent_stories']:
+            context['recent_stories'] = [
+                {'author': 'Fatmata Kamara', 'title': 'From Shy to STEM Star', 'content': 'Fatmata joined our bootcamp with little confidence. Today, she leads her school’s robotics club and mentors other girls.', 'location': 'Freetown', 'get_absolute_url': '#'},
+                {'author': 'Aisha Conteh', 'title': 'Speaking Up for Change', 'content': 'Aisha’s journey from a quiet student to a passionate advocate for girls’ education inspires her whole community.', 'location': 'Bo', 'get_absolute_url': '#'},
+                {'author': 'Mariama Sesay', 'title': 'Building Healthy Habits', 'content': 'Mariama learned about health and hygiene at our workshop and now leads peer sessions at her school.', 'location': 'Kenema', 'get_absolute_url': '#'}
+            ]
+
+        context['recent_resources'] = list(Resource.objects.filter(
             is_active=True
-        ).order_by('-created_at')[:6]
-        
+        ).order_by('-created_at')[:6])
+        if not context['recent_resources']:
+            context['recent_resources'] = [
+                {'get_category_display': 'Toolkit', 'title': 'Girls in STEM Activity Book', 'description': 'Fun activities and challenges to spark curiosity in science and tech.', 'download_count': 120, 'file': {'url': '#'}},
+                {'get_category_display': 'Guide', 'title': 'Leadership Skills for Young Women', 'description': 'A practical guide to building confidence and leadership.', 'download_count': 95, 'file': {'url': '#'}},
+                {'get_category_display': 'Report', 'title': '2025 Impact Report', 'description': 'See the results and stories from our programs this year.', 'download_count': 60, 'file': {'url': '#'}}
+            ]
+
+        context['blog_posts'] = list(BlogPost.objects.filter(
+            published=True,
+            is_active=True
+        ).order_by('-created_at')[:5])
+        if not context['blog_posts']:
+            context['blog_posts'] = [
+                {'category': 'Empowerment', 'title': 'Why Girls in STEM Matter', 'summary': 'Exploring the impact of STEM education for girls in Africa.', 'content': '', 'date': '2025-07-15', 'get_absolute_url': '#'},
+                {'category': 'Leadership', 'title': 'Raising the Next Generation of Leaders', 'summary': 'How our programs nurture leadership in young women.', 'content': '', 'date': '2025-06-30', 'get_absolute_url': '#'},
+                {'category': 'Health', 'title': 'Breaking Taboos: Girls’ Health Education', 'summary': 'Addressing myths and empowering girls with knowledge.', 'content': '', 'date': '2025-06-10', 'get_absolute_url': '#'},
+                {'category': 'Events', 'title': 'Highlights from the 2025 Summit', 'summary': 'A recap of our biggest event of the year.', 'content': '', 'date': '2025-05-25', 'get_absolute_url': '#'},
+                {'category': 'Community', 'title': 'Volunteers Making a Difference', 'summary': 'Stories from our dedicated volunteers.', 'content': '', 'date': '2025-05-01', 'get_absolute_url': '#'}
+            ]
+
         context['newsletter_form'] = NewsletterForm()
-        context['impact_stats'] = ImpactStat.objects.filter(is_active=True)
+
+        context['impact_stats'] = list(ImpactStat.objects.filter(is_active=True))
+        if not context['impact_stats']:
+            context['impact_stats'] = [
+                {'value': '10K+', 'label': 'Girls Empowered', 'description': 'Directly impacted through our programs.'},
+                {'value': '120+', 'label': 'Programs Delivered', 'description': 'Across 3 West African countries.'},
+                {'value': '50+', 'label': 'Communities Reached', 'description': 'Urban, rural, and remote areas.'}
+            ]
+
+        # Add testimonials to context for homepage carousel
+        from .models import Testimonial
+        context['testimonials'] = Testimonial.objects.all()
         return context
 
 
@@ -209,9 +251,12 @@ class StoryListView(ListView):
     context_object_name = 'stories'
     paginate_by = 10
     
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['recent_comments'] = Comment.objects.order_by('-created_at')[:10]
+        from .models import Testimonial
+        context['testimonials'] = Testimonial.objects.all()
         return context
 
     def get_queryset(self):

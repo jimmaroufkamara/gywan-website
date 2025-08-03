@@ -5,819 +5,1223 @@
 
 {% block content %}
 
- <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        /* Animation Classes */
-        .scroll-reveal {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-        }
-
-        .scroll-reveal.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .fade-in {
-            opacity: 0;
-            transform: translateY(20px);
-            transition: all 0.6s ease-out;
-        }
-
-        .fade-in.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* Hero Section */
-        .hero {
-            min-height: 100vh;
-            position: relative;
-            display: flex;
-            align-items: center;
-            background: linear-gradient(135deg, #FFDE2F 0%, #764ba2 100%);
-            overflow: hidden;
-        }
-
-        .hero-background {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 1;
-        }
-
-        .hero-particles {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="2" fill="rgba(255,255,255,0.1)"/><circle cx="80" cy="40" r="1.5" fill="rgba(255,255,255,0.1)"/><circle cx="40" cy="80" r="1" fill="rgba(255,255,255,0.1)"/></svg>');
-            animation: float 20s ease-in-out infinite;
-        }
-
-        .hero-gradient {
-            background: linear-gradient(45deg, rgba(102, 126, 234, 0.8), rgba(118, 75, 162, 0.8));
-            position: absolute;
-            width: 100%;
-            height: 100%;
-        }
-
-        .hero-container {
-            position: relative;
-            z-index: 2;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 60px;
-            align-items: center;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        
-        .hero-badge {
-            display: inline-block;
-            backdrop-filter: blur(10px);
-            padding: 8px 20px;
-            border-radius: 25px;
-            font-size: 14px;
-            font-weight: 600;
-            margin-bottom: 20px;
-        }
-
-        .hero-title {
-            font-size: 3.5rem;
-            font-weight: 700;
-            line-height: 1.1;
-            margin-bottom: 20px;
-        }
-
-        .title-line {
-            display: block;
-        }
-
-        .gradient-text {
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .hero-description {
-            color: white;
-            font-size: 1.2rem;
-            margin-bottom: 30px;
-            opacity: 0.9;
-            line-height: 1.6;
-        }
-
-        .hero-image {
-            position: relative;
-            text-align: center;
-        }
-
-        .hero-img {
-            max-width: 100%;
-            height: auto;
-            border-radius: 20px;
-            transform: perspective(1000px) rotateY(-5deg);
-            transition: transform 0.3s ease;
-        }
-
-        .hero-img:hover {
-            transform: perspective(1000px) rotateY(0deg) scale(1.02);
-        }
-
-        /* Sections */
-        section {
-            padding: 80px 0;
-        }
-
-        .section-header {
-            text-align: center;
-            margin-bottom: 60px;
-        }
-
-        .section-header h2 {
-            font-size: 2.5rem;
-            margin-bottom: 15px;
-        }
-
-        .section-header p {
-            font-size: 1.1rem;
-            margin-bottom: 30px;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        /* Events Section */
-        .upcoming-events {
-            background: #f8f9fa;
-        }
-
-        .events-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 30px;
-        }
-
-        .event-card {
-            background: white;
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
-            transition: all 0.3s ease;
-        }
-
-        .event-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
-        }
-
-        .event-image {
-            height: 200px;
-            background: linear-gradient(45deg, #667eea, #764ba2);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 1.2rem;
-        }
-
-        .event-content {
-            padding: 25px;
-        }
-
-        .event-date {
-            background: #667eea;
-            color: white;
-            padding: 10px 15px;
-            border-radius: 8px;
-            display: inline-block;
-            margin-bottom: 15px;
-        }
-
-        .event-title {
-            font-size: 1.3rem;
-            margin-bottom: 10px;
-            color: #2c3e50;
-        }
-
-        .event-description {
-            color: #666;
-            margin-bottom: 15px;
-        }
-
-        .event-meta {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            margin-bottom: 20px;
-            color: #888;
-            font-size: 0.9rem;
-        }
-
-        /* Stories Section */
-        .stories-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 30px;
-        }
-
-        .story-card {
-            background: white;
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
-            transition: all 0.3s ease;
-        }
-
-        .story-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
-        }
-
-        .story-image {
-            height: 200px;
-            background: linear-gradient(45deg, #8824C7, #FFDE2F);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 1.2rem;
-        }
-
-        .story-content {
-            padding: 25px;
-        }
-
-        .story-title {
-            font-size: 1.3rem;
-            margin-bottom: 10px;
-            color: #2c3e50;
-        }
-
-        .story-excerpt {
-            color: #666;
-            margin-bottom: 15px;
-        }
-
-        .story-meta {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            margin-bottom: 20px;
-            color: #888;
-            font-size: 0.9rem;
-        }
-
-        /* Resources Section */
-        .recent-resources {
-            background: #f8f9fa;
-        }
-
-        .resources-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-        }
-
-        .resource-card {
-            background: white;
-            border-radius: 15px;
-            padding: 30px;
-            text-align: center;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
-            transition: all 0.3s ease;
-        }
-
-        .resource-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
-        }
-
-        .resource-icon {
-            width: 60px;
-            height: 60px;
-            background: linear-gradient(45deg, #667eea, #764ba2);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 20px;
-            color: white;
-            font-size: 1.5rem;
-        }
-
-        .resource-category {
-            color: #667eea;
-            font-size: 0.9rem;
-            font-weight: 600;
-            margin-bottom: 10px;
-        }
-
-        .resource-title {
-            font-size: 1.2rem;
-            margin-bottom: 10px;
-            color: #2c3e50;
-        }
-
-        .resource-description {
-            color: #666;
-            margin-bottom: 15px;
-        }
-
-        .resource-meta {
-            color: #888;
-            font-size: 0.9rem;
-            margin-bottom: 20px;
-        }
-
-        /* Mission Statement */
-        .mission-statement {
-            position: relative;
-            overflow: hidden;
-        }
-
-        .mission-background {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: url("/static/images/donation-hero-image.jpg");
-            background-size: cover;
-            background-position: center;
-            filter: blur(1.5px) brightness(1);
-            z-index: -2;
-        }
-
-        
-        .mission-statement::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.3);
-            z-index: -1;
-        }
-
-
-
-        .mission-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 60px;
-            align-items: center;
-        }
-
-        .mission-text h2 {
-            color: #8920B1;
-            font-size: 2.5rem;
-            margin-bottom: 20px;
-        }
-
-        .mission-text p {
-            color: #FFDE2F;
-            font-size: 1.2rem;
-            margin-bottom: 30px;
-            opacity: 0.9;
-        }
-
-        .mission-visual {
-            text-align: center;
-        }
-
-        .mission-logo {
-            width: 200px;
-            height: 200px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto;
-            backdrop-filter: blur(10px);
-            border: 2px solid rgba(255, 255, 255, 0.2);
-        }
-
-        .mission-logo img {
-            max-width: 300px;
-            height: auto;
-        }
-
-        /* Global Impact */
-        .global-impact {
-            background: #f8f9fa;
-            text-align: center;
-        }
-
-        .impact-header h2 {
-            font-size: 2.5rem;
-            margin-bottom: 15px;
-            color: #2c3e50;
-        }
-
-        .impact-header p {
-            font-size: 1.1rem;
-            color: #666;
-            margin-bottom: 50px;
-        }
-
-        .impact-stats {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 40px;
-            margin-bottom: 60px;
-        }
-
-        .stat-item {
-            background: white;
-            padding: 40px 20px;
-            border-radius: 15px;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
-        }
-
-        .stat-number {
-            font-size: 3rem;
-            font-weight: 700;
-            color: #667eea;
-            margin-bottom: 10px;
-        }
-
-        .stat-label {
-            font-size: 1.2rem;
-            font-weight: 600;
-            margin-bottom: 5px;
-            color: #2c3e50;
-        }
-
-        .stat-description {
-            color: #666;
-            font-size: 0.9rem;
-        }
-
-        .impact-quote {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .impact-quote blockquote {
-            font-size: 1.3rem;
-            font-style: italic;
-            color: #2c3e50;
-            margin-bottom: 15px;
-        }
-
-        .impact-quote cite {
-            font-weight: 600;
-        }
-
-        /* Make a Difference */
-        .make-difference {
-            background: linear-gradient(135deg, #FFDE2F 0%, #764ba2 100%);
-            text-align: center;
-        }
-
-        .difference-content h2 {
-            font-size: 2.5rem;
-            margin-bottom: 20px;
-        }
-
-        .difference-content p {
-            font-size: 1.2rem;
-            margin-bottom: 30px;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-            opacity: 0.9;
-        }
-
-        /* Animations */
-        @keyframes float {
-            0%, 100% { transform: translateY(0px) rotate(0deg); }
-            33% { transform: translateY(-10px) rotate(1deg); }
-            66% { transform: translateY(5px) rotate(-1deg); }
-        }
-
-        /* No content messages */
-        .no-events, .no-stories, .no-resources {
-            text-align: center;
-            padding: 60px 20px;
-            color: #666;
-            font-size: 1.1rem;
-        }
-
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .hero-container {
-                grid-template-columns: 1fr;
-                text-align: center;
-            }
-
-            .hero-title {
-                font-size: 2.5rem;
-            }
-
-            .mission-content {
-                grid-template-columns: 1fr;
-                text-align: center;
-            }
-
-            .events-grid, .stories-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .impact-stats {
-                grid-template-columns: 1fr;
-            }
-        }
-    </style>
-<!-- Hero Section -->
-<section class="hero scroll-reveal" data-aos="fade-up">
-    <div class="hero-background">
-        <div class="hero-particles"></div>
-        <div class="hero-gradient"></div>
-    </div>
-    <div class="hero-container">
-        <div class="hero-content">
-            <div class="hero-badge">
-                <span>GYWAN</span>
-            </div>
-            <h1 class="hero-title">
-                <span class="title-line">Empowering Girls,</span>
-                <span class="title-line gradient-text">Transforming Communities</span>
-            </h1>
-            <p class="hero-description">
-                We are thrilled to share that GYWAN's dedication to uplifting girls and young women has been recognized on a major stage. Building a society where girls and young women are empowered leaders, free from violence, and equipped with the tools to create positive change.
-            </p>
-            <div class="hero-cta">
-                <a href="{% url 'about' %}" class="btn btn-primary btn-large">
-                    <span>Learn More</span>
-                </a>
-            </div>
+<!-- Styles -->
+<style>
+  /* Reset and base styles */
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    overflow-x: hidden;
+    background-color: #f4f4f4;
+  }
+
+  a {
+    text-decoration: none;
+  }
+
+  /* Container */
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
+  /* Scroll reveal animation */
+  .scroll-reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+  .scroll-reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Fade-in effect for resources */
+  .fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.6s ease-out;
+  }
+  .fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Hero Section */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    position: relative;
+    background: linear-gradient(135deg, #FFDE2F 0%, #764ba2 100%);
+    overflow: hidden;
+  }
+
+  .hero-video-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
+  }
+
+  .hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(120deg, rgba(160, 125, 90, 0.55), rgba(136,36,199,0.38), rgba(118,75,162,0.55));
+    box-shadow: 0 8px 32px rgba(136,36,199,0.10);
+    z-index: 1;
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 60px 20px;
+  }
+
+  /* Hero two-column layout and deco */
+  .hero-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 32px;
+    position: relative;
+    z-index: 2;
+    flex-wrap: wrap;
+    padding: 60px 20px;
+  }
+  .hero-text {
+    flex: 1 1 350px;
+    max-width: 540px;
+    min-width: 300px;
+    margin-bottom: 20px;
+    text-align: left;
+  }
+  .hero-deco {
+    flex: 0 0 180px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 120px;
+    animation: floatBlob 4s ease-in-out infinite alternate;
+  }
+  @keyframes floatBlob {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-18px); }
+  }
+  @media (max-width: 900px) {
+    .hero-content {
+      flex-direction: column;
+      align-items: flex-start;
+      min-height: 70vh;
+      gap: 0;
+      left: 0;
+    }
+    .hero-text {
+      max-width: 100%;
+    }
+    .hero-deco {
+      margin-top: 32px;
+      align-self: center;
+    }
+  }
+
+  /* Hero Text */
+  .hero-text {
+    flex: 1 1 350px;
+    max-width: 540px;
+    min-width: 300px;
+    margin-bottom: 20px;
+  }
+
+  .hero-badge {
+    display: inline-block;
+    padding: 8px 20px;
+    border-radius: 25px;
+    background: rgba(255,255,255,0.15);
+    color: #8824C7;
+    font-weight: 600;
+    font-size: 14px;
+    margin-bottom: 20px;
+  }
+
+  /* Hero Title */
+  .hero-title {
+    color: #8824C7;
+    font-size: 3.5rem;
+    font-weight: 700;
+    line-height: 1.1;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+
+  .hero-title span.gradient-text {
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background: linear-gradient(45deg, #8824C7, #764ba2);
+  }
+
+  /* Spinner container */
+  .spinner-container {
+    display: flex;
+    align-items: center;
+    margin-left: 15px;
+  }
+
+  /* Loader (spinner) styles */
+  .loader {
+    border: 4px solid rgba(255, 222, 47, 0.2);
+    border-top: 4px solid #FFDE2F;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    animation: spin 1s linear infinite;
+  }
+
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+
+  /* Pulsing headers (h2) */
+  h2 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 15px;
+    animation: pulse 2s infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% {
+      opacity: 1;
+      transform: scale(1);
+    }
+    50% {
+      opacity: 0.7;
+      transform: scale(1.05);
+    }
+  }
+
+  /* Hero Description */
+  .hero-description {
+    font-size: 1.25rem;
+    color: white;
+    opacity: 0.9;
+    margin-bottom: 32px;
+    max-width: 90%;
+  }
+
+  /* Button styles */
+  .btn-primary {
+    background-color: #8824C7;
+    color: #fff;
+    padding: 16px 38px;
+    border-radius: 32px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    box-shadow: 0 4px 16px rgba(136,36,199,0.13);
+    display: inline-block;
+    transition: background 0.3s;
+  }
+
+  .btn-primary:hover {
+    background-color: #764ba2;
+  }
+
+  /* Resources grid */
+  .resources-grid {
+    display: grid;
+    gap: 30px;
+  }
+
+  /* Resource Card */
+  .resource-card {
+    background: #fff;
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+    border: 2px solid #FFDE2F;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .resource-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+  }
+
+  /* Resource Icon */
+  .resource-icon {
+    width: 60px;
+    height: 60px;
+    margin: 20px auto 10px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    color: #fff;
+  }
+
+  /* Resource Content */
+  .resource-content {
+    padding: 0 25px 25px;
+  }
+
+  /* Other resource text styles */
+  .resource-category {
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin-bottom: 10px;
+    color: #667eea;
+  }
+  .resource-title {
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+    color: #2c3e50;
+  }
+  .resource-description {
+    color: #666;
+    margin-bottom: 15px;
+  }
+  .resource-meta {
+    font-size: 0.9rem;
+    color: #888;
+    margin-bottom: 20px;
+  }
+
+  /* Small button inside resource cards */
+  .btn-small {
+    display: inline-block;
+    padding: 8px 16px;
+    background: #8824C7;
+    color: #fff;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    transition: background 0.3s;
+  }
+  .btn-small:hover {
+    background: #764ba2;
+  }
+
+  /* Mission Statement */
+  .mission-statement {
+    position: relative;
+    overflow: hidden;
+  }
+  .mission-background {
+    position: absolute;
+    inset: 0;
+    background-image: url("{% static 'images/donation-hero-image.jpg' %}");
+    background-size: cover;
+    background-position: center;
+    filter: blur(1.5px) brightness(1);
+    z-index: -2;
+  }
+  .mission-statement::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.3);
+    z-index: -1;
+  }
+  .mission-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+    padding: 60px 20px;
+  }
+  .mission-text h2 {
+    font-size: 2.5rem;
+    color: #8920B1;
+    margin-bottom: 20px;
+  }
+  .mission-text p {
+    font-size: 1.2rem;
+    color: #FFDE2F;
+    margin-bottom: 30px;
+  }
+  .mission-logo {
+    width: 200px;
+    height: 200px;
+    margin: 0 auto;
+    border-radius: 50%;
+    backdrop-filter: blur(10px);
+    border: 2px solid rgba(255,255,255,0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* Global Impact (PIR.org style) */
+  .pir-impact-container {
+    padding: 60px 20px;
+  }
+  .pir-impact-header {
+    text-align: center;
+    margin-bottom: 40px;
+  }
+  .pir-impact-intro {
+    font-size: 1.2rem;
+    color: #2c3e50;
+    max-width: 600px;
+    margin: 0 auto 24px auto;
+  }
+  .pir-impact-stats {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 40px;
+    margin-bottom: 40px;
+  }
+  .pir-stat-item {
+    flex: 1 1 220px;
+    min-width: 220px;
+    max-width: 320px;
+    background: #fff;
+    border-radius: 18px;
+    box-shadow: 0 4px 24px rgba(136,36,199,0.07);
+    padding: 40px 24px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .pir-stat-number {
+    font-size: 2.7rem;
+    font-weight: 800;
+    color: #8824C7;
+    margin-bottom: 10px;
+  }
+  .pir-stat-label {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: #2c3e50;
+    margin-bottom: 8px;
+  }
+  .pir-stat-description {
+    color: #666;
+    font-size: 1rem;
+  }
+  .pir-impact-quote {
+    max-width: 700px;
+    margin: 0 auto;
+    background: #f8f9fa;
+    border-radius: 16px;
+    box-shadow: 0 4px 16px rgba(136,36,199,0.07);
+    padding: 32px 24px;
+    text-align: center;
+  }
+  .pir-impact-quote blockquote {
+    font-size: 1.2rem;
+    color: #2c3e50;
+    font-style: italic;
+    margin-bottom: 10px;
+  }
+  .pir-impact-quote cite {
+    display: block;
+    font-weight: 600;
+    color: #8824C7;
+  }
+  @media(max-width: 900px) {
+    .pir-impact-stats {
+      flex-direction: column;
+      gap: 24px;
+    }
+    .pir-stat-item {
+      max-width: 100%;
+    }
+  }
+
+  /* Responsive adjustments */
+  @media(max-width:768px){
+    .hero {
+      flex-direction: column;
+      text-align: center;
+    }
+    .hero-title {
+      font-size: 2.5rem;
+    }
+    .mission-content {
+      grid-template-columns: 1fr;
+    }
+    .resources-grid {
+      grid-template-columns: 1fr;
+    }
+    .impact-stats {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  /* About GYWAN Section */
+  .about-gywan-container {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 40px;
+    padding: 60px 0;
+  }
+  .about-gywan-content {
+    flex: 1 1 350px;
+    min-width: 320px;
+    max-width: 600px;
+  }
+  .about-gywan-content h2 {
+    color: #8824C7;
+    margin-bottom: 18px;
+  }
+  .about-gywan-content p {
+    font-size: 1.15rem;
+    color: #2c3e50;
+    margin-bottom: 24px;
+  }
+  .about-gywan-logo {
+    max-width: 220px;
+    border-radius: 50%;
+    box-shadow: 0 4px 24px rgba(136,36,199,0.10);
+    background: #fff;
+    padding: 16px;
+  }
+  .about-gywan-visual {
+    flex: 1 1 220px;
+    text-align: center;
+  }
+
+  /* Partners Section */
+  .partners-container {
+    padding: 60px 0;
+    text-align: center;
+  }
+  .partners-logos {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 32px;
+    margin-top: 32px;
+  }
+  .partners-logos img {
+    width: 120px;
+    height: 60px;
+    object-fit: contain;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(136,36,199,0.07);
+    padding: 8px 16px;
+  }
+
+  /* Testimonials Section */
+  .testimonials-container {
+    padding: 60px 0;
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  .testimonials-carousel {
+    position: relative;
+    min-height: 120px;
+    margin-bottom: 24px;
+  }
+  .testimonial-item {
+    display: none;
+    font-size: 1.2rem;
+    color: #2c3e50;
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 0 4px 16px rgba(136,36,199,0.07);
+    padding: 32px 24px;
+    margin: 0 auto;
+    max-width: 600px;
+    transition: opacity 0.5s;
+  }
+  .testimonial-item.active {
+    display: block;
+    opacity: 1;
+  }
+  .testimonial-author {
+    display: block;
+    margin-top: 16px;
+    font-weight: 600;
+    color: #8824C7;
+  }
+  .testimonials-controls {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+  }
+  .testimonials-controls button {
+    background: #8824C7;
+    color: #fff;
+    border: none;
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+    font-size: 1.3rem;
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+  .testimonials-controls button:hover {
+    background: #764ba2;
+  }
+
+  /* Call to Action Section */
+  .cta-container {
+    padding: 60px 0;
+    text-align: center;
+    background: linear-gradient(135deg, #FFDE2F 0%, #764ba2 100%);
+    border-radius: 24px;
+    box-shadow: 0 4px 24px rgba(136,36,199,0.10);
+    margin: 60px auto 0 auto;
+    max-width: 900px;
+  }
+  .cta-container h2 {
+    color: #2c3e50;
+    margin-bottom: 18px;
+  }
+  .cta-container p {
+    font-size: 1.2rem;
+    color: #2c3e50;
+    margin-bottom: 28px;
+  }
+  .cta-btn {
+    margin: 0 12px;
+    min-width: 160px;
+  }
+</style>
+
+<!-- HERO SECTION -->
+<section class="hero scroll-reveal" style="min-height:100vh;">
+  <video class="hero-video-bg" autoplay loop muted poster="{% static 'images/hero-image.png' %}">
+    <source src="{% static 'videos/gywan-hero.mp4' %}" type="video/mp4" />
+  </video>
+  <div class="hero-overlay"></div>
+  
+  <div class="container hero-content">
+    <div class="hero-text">
+      <div class="hero-badge">GYWAN</div>
+      <h1 class="hero-title animated-text">
+        High quality <span style="color: #FFDE2F;">EMPOWERMENT</span> solutions you can trust.
+        <!-- Spinner -->
+        <div class="spinner-container">
+          <div class="loader"></div>
         </div>
-        <div class="hero-image">
-            <img src="{% static 'images/hero-image.png' %}" alt="Empowered young women" class="hero-img">
-            <div class="hero-image-overlay"></div>
-        </div>
+      </h1>
+      <p class="hero-description animated-text">
+        We create high-performing programs and resources that elevate girls and young women, building a future of confident leaders and changemakers.
+      </p>
     </div>
+    <div class="hero-deco">
+      <!-- Stylish SVG blob -->
+      <svg width="150" height="150" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="heroBlobGradient" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="#FFDE2F"/>
+            <stop offset="100%" stop-color="#8824C7"/>
+          </linearGradient>
+        </defs>
+        <path fill="url(#heroBlobGradient)" d="M44.8,-67.2C57.2,-59.7,65.7,-44.2,70.2,-28.7C74.7,-13.2,75.2,2.3,70.2,15.7C65.2,29.1,54.7,40.4,42.1,48.7C29.5,57,14.7,62.3,-0.7,63.2C-16.1,64.1,-32.2,60.7,-44.2,51.7C-56.2,42.7,-64.1,28.1,-67.2,12.2C-70.3,-3.7,-68.6,-20,-60.2,-31.7C-51.8,-43.4,-36.7,-50.5,-21.2,-56.2C-5.7,-61.9,10.2,-66.2,24.7,-67.2C39.2,-68.2,53.3,-66.2,44.8,-67.2Z" transform="translate(100 100)"/>
+      </svg>
+    </div>
+  </div>
+
+  
 </section>
 
-<!-- Upcoming Events Section -->
-<section class="upcoming-events scroll-reveal" data-aos="fade-up">
-    <div class="container">
-        <div class="section-header">
-            <h2>Upcoming Events</h2>
-            <p>Join us in our mission to empower girls and young women through these upcoming events and programs.</p>
-            <a href="{% url 'events' %}" class="btn btn-outline">View All Events</a>
+
+<!-- ABOUT GYWAN SECTION (Edukate style) -->
+<section class="about-gywan scroll-reveal" style="background: #fff; padding: 60px 0;">
+  <div class="container" style="display: flex; flex-wrap: wrap; align-items: center; gap: 40px;">
+    <!-- Left: Text and Stats -->
+    <div style="flex: 1 1 400px; min-width: 320px; max-width: 600px;">
+      <div style="margin-bottom: 18px;">
+        <span style="color: #FFDE2F; font-weight: 700; letter-spacing: 2px; font-size: 1rem;">ABOUT US</span>
+      </div>
+      <h2 style="color: #8824C7; font-size: 2.7rem; font-weight: 800; margin-bottom: 18px;">First Choice For Girls & Young Women Empowerment</h2>
+      <p style="font-size: 1.15rem; color: #2c3e50; margin-bottom: 28px;">
+        Girls and Young Women's Advocacy Network (GYWAN) is dedicated to empowering girls and young women through education, advocacy, and leadership development. Our mission is to create a world where every girl and young woman can reach her full potential and become a leader in her community.
+      </p>
+      <!-- Stats Row -->
+      <div style="display: flex; flex-wrap: wrap; gap: 24px; margin-bottom: 32px;">
+        <div style="flex: 1 1 120px; min-width: 120px; background: #f8f9fa; border-radius: 12px; text-align: center; padding: 18px 10px;">
+          <div style="font-size: 2rem; font-weight: 800; color: #8824C7;">50+</div>
+          <div style="font-size: 1rem; color: #2c3e50; font-weight: 600;">Programs</div>
         </div>
-        {% if upcoming_events %}
-        <div class="events-grid">
-            {% for event in upcoming_events %}
-            <div class="event-card fade-in">
-                {% if event.image %}
-                <div class="event-image">
-                    <img src="{{ event.image.url }}" alt="{{ event.title }}">
+        <div style="flex: 1 1 120px; min-width: 120px; background: #f8f9fa; border-radius: 12px; text-align: center; padding: 18px 10px;">
+          <div style="font-size: 2rem; font-weight: 800; color: #8824C7;">200+</div>
+          <div style="font-size: 1rem; color: #2c3e50; font-weight: 600;">Resources</div>
+        </div>
+        <div style="flex: 1 1 120px; min-width: 120px; background: #f8f9fa; border-radius: 12px; text-align: center; padding: 18px 10px;">
+          <div style="font-size: 2rem; font-weight: 800; color: #8824C7;">100+</div>
+          <div style="font-size: 1rem; color: #2c3e50; font-weight: 600;">Volunteers</div>
+        </div>
+        <div style="flex: 1 1 120px; min-width: 120px; background: #f8f9fa; border-radius: 12px; text-align: center; padding: 18px 10px;">
+          <div style="font-size: 2rem; font-weight: 800; color: #8824C7;">10K+</div>
+          <div style="font-size: 1rem; color: #2c3e50; font-weight: 600;">Beneficiaries</div>
+        </div>
+      </div>
+      <a href="{% url 'about' %}" class="btn-primary">Learn More About Us</a>
+    </div>
+    <!-- Right: Image -->
+    <div style="flex: 1 1 320px; text-align: center;">
+      <img src="{% static 'images/about-gywan.png' %}" alt="About GYWAN" style="max-width: 400px; width: 100%; border-radius: 18px; box-shadow: 0 4px 24px rgba(136,36,199,0.10); background: #fff;">
+    </div>
+  </div>
+  <!-- Why Choose Us Row -->
+  <div class="container" style="margin-top: 48px;">
+    <div style="display: flex; flex-wrap: wrap; gap: 32px; justify-content: center;">
+      <div style="flex: 1 1 220px; min-width: 220px; background: #f8f9fa; border-radius: 14px; padding: 32px 18px; text-align: center;">
+        <div style="font-size: 2.5rem; color: #FFDE2F; margin-bottom: 12px;"><i class="fas fa-user-graduate"></i></div>
+        <h4 style="font-size: 1.2rem; color: #8824C7; font-weight: 700; margin-bottom: 10px;">Skilled Mentors</h4>
+        <p style="color: #2c3e50; font-size: 1rem;">Our team consists of experienced mentors dedicated to guiding and empowering girls and young women.</p>
+      </div>
+      <div style="flex: 1 1 220px; min-width: 220px; background: #f8f9fa; border-radius: 14px; padding: 32px 18px; text-align: center;">
+        <div style="font-size: 2.5rem; color: #FFDE2F; margin-bottom: 12px;"><i class="fas fa-certificate"></i></div>
+        <h4 style="font-size: 1.2rem; color: #8824C7; font-weight: 700; margin-bottom: 10px;">Recognized Programs</h4>
+        <p style="color: #2c3e50; font-size: 1rem;">We offer internationally recognized programs and resources for leadership and advocacy.</p>
+      </div>
+      <div style="flex: 1 1 220px; min-width: 220px; background: #f8f9fa; border-radius: 14px; padding: 32px 18px; text-align: center;">
+        <div style="font-size: 2.5rem; color: #FFDE2F; margin-bottom: 12px;"><i class="fas fa-globe"></i></div>
+        <h4 style="font-size: 1.2rem; color: #8824C7; font-weight: 700; margin-bottom: 10px;">Global Community</h4>
+        <p style="color: #2c3e50; font-size: 1rem;">Join a vibrant, supportive community making a real impact across the globe.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- TESTIMONIALS CAROUSEL SECTION -->
+<section class="testimonials scroll-reveal" style="background: #f8f9fa;">
+  <div class="container testimonials-container" style="max-width:1000px;">
+    <h2 style="margin-bottom: 40px;">Testimonials</h2>
+    <div class="netic-testimonials-slider">
+      {% if testimonials %}
+        {% for testimonial in testimonials %}
+          <div class="netic-testimonial-card{% if forloop.first %} active{% endif %}">
+            <div class="netic-testimonial-content">
+              <div class="netic-testimonial-quote">{{ testimonial.quote|linebreaksbr }}</div>
+              <div class="netic-testimonial-user">
+                {% if testimonial.photo %}
+                  <img src="{{ testimonial.photo.url }}" alt="{{ testimonial.name }}" class="netic-testimonial-avatar">
+                {% else %}
+                  <img src="{% static 'images/placeholder-user.jpg' %}" alt="{{ testimonial.name }}" class="netic-testimonial-avatar">
+                {% endif %}
+                <div>
+                  <div class="netic-testimonial-name">{{ testimonial.name }}</div>
+                  <div class="netic-testimonial-role">{{ testimonial.role }}</div>
                 </div>
-                        {% endif %}
-                <div class="event-content">
-                        <div class="event-date">
-                            <span class="date-day">{{ event.date|date:"d" }}</span>
-                            <span class="date-month">{{ event.date|date:"M" }}</span>
-                    </div>
-                    <h3 class="event-title">{{ event.title }}</h3>
-                    <p class="event-description">{{ event.description|truncatewords:20 }}</p>
-                    <div class="event-meta">
-                        <span class="event-location">
-                            <i class="fas fa-map-marker-alt"></i>
-                            {{ event.location }}
-                        </span>
-                    </div>
-                    <a href="{{ event.get_absolute_url }}" class="btn btn-primary btn-small">Learn More</a>
-                </div>
+              </div>
             </div>
-            {% endfor %}
+          </div>
+        {% endfor %}
+      {% else %}
+        <div class="netic-testimonial-card active">
+          <div class="netic-testimonial-content">
+            <div class="netic-testimonial-quote">No testimonials available at the moment.</div>
+            <div class="netic-testimonial-user">
+              <img src="{% static 'images/placeholder-user.jpg' %}" alt="User" class="netic-testimonial-avatar">
+              <div>
+                <div class="netic-testimonial-name">GYWAN</div>
+                <div class="netic-testimonial-role">Supporter</div>
+              </div>
+            </div>
+          </div>
         </div>
-        {% else %}
-        <div class="no-events">
-            <p>No upcoming events at the moment. Check back soon for new programs and events!</p>
-        </div>
-        {% endif %}
+      {% endif %}
     </div>
+    <div class="netic-testimonials-controls">
+      <button class="netic-testimonial-prev" aria-label="Previous testimonial"><i class="fas fa-chevron-left"></i></button>
+      <button class="netic-testimonial-next" aria-label="Next testimonial"><i class="fas fa-chevron-right"></i></button>
+    </div>
+  </div>
 </section>
 
-<!-- Recent Stories Section -->
-<section class="recent-stories scroll-reveal" data-aos="fade-up">
-    <div class="container">
-            <div class="section-header">
-            <h2>Recent Stories</h2>
-            <p>Discover inspiring stories of girls and young women making a difference in their communities.</p>
-            <a href="{% url 'stories' %}" class="btn btn-outline">View All Stories</a>
-            </div>
-        {% if recent_stories %}
-            <div class="stories-grid">
-            {% for story in recent_stories %}
-                <div class="story-card fade-in">
-                {% if story.image %}
-                    <div class="story-image">
-                        <img src="{{ story.image.url }}" alt="{{ story.title }}">
-                </div>
-                        {% endif %}
-                    <div class="story-content">
-                    <h3 class="story-title">{{ story.title }}</h3>
-                    <p class="story-excerpt">{{ story.content|truncatewords:25 }}</p>
-                    <div class="story-meta">
-                        <span class="story-author">
-                            <i class="fas fa-user"></i>
-                            {{ story.author }}
-                        </span>
-                            {% if story.location %}
-                            <span class="story-location">
-                                <i class="fas fa-map-marker-alt"></i>
-                                {{ story.location }}
-                            </span>
-                            {% endif %}
-                    </div>
-                    <a href="{{ story.get_absolute_url }}" class="btn btn-primary btn-small">Read More</a>
-                </div>
-            </div>
-            {% endfor %}
-        </div>
-        {% else %}
-        <div class="no-stories">
-            <p>No stories available at the moment. Check back soon for inspiring content!</p>
-        </div>
-        {% endif %}
-    </div>
-</section>
+<style>
+  .netic-testimonials-slider {
+    display: flex;
+    overflow: hidden;
+    position: relative;
+    min-height: 260px;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 24px;
+  }
+  .netic-testimonial-card {
+    background: #fff;
+    border-radius: 18px;
+    box-shadow: 0 4px 24px rgba(136,36,199,0.07);
+    padding: 56px 48px 48px 48px;
+    margin: 0 24px;
+    min-width: 420px;
+    max-width: 650px;
+    opacity: 0;
+    transform: scale(0.96) translateY(30px);
+    transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    position: absolute;
+    left: 0; right: 0; top: 0; bottom: 0;
+    margin-left: auto; margin-right: auto;
+    z-index: 1;
+    pointer-events: none;
+  }
+  .netic-testimonial-card.active {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+    z-index: 2;
+    pointer-events: auto;
+  }
+  .netic-testimonial-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  .netic-testimonial-quote {
+    font-size: 1.25rem;
+    color: #2c3e50;
+    font-style: italic;
+    margin-bottom: 32px;
+    position: relative;
+    padding: 0 10px;
+  }
+  .netic-testimonial-quote:before {
+    content: '\201C';
+    color: #FFDE2F;
+    font-size: 2.5rem;
+    position: absolute;
+    left: -18px;
+    top: -10px;
+    opacity: 0.7;
+  }
+  .netic-testimonial-user {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+  }
+  .netic-testimonial-avatar {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #FFDE2F;
+    box-shadow: 0 2px 8px rgba(136,36,199,0.10);
+  }
+  .netic-testimonial-name {
+    font-weight: 700;
+    color: #8824C7;
+    font-size: 1.1rem;
+  }
+  .netic-testimonial-role {
+    font-size: 0.98rem;
+    color: #764ba2;
+  }
+  .netic-testimonials-controls {
+    display: flex;
+    justify-content: center;
+    gap: 18px;
+    margin-top: 10px;
+  }
+  .netic-testimonials-controls button {
+    background: #FFDE2F;
+    color: #8824C7;
+    border: none;
+    border-radius: 50%;
+    width: 44px;
+    height: 44px;
+    font-size: 1.5rem;
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(136,36,199,0.07);
+    transition: background 0.3s, color 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .netic-testimonials-controls button:hover {
+    background: #8824C7;
+    color: #fff;
+  }
+  @media (max-width: 900px) {
+    .netic-testimonial-card {
+      min-width: 90vw;
+      max-width: 98vw;
+      padding: 32px 12px 28px 12px;
+    }
+    .netic-testimonials-slider {
+      min-height: 220px;
+    }
+  }
+</style>
 
-<!-- Recent Resources Section -->
-<section class="recent-resources scroll-reveal" data-aos="fade-up">
-    <div class="container">
-        <div class="section-header">
-            <h2>Recent Resources</h2>
-            <p>Access our latest guides, toolkits, and resources to support girls' empowerment and advocacy.</p>
-            <a href="{% url 'resources' %}" class="btn btn-outline">View All Resources</a>
-        </div>
-        {% if recent_resources %}
-        <div class="resources-grid">
-            {% for resource in recent_resources %}
-            <div class="resource-card fade-in">
-                <div class="resource-icon">
-                    <i class="fas fa-file-alt"></i>
-            </div>
-                <div class="resource-content">
-                    <div class="resource-category">{{ resource.get_category_display }}</div>
-                    <h3 class="resource-title">{{ resource.title }}</h3>
-                    <p class="resource-description">{{ resource.description|truncatewords:20 }}</p>
-                    <div class="resource-meta">
-                        <span class="resource-downloads">
-                            <i class="fas fa-download"></i>
-                            {{ resource.download_count }} downloads
-                        </span>
-                    </div>
-                    <a href="{{ resource.file.url }}" class="btn btn-primary btn-small" download>
-                        <i class="fas fa-download"></i>
-                        Download
-                    </a>
-                </div>
-            </div>
-            {% endfor %}
-        </div>
-        {% else %}
-        <div class="no-resources">
-            <p>No resources available at the moment. Check back soon for new materials!</p>
-        </div>
-        {% endif %}
-    </div>
-</section>
-
-
-
-<!-- Mission Statement Section -->
-<section class="mission-statement scroll-reveal" data-aos="fade-up">
-    <div class="mission-background"></div>
-
-    <div class="container">
-        <div class="mission-content">
-            <div class="mission-text">
-                <h2>Committed to Building a Better World</h2>
-                <p>GYWAN is dedicated to providing secure environments and resources that empower girls and young women to increase their positive impact in our world.</p>
-                <a href="{% url 'about' %}" class="btn btn-outline">Learn More</a>
-            </div>
-            <div class="mission-visual">
-                <div class="mission-logo">
-                    <img src="{% static 'images/logo1.png' %}" alt="GYWAN Logo">
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-
-
-
-<!-- Global Impact Section -->
-<section class="global-impact scroll-reveal" data-aos="fade-up">
-    <div class="container">
-        <div class="impact-header">
-            <h2>Global Impact</h2>
-            <p>For over 5+ years, GYWAN has helped millions of girls and young women effect positive change around the world. And we're just getting started.</p>
-        </div>
-        <div class="impact-stats">
-            {% for stat in impact_stats %}
-            <div class="stat-item">
-                <div class="stat-number">{{ stat.value }}</div>
-                <div class="stat-label">{{ stat.label }}</div>
-                <div class="stat-description">{{ stat.description }}</div>
-            </div>
-            {% endfor %}
-        </div>
-        <div class="impact-quote">
-            <blockquote>
-                <p>"I'm grateful for the chance to work in such a diverse global organization that really makes a difference in the world."</p>
-                <cite>— Mellicentia Boateng, Founder & Executive Director, Celebrating 10 years with GYWAN</cite>
-            </blockquote>
-        </div>
-    </div>
-</section>
-
-<!-- Make a Difference Section -->
-<section class="make-difference scroll-reveal" data-aos="fade-up">
-    <div class="container">
-        <div class="difference-content">
-            <h2>Make a Difference with GYWAN</h2>
-            <p>Find out why GYWAN is the perfect place for those looking to build a career while doing work they love and helping to support girls and young women working to improve our world.</p>
-            <a href="{% url 'contact' %}" class="btn btn-primary btn-large">View Opportunities</a>
-        </div>
-    </div>
-</section>
-
-
-{% endblock %}
-
-{% block extra_js %}
 <script>
-// Tab functionality
-document.addEventListener('DOMContentLoaded', function() {
-    const tabButtons = document.querySelectorAll('.tab-btn');
-    const tabPanels = document.querySelectorAll('.tab-panel');
-
-    tabButtons.forEach(button => {
-        button.addEventListener('click', () => {
-            const targetTab = button.getAttribute('data-tab');
-            
-            // Remove active class from all buttons and panels
-            tabButtons.forEach(btn => btn.classList.remove('active'));
-            tabPanels.forEach(panel => panel.classList.remove('active'));
-            
-            // Add active class to clicked button and corresponding panel
-            button.classList.add('active');
-            document.getElementById(targetTab).classList.add('active');
-        });
-    });
-});
-
-// Fade-in animation observer
-const fadeObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
-        }
-    });
-}, {
-    threshold: 0.1,
-    rootMargin: '0px 0px -50px 0px'
-});
-
-// Observe all fade-in elements
-document.addEventListener('DOMContentLoaded', function() {
-    const fadeElements = document.querySelectorAll('.fade-in');
-    fadeElements.forEach(element => {
-        fadeObserver.observe(element);
-    });
-});
+  // Netic-style testimonials slider
+  (function() {
+    const cards = document.querySelectorAll('.netic-testimonial-card');
+    const prevBtn = document.querySelector('.netic-testimonial-prev');
+    const nextBtn = document.querySelector('.netic-testimonial-next');
+    let idx = 0;
+    function show(idxToShow) {
+      cards.forEach((el, i) => el.classList.toggle('active', i === idxToShow));
+    }
+    if (prevBtn && nextBtn && cards.length) {
+      prevBtn.addEventListener('click', function() {
+        idx = (idx - 1 + cards.length) % cards.length;
+        show(idx);
+      });
+      nextBtn.addEventListener('click', function() {
+        idx = (idx + 1) % cards.length;
+        show(idx);
+      });
+      show(idx);
+    }
+    // Optional: auto-slide every 7s
+    setInterval(function() {
+      idx = (idx + 1) % cards.length;
+      show(idx);
+    }, 7000);
+  })();
 </script>
+
+
+
+<!-- UPCOMING EVENTS -->
+<section class="upcoming-events scroll-reveal">
+  <div class="container">
+    <div class="section-header">
+      <h2>Upcoming Events</h2>
+      <p>Join us in our mission to empower girls and young women through these upcoming events and programs.</p>
+      <a href="{% url 'events' %}" class="btn btn-outline">View All Events</a>
+    </div>
+    {% if upcoming_events %}
+      <div class="resources-grid" style="grid-template-columns:repeat(auto-fit,minmax(350px,1fr));">
+        {% for event in upcoming_events %}
+          <div class="resource-card fade-in" style="border:2px solid #FFDE2F;">
+            <div class="resource-icon" style="background:linear-gradient(45deg,#FFDE2F,#fff); color:#8824C7;">
+              <i class="fas fa-calendar-alt"></i>
+            </div>
+            <div class="resource-content">
+              <div class="resource-category">{{ event.date|date:"M d, Y" }}</div>
+              <h3 class="resource-title">{{ event.title }}</h3>
+              <p class="resource-description">{{ event.description|truncatewords:20 }}</p>
+              <div class="resource-meta">{{ event.location }}</div>
+              <a href="{{ event.get_absolute_url }}" class="btn-small">Learn More</a>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    {% else %}
+      <div class="no-resources">
+        <p>No upcoming events at the moment. Check back soon!</p>
+      </div>
+    {% endif %}
+  </div>
+</section>
+
+<!-- RECENT STORIES -->
+<section class="recent-stories scroll-reveal">
+  <div class="container">
+    <div class="section-header">
+      <h2>Recent Stories</h2>
+      <p>Discover inspiring stories of girls and young women making a difference in their communities.</p>
+      <a href="{% url 'stories' %}" class="btn btn-outline">View All Stories</a>
+    </div>
+    {% if recent_stories %}
+      <div class="resources-grid" style="grid-template-columns:repeat(auto-fit,minmax(350px,1fr));">
+        {% for story in recent_stories %}
+          <div class="resource-card fade-in" style="border:2px solid #FFDE2F;">
+            <div class="resource-icon" style="background:linear-gradient(45deg,#FFDE2F,#fff); color:#8824C7;">
+              <i class="fas fa-book-open"></i>
+            </div>
+            <div class="resource-content">
+              <div class="resource-category">{{ story.author }}</div>
+              <h3 class="resource-title">{{ story.title }}</h3>
+              <p class="resource-description">{{ story.content|truncatewords:25 }}</p>
+              <div class="resource-meta">{{ story.location }}</div>
+              <a href="{{ story.get_absolute_url }}" class="btn-small">Read More</a>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    {% else %}
+      <div class="no-resources">
+        <p>No stories available at the moment. Check back soon!</p>
+      </div>
+    {% endif %}
+  </div>
+</section>
+
+<!-- BLOG & NEWS -->
+<section class="recent-news scroll-reveal">
+  <div class="container">
+    <div class="section-header">
+      <h2>Blog & News</h2>
+      <p>Stay up to date with the latest news and blog posts from GYWAN.</p>
+    </div>
+    {% if blog_posts %}
+      <div class="resources-grid" style="grid-template-columns:repeat(auto-fit,minmax(350px,1fr));">
+        {% for post in blog_posts|slice:":5" %}
+          <div class="resource-card fade-in" style="border:2px solid #FFDE2F;">
+            <div class="resource-icon" style="background:linear-gradient(45deg,#FFDE2F,#fff); color:#8824C7;">
+              <i class="fas fa-bullhorn"></i>
+            </div>
+            <div class="resource-content">
+              <div class="resource-category">{{ post.category }}</div>
+              <h3 class="resource-title">{{ post.title }}</h3>
+              <p class="resource-description">{{ post.summary|default:post.content|truncatewords:20 }}</p>
+              <div class="resource-meta">{{ post.date|date:"M d, Y" }}</div>
+              <a href="{{ post.get_absolute_url }}" class="btn-small">Read More</a>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    {% else %}
+      <div class="no-resources">
+        <p>No news or announcements at the moment. Check back soon!</p>
+      </div>
+    {% endif %}
+  </div>
+</section>
+
+
+<!-- RECENT RESOURCES -->
+<section class="recent-resources scroll-reveal">
+  <div class="container">
+    <div class="section-header">
+      <h2>Recent Resources</h2>
+      <p>Access our latest guides, toolkits, and resources to support girls' empowerment and advocacy.</p>
+      <a href="{% url 'resources' %}" class="btn btn-outline">View All Resources</a>
+    </div>
+    {% if recent_resources %}
+      <div class="resources-grid" style="grid-template-columns:repeat(auto-fit,minmax(300px,1fr));">
+        {% for resource in recent_resources %}
+          <div class="resource-card fade-in">
+            <div class="resource-icon">
+              <i class="fas fa-file-alt"></i>
+            </div>
+            <div class="resource-content">
+              <div class="resource-category">{{ resource.get_category_display }}</div>
+              <h3 class="resource-title">{{ resource.title }}</h3>
+              <p class="resource-description">{{ resource.description|truncatewords:20 }}</p>
+              <div class="resource-meta">
+                <span class="resource-downloads"><i class="fas fa-download"></i> {{ resource.download_count }} downloads</span>
+              </div>
+              <a href="{{ resource.file.url }}" class="btn-small" download>
+                <i class="fas fa-download"></i> Download
+              </a>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    {% else %}
+      <div class="no-resources">
+        <p>No resources available at the moment. Check back soon!</p>
+      </div>
+    {% endif %}
+  </div>
+</section>
+
+<!-- MISSION STATEMENT -->
+<section class="mission-statement scroll-reveal">
+  <div class="mission-background"></div>
+  <div class="container" style="padding:60px 20px;">
+    <div class="mission-content" style="display:grid; grid-template-columns:1fr 1fr; gap:60px; align-items:center;">
+      <div class="mission-text">
+        <h2>Committed to Building a Better World</h2>
+        <p>GYWAN is dedicated to providing secure environments and resources that empower girls and young women to increase their positive impact in our world.</p>
+        <a href="{% url 'about' %}" class="btn btn-outline">Learn More</a>
+      </div>
+      <div class="mission-visual" style="text-align:center;">
+        <div class="mission-logo">
+          <img src="{% static 'images/logo1.png' %}" alt="GYWAN Logo" style="max-width:100%; height:auto;">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GLOBAL IMPACT (PIR.org style) -->
+<section class="global-impact scroll-reveal">
+  <div class="container pir-impact-container">
+    <div class="pir-impact_header">
+      <center><h2>Global Impact</h2></center>
+      <p class="pir-impact-intro">
+        For over 5+ years, GYWAN has helped millions of girls and young women effect positive change around the world. And we're just getting started.
+      </p>
+    </div>
+    <div class="pir-impact-stats">
+      {% for stat in impact_stats %}
+        <div class="pir-stat-item">
+          <div class="pir-stat-number">{{ stat.value }}</div>
+          <div class="pir-stat-label">{{ stat.label }}</div>
+          <div class="pir-stat-description">{{ stat.description }}</div>
+        </div>
+      {% endfor %}
+    </div>
+    <div class="pir-impact-quote">
+      <blockquote>
+        "I'm grateful for the chance to work in such a diverse global organization that really makes a difference in the world."
+      </blockquote>
+      <cite>— Mellicentia Boateng, Founder & Executive Director, Celebrating 10 years with GYWAN</cite>
+    </div>
+  </div>
+</section>
+
+<!-- PARTNERS SECTION ( with slider) -->
+<section class="partners scroll-reveal" style="background: #fff; padding: 48px 0 32px 0;">
+  <div class="container partners-container" style="text-align:center;">
+    <h2 style="font-size:2rem; color:#2c3e50; font-weight:700; margin-bottom:32px;">Partners With</h2>
+    <div class="partners-slider-outer">
+      <div class="partners-slider-track">
+        <img src="{% static 'images/partner1.png' %}" alt="Partner 1" class="partner-logo">
+        <img src="{% static 'images/partner2.png' %}" alt="Partner 2" class="partner-logo">
+        <img src="{% static 'images/partner3.png' %}" alt="Partner 3" class="partner-logo">
+        <img src="{% static 'images/partner4.png' %}" alt="Partner 4" class="partner-logo">
+        <img src="{% static 'images/partner5.png' %}" alt="Partner 5" class="partner-logo">
+        <!-- Duplicate for seamless loop -->
+        <img src="{% static 'images/partner1.png' %}" alt="Partner 1" class="partner-logo">
+        <img src="{% static 'images/partner2.png' %}" alt="Partner 2" class="partner-logo">
+        <img src="{% static 'images/partner3.png' %}" alt="Partner 3" class="partner-logo">
+        <img src="{% static 'images/partner4.png' %}" alt="Partner 4" class="partner-logo">
+        <img src="{% static 'images/partner5.png' %}" alt="Partner 5" class="partner-logo">
+      </div>
+    </div>
+  </div>
+</section>
+<style>
+  .partners-slider-outer {
+    overflow: hidden;
+    width: 100%;
+    max-width: 1100px;
+    margin: 0 auto;
+    position: relative;
+    height: 90px;
+    display: flex;
+    align-items: center;
+  }
+  .partners-slider-track {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    animation: partners-slide 7s linear infinite;
+    will-change: transform;
+  }
+  .partner-logo {
+    height: 60px;
+    width: auto;
+    filter: grayscale(100%) brightness(0.8) contrast(1.1);
+    opacity: 0.7;
+    transition: filter 0.3s, opacity 0.3s;
+    max-width: 180px;
+    margin: 0 10px;
+    object-fit: contain;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(136,36,199,0.07);
+    padding: 8px 16px;
+    user-select: none;
+    pointer-events: auto;
+  }
+  .partner-logo:hover {
+    filter: grayscale(0%) brightness(1) contrast(1);
+    opacity: 1;
+  }
+  @keyframes partners-slide {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+  @media (max-width: 700px) {
+    .partners-slider-track { gap: 24px; }
+    .partner-logo { height: 40px; max-width: 110px; padding: 4px 8px; }
+    .partners-slider-outer { height: 60px; }
+  }
+</style>
+<script>
+  // Pause slider on hover for accessibility
+  document.addEventListener('DOMContentLoaded', function() {
+    var track = document.querySelector('.partners-slider-track');
+    var outer = document.querySelector('.partners-slider-outer');
+    if (track && outer) {
+      outer.addEventListener('mouseenter', function() {
+        track.style.animationPlayState = 'paused';
+      });
+      outer.addEventListener('mouseleave', function() {
+        track.style.animationPlayState = 'running';
+      });
+    }
+  });
+</script>
+
+<!-- CALL TO ACTION SECTION -->
+<section class="cta scroll-reveal">
+  <div class="container cta-container">
+    <h2>Ready to Make a Difference?</h2>
+    <p>Join GYWAN in empowering the next generation of leaders. Your support can change lives and communities.</p>
+    <a href="{% url 'donate' %}" class="btn-primary cta-btn">Donate Now</a>
+    <a href="{% url 'contact' %}" class="btn btn-outline cta-btn">Contact Us</a>
+  </div>
+</section>
+
+
+<!-- Scripts for scroll reveal animations -->
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const fadeEls = document.querySelectorAll('.fade-in, .scroll-reveal');
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+    const observer = new IntersectionObserver(function(entries, observer) {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, observerOptions);
+    fadeEls.forEach(el => observer.observe(el));
+  });
+</script>
+
+<!-- Simple testimonials carousel -->
+<script>
+  (function() {
+    const items = document.querySelectorAll('.testimonial-item');
+    const prev = document.querySelector('.testimonial-prev');
+    const next = document.querySelector('.testimonial-next');
+    let idx = 0;
+    function show(idxToShow) {
+      items.forEach((el, i) => el.classList.toggle('active', i === idxToShow));
+    }
+    if (prev && next && items.length) {
+      prev.addEventListener('click', function() {
+        idx = (idx - 1 + items.length) % items.length;
+        show(idx);
+      });
+      next.addEventListener('click', function() {
+        idx = (idx + 1) % items.length;
+        show(idx);
+      });
+      show(idx);
+    }
+  })();
+</script>
+
 {% endblock %}
