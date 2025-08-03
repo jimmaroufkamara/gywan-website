@@ -1,0 +1,27 @@
+/* Placeholder image styles for development */
+.hero-img,
+.event-image img,
+.story-image img,
+.blog-image img {
+  background: var(--gradient-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.hero-img::after,
+.event-image img::after,
+.story-image img::after,
+.blog-image img::after {
+  content: "GYWAN";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 2rem;
+  font-weight: 700;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}

@@ -4,8 +4,7 @@
 *.pyc
 __pycache__/
 local_settings.py
-db.sqlite3
-db.sqlite3-journal
+
 
 # Environment variables
 .env
@@ -24,8 +23,6 @@ venv/
 Thumbs.db
 
 # Media files
-media/uploads/
-media/
 !media/.gitkeep
 
 main/migrations/
@@ -33,7 +30,7 @@ main/migrations/
 # Static files
 staticfiles/
 !static/
-static/
+
 
 # Python
 *.egg-info/
