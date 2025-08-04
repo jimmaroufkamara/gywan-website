@@ -31,38 +31,59 @@ A modern, responsive Django website for the Girls and Young Women's Advocacy Net
 ### Installation
 
 1. **Clone the repository**
+
    \`\`\`bash
    git clone https://github.com/jimmaroufkamara/gywan-website.git
+
    cd gywan-website
    \`\`\`
 
 2. **Create virtual environment**
+
    \`\`\`bash
+
    python -m venv venv
+
    source venv/bin/activate  # On Windows: venv\Scripts\activate
+
    \`\`\`
 
 3. **Install dependencies**
    \`\`\`bash
+
    pip install -r requirements.txt
+
    \`\`\`
 
 4. **Environment setup**
+
    \`\`\`bash
+
    cp .env.example .env
+
    # Edit .env with your configuration
+
    \`\`\`
 
 5. **Database setup**
+
    \`\`\`bash
+
    python manage.py makemigrations
+
    python manage.py migrate
+
    python manage.py createsuperuser
+
    \`\`\`
 
+
 6. **Run development server**
+
    \`\`\`bash
+
    python manage.py runserver
+
    \`\`\`
 
 Visit `http://127.0.0.1:8000` to view the website.
@@ -94,38 +115,63 @@ Key environment variables to configure:
 ### Production Deployment
 
 1. **Server Setup**
+
    \`\`\`bash
+
    # Install system dependencies
+
    sudo apt update
+
    sudo apt install python3-pip python3-venv nginx postgresql
+
    \`\`\`
 
 2. **Database Setup**
+
    \`\`\`bash
+
    sudo -u postgres createdb gywan_db
+
    sudo -u postgres createuser gywan_user
+
    \`\`\`
 
 3. **Application Deployment**
+
    \`\`\`bash
+
    # Clone and setup
+
    git clone <repository-url>
+
    cd gywan-website
+
    python3 -m venv venv
+
    source venv/bin/activate
+
    pip install -r requirements.txt
+
    
    # Configure environment
+
    cp .env.example .env
+
    # Edit .env with production settings
+
    
    # Database migration
+
    python manage.py migrate
+
    python manage.py collectstatic
+
    python manage.py createsuperuser
+
    \`\`\`
 
 4. **Nginx Configuration**
+
    ```nginx
    server {
        listen 80;
@@ -149,10 +195,13 @@ Key environment variables to configure:
 
 5. **Process Management**
    \`\`\`bash
+
    # Install supervisor
+
    sudo apt install supervisor
    
    # Create supervisor config
+
    sudo nano /etc/supervisor/conf.d/gywan.conf
    \`\`\`
 
