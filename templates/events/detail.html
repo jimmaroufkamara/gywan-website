@@ -19,12 +19,14 @@
           {% if event.location %}<span><i class="fas fa-map-marker-alt"></i> {{ event.location }}</span>{% endif %}
           {% if event.category %}<span><i class="fas fa-tag"></i> {{ event.category }}</span>{% endif %}
         </div>
+                <p style="color: #7C1BB2; font-style: italic;">See more about this on our socials:</p>
         <div class="elixir-news-social" style="margin-bottom:18px;display:flex;gap:16px;">
           {% if event.facebook_url %}<a href="{{ event.facebook_url }}" target="_blank" title="Facebook"><i class="fab fa-facebook"></i></a>{% endif %}
           {% if event.instagram_url %}<a href="{{ event.instagram_url }}" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>{% endif %}
           {% if event.youtube_url %}<a href="{{ event.youtube_url }}" target="_blank" title="YouTube"><i class="fab fa-youtube"></i></a>{% endif %}
           {% if event.twitter_url %}<a href="{{ event.twitter_url }}" target="_blank" title="Twitter/X"><i class="fab fa-twitter"></i></a>{% endif %}
         </div>
+        <hr>
         <div class="elixir-news-body" style="color:#444;font-size:1.08rem;line-height:1.7;margin-bottom:32px;">
           {{ event.description|linebreaks }}
         </div>

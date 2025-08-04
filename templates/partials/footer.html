@@ -1,34 +1,265 @@
 {% load static %}
 <footer class="footer">
+    <style>
+        :root {
+            --text-dark: #0d0d0d;
+            --text-light: #f1f1f1;
+            --primary-color: #8824c7;
+            --secondary-color: #FFDE2F;
+            --transition: 0.3s ease;
+        }
+
+        [data-theme="dark"] {
+            --text-dark: #0d0d0d;
+            --text-light: #f1f1f1;
+        }
+
+        .footer {
+            background: var(--text-dark);
+            color: white;
+            padding: 4rem 0 1rem;
+        }
+
+        .footer-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr 1.5fr;
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-logo img {
+            height: 60px;
+            width: auto;
+        }
+
+        .footer-description {
+            color: #ccc;
+            line-height: 1.6;
+            margin-bottom: 2rem;
+            font-size: 0.95rem;
+        }
+
+        .footer-section h4 {
+            color: white;
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .footer-links {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.75rem;
+        }
+
+        .footer-links a {
+            color: #ccc;
+            text-decoration: none;
+            transition: var(--transition);
+            font-size: 0.95rem;
+            line-height: 1.4;
+        }
+
+        .footer-links a:hover {
+            color: var(--secondary-color);
+            transform: translateX(5px);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .social-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border-radius: 50%;
+            transition: var(--transition);
+            text-decoration: none;
+        }
+
+        .social-link:hover {
+            background: var(--secondary-color);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(136, 36, 199, 0.3);
+        }
+
+        .footer-newsletter p {
+            color: #ccc;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+            font-size: 0.95rem;
+        }
+
+        .newsletter-form {
+            margin-top: 1rem;
+        }
+
+        .input-group {
+            display: flex;
+            margin-bottom: 1rem;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .input-group input {
+            flex: 1;
+            padding: 1rem;
+            border: none;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            font-size: 0.95rem;
+        }
+
+        .input-group input::placeholder {
+            color: #ccc;
+        }
+
+        .newsletter-btn {
+            padding: 1rem 1.5rem;
+            background: var(--primary-color);
+            border: none;
+            color: white;
+            cursor: pointer;
+            transition: var(--transition);
+            font-size: 1rem;
+        }
+
+        .newsletter-btn:hover {
+            background: var(--secondary-color);
+            color: var(--text-dark);
+        }
+
+        .form-note {
+            margin-top: 0.5rem;
+        }
+
+        .form-note small {
+            color: #FFDE2F;
+            font-size: 0.85rem;
+            line-height: 1.4;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 2rem;
+        }
+
+        .footer-bottom-content {
+            display: flex;
+            color: #FFDE2F;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .footer-bottom-links {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .footer-bottom-links a {
+            color: #8824C7;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: var(--transition);
+        }
+
+        .footer-bottom-links a:hover {
+            color: var(--secondary-color);
+        }
+
+        .separator {
+            color: #666;
+            font-size: 0.8rem;
+        }
+
+        .footer-bottom p {
+            color: #FFDE2F;
+            font-size: 1.2rem;
+            font-style: italic;
+            margin: 0;
+            line-height: 1.4;
+        }
+
+
+        /* Dark Mode Enhancements */
+        [data-theme="dark"] .footer,
+        [data-theme="dark"] .footer * {
+            color: var(--text-light);
+        }
+
+        [data-theme="dark"] .footer-description,
+        [data-theme="dark"] .footer-newsletter p,
+        [data-theme="dark"] .form-note small,
+        [data-theme="dark"] .footer-links a,
+        [data-theme="dark"] .footer-bottom-links a,
+        [data-theme="dark"] .footer-bottom p {
+            color: var(--text-light);
+        }
+
+        [data-theme="dark"] .separator {
+            color: #aaa;
+        }
+
+        [data-theme="dark"] .input-group input {
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--text-light);
+        }
+
+        [data-theme="dark"] .input-group input::placeholder {
+            color: #aaa;
+        }
+
+        [data-theme="dark"] .footer-bottom p {
+            color: var(--text-light);
+        }
+
+    </style>
+
     <div class="footer-container">
-        <!-- Footer Main Content -->
         <div class="footer-content">
             <!-- Organization Info -->
             <div class="footer-section footer-brand">
                 <div class="footer-logo">
-    <img src="{% static 'images/gywan-logo.png' %}" alt="GYWAN Logo">
-</div>
-
+                    <img src="{% static 'images/gywan-logo.png' %}" alt="GYWAN Logo">
+                </div>
                 <p class="footer-description">Empowering girls and young women to become confident leaders and changemakers through advocacy, education, and community engagement.</p>
                 <div class="social-links">
-                    <a href="#" class="social-link" title="Facebook" aria-label="Facebook">
-                        <i class="fab fa-facebook-f"></i>
-                    </a>
-                    <a href="#" class="social-link" title="Twitter" aria-label="Twitter">
-                        <i class="fab fa-twitter"></i>
-                    </a>
-                    <a href="#" class="social-link" title="Instagram" aria-label="Instagram">
-                        <i class="fab fa-instagram"></i>
-                    </a>
-                    <a href="#" class="social-link" title="LinkedIn" aria-label="LinkedIn">
-                        <i class="fab fa-linkedin-in"></i>
-                    </a>
-                    <a href="#" class="social-link" title="YouTube" aria-label="YouTube">
-                        <i class="fab fa-youtube"></i>
-                    </a>
+                    <a href="#" class="social-link" title="Facebook" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="social-link" title="Twitter" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="social-link" title="Instagram" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="social-link" title="LinkedIn" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#" class="social-link" title="YouTube" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
                 </div>
             </div>
-            
+
             <!-- Quick Links -->
             <div class="footer-section">
                 <h4>Quick Links</h4>
@@ -39,7 +270,7 @@
                     <li><a href="{% url 'blog' %}">Blog & News</a></li>
                 </ul>
             </div>
-            
+
             <!-- Programs & Impact -->
             <div class="footer-section">
                 <h4>Programs & Impact</h4>
@@ -50,7 +281,7 @@
                     <li><a href="{% url 'stories' %}">Success Stories</a></li>
                 </ul>
             </div>
-            
+
             <!-- Support & Contact -->
             <div class="footer-section">
                 <h4>Support & Contact</h4>
@@ -59,7 +290,7 @@
                     <li><a href="{% url 'contact' %}">Contact Us</a></li>
                 </ul>
             </div>
-            
+
             <!-- Newsletter -->
             <div class="footer-section footer-newsletter">
                 <h4>Stay Connected</h4>
@@ -79,13 +310,17 @@
             </div>
         </div>
 
-        
-        
         <!-- Footer Bottom -->
         <div class="footer-bottom">
             <div class="footer-bottom-content">
+                <div class="footer-bottom-links">
+                    <a href="#">Privacy Policy</a>
+                    <span class="separator">|</span>
+                    <a href="#">Terms of Service</a>
+                </div>
                 <div class="footer-copyright">
-                <p>&copy; {{ "now"|date:"Y" }} Girls and Young Women's Advocacy Network (GYWAN). All rights reserved.</p>
+                    <p>&copy; 2020 Girls and Young Women's Advocacy Network (GYWAN). All rights reserved.</p>
+
                 </div>
             </div>
         </div>

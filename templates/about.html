@@ -60,82 +60,58 @@
 </section>
 
 <!-- Mission, Vision, Values Section -->
-<section id="mvv-section" class="mvv-section">
-    <div class="container">
-        <!-- Mission -->
-        <div class="mvv-item fade-in">
-            <div class="mvv-content">
-                <div class="mvv-icon">
-                    <i class="fas fa-bullseye"></i>
-                </div>
-                <div class="mvv-text">
-                    <h2>Our Mission</h2>
-                    <p>
-                        Our mission is to inspire, empower, and equip girls and young women to lead with confidence, advocate for their rights, and drive lasting change. 
-                        We are committed to fostering personal growth, promoting gender equality, and ensuring young women’s voices shape the future of their communities and our nation.
-                    </p>
-                </div>
-            </div>
-        </div>
-        
-        <!-- Vision -->
-        <div class="mvv-item fade-in">
-            <div class="mvv-content">
-                <div class="mvv-icon">
-                    <i class="fas fa-eye"></i>
-                </div>
-                <div class="mvv-text">
-                    <h2>Our Vision</h2>
-                    <p>
-                        We envision a world where every girl and young woman is confident, capable, and free from violence. 
-                        It is a world where she is empowered to lead, supported to achieve her dreams, and equipped to shape a just, equitable, and inclusive future.
-                    </p>
-                </div>
-            </div>
-        </div>
-        
-        <!-- Values -->
-        <div class="mvv-item fade-in">
-            <div class="mvv-content">
-                <div class="mvv-icon">
-                    <i class="fas fa-compass"></i>
-                </div>
-                <div class="mvv-text">
-                    <h2>Our Values</h2>
-                    <div class="values-list">
-                        <div class="value-item">
-                            <strong>Empowerment:</strong> We equip girls and young women with the tools, voice, and opportunities to transform their lives and lead boldly.
-                        </div>
-                        <div class="value-item">
-                            <strong>Gender Equality:</strong> We challenge discrimination, harmful norms, and power imbalances to ensure that girls and young women have equal rights, opportunities, and voices in all spheres of life.
-                        </div>
-                        <div class="value-item">
-                            <strong>Compassion:</strong> We lead with empathy, kindness, and respect, placing people and dignity at the center of our work.
-                        </div>
-                        <div class="value-item">
-                            <strong>Integrity:</strong> We uphold transparency, accountability, and strong ethical principles in everything we do.
-                        </div>
-                        <div class="value-item">
-                            <strong>Equity & Inclusion:</strong> We fight for fairness and justice, especially for those who are most marginalized and excluded.
-                        </div>
-                        <div class="value-item">
-                            <strong>Transformative Leadership:</strong> We nurture servant leaders who uplift others, challenge injustice, and drive meaningful change.
-                        </div>
-                        <div class="value-item">
-                            <strong>Resilience:</strong> We rise with courage in the face of adversity and remain committed through challenges.
-                        </div>
-                        <div class="value-item">
-                            <strong>Collaboration:</strong> We believe in the power of partnerships, community, and collective action to amplify our impact.
-                        </div>
-                        <div class="value-item">
-                            <strong>Sustainability & Innovation:</strong> We design solutions that are creative, lasting, and rooted in long-term community transformation.
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+<section id="mvv-section" class="mvv-modern-section">
+  <div class="container">
+    <div class="mvv-header fade-in">
+      <h2 class="section-title">Our Mission, Vision & Values</h2>
+      <p class="section-subtitle">What drives us at GYWAN and the principles we live by</p>
     </div>
+
+    <div class="mvv-card-grid">
+
+      <!-- Mission Card -->
+      <div class="mvv-card fade-in">
+        <div class="mvv-icon-wrap">
+          <i class="fas fa-bullseye"></i>
+        </div>
+        <h3>Our Mission</h3>
+        <p>
+          To inspire, empower, and equip girls and young women to lead with confidence, advocate for their rights, and drive lasting change.
+        </p>
+      </div>
+
+      <!-- Vision Card -->
+      <div class="mvv-card fade-in">
+        <div class="mvv-icon-wrap">
+          <i class="fas fa-eye"></i>
+        </div>
+        <h3>Our Vision</h3>
+        <p>
+          A world where every girl is confident, capable, and free from violence — empowered to lead and shape a just, inclusive future.
+        </p>
+      </div>
+
+      <!-- Values Card -->
+      <div class="mvv-card fade-in values-card">
+        <div class="mvv-icon-wrap">
+          <i class="fas fa-heart"></i>
+        </div>
+        <h3>Our Values</h3>
+        <ul class="values-list">
+          <li><strong>Empowerment:</strong> Enabling girls to lead and grow.</li>
+          <li><strong>Equality:</strong> Fighting gender-based injustice and discrimination.</li>
+          <li><strong>Compassion:</strong> Working with empathy and respect.</li>
+          <li><strong>Integrity:</strong> Upholding transparency and accountability.</li>
+          <li><strong>Inclusion:</strong> Ensuring no voice is left behind.</li>
+          <li><strong>Resilience:</strong> Rising strong in the face of adversity.</li>
+          <li><strong>Collaboration:</strong> Building impact through partnership.</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
 </section>
+
 
 <!-- Impact Statistics Section -->
 <section id="impact-stats-section" class="impact-stats-section scroll-reveal" data-aos="fade-up">
@@ -460,9 +436,80 @@
     box-shadow: 0 2px 6px rgba(106, 27, 154, 0.2);
 }
 
+.mvv-modern-section {
+  background: #fafafa;
+  padding: 80px 0;
+}
+.mvv-header {
+  text-align: center;
+  max-width: 700px;
+  margin: 0 auto 50px auto;
+}
+.mvv-header .section-title {
+  font-size: 2.25rem;
+  color: #4A148C;
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+.mvv-header .section-subtitle {
+  font-size: 1.1rem;
+  color: #555;
+}
+.mvv-card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 40px;
+}
+.mvv-card {
+  background: #fff;
+  border-radius: 16px;
+  padding: 32px 24px;
+  box-shadow: 0 8px 20px rgba(136, 36, 199, 0.06);
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.mvv-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 30px rgba(136, 36, 199, 0.1);
+}
+.mvv-icon-wrap {
+  font-size: 2rem;
+  color: #8824C7;
+  margin-bottom: 16px;
+}
+.mvv-card h3 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #333;
+  margin-bottom: 12px;
+}
+.mvv-card p {
+  font-size: 0.98rem;
+  color: #555;
+  line-height: 1.6;
+}
+.values-card ul.values-list {
+  text-align: left;
+  padding-left: 0;
+  list-style: none;
+  margin-top: 12px;
+}
+.values-card ul.values-list li {
+  margin-bottom: 12px;
+  font-size: 0.95rem;
+  color: #555;
+}
+.values-card ul.values-list li strong {
+  color: #6a1b9a;
+}
+
 @media (max-width: 768px) {
   .team-member-card {
     padding: 24px 16px;
+  }
+
+    .mvv-header .section-title {
+    font-size: 1.8rem;
   }
 }
 </style>

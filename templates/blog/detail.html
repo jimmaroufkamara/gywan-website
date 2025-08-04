@@ -19,13 +19,15 @@
           <span><i class="fas fa-calendar"></i> {{ post.created_at|date:"M d, Y" }}</span>
           {% if post.tags %}<span><i class="fas fa-tag"></i> {{ post.tags }}</span>{% endif %}
         </div>
+        <p style="color: #7C1BB2; font-style: italic;">See more about this on our socials:</p>
         <div class="elixir-news-social" style="margin-bottom:18px;display:flex;gap:16px;">
           {% if post.facebook_url %}<a href="{{ post.facebook_url }}" target="_blank" title="Facebook"><i class="fab fa-facebook"></i></a>{% endif %}
           {% if post.instagram_url %}<a href="{{ post.instagram_url }}" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>{% endif %}
           {% if post.youtube_url %}<a href="{{ post.youtube_url }}" target="_blank" title="YouTube"><i class="fab fa-youtube"></i></a>{% endif %}
           {% if post.twitter_url %}<a href="{{ post.twitter_url }}" target="_blank" title="Twitter/X"><i class="fab fa-twitter"></i></a>{% endif %}
         </div>
-        <div class="elixir-news-body" style="color:#444;font-size:1.08rem;line-height:1.7;margin-bottom:32px;">
+        <hr>
+        <div class="elixir-news-body" style="color:#444;font-size:1.08rem;line-height:1.7;margin:32px;">
           {{ post.content|linebreaks }}
         </div>
       </div>
@@ -41,19 +43,27 @@
         <button type="submit" class="comments-btn">Submit</button>
       </form>
       <div class="comments-list">
-        <h4 class="comments-subtitle">Recent Comments</h4>
-        <ul>
-          {% for comment in recent_comments %}
-            <li class="comment-item">
-              <span class="comment-text">{{ comment.text }}</span>
-              <span class="comment-meta">by {{ comment.name }} ({{ comment.email }})</span>
-              <span class="comment-date">{{ comment.created_at|date:"M d, Y H:i" }}</span>
-            </li>
-          {% empty %}
-            <li>No comments yet.</li>
-          {% endfor %}
-        </ul>
-      </div>
+  <h4 class="comments-subtitle">Recent Comments</h4>
+  <ul class="comment-thread">
+    {% for comment in recent_comments %}
+      <li class="comment-item">
+        <div class="comment-avatar">
+          <i class="fas fa-user-circle"></i>
+        </div>
+        <div class="comment-body">
+          <div class="comment-header">
+            <span class="comment-author">{{ comment.name }}</span>
+            <span class="comment-date">{{ comment.created_at|date:"M d, Y H:i" }}</span>
+          </div>
+          <p class="comment-text">{{ comment.text }}</p>
+        </div>
+      </li>
+    {% empty %}
+      <li>No comments yet. Be the first to comment!</li>
+    {% endfor %}
+  </ul>
+</div>
+
     </section>
   </main>
   <aside class="elixir-news-sidebar" style="flex:1;background:#fff;border-radius:16px;box-shadow:0 4px 24px rgba(136,36,199,0.08);padding:32px 24px;min-width:260px;max-width:320px;height:fit-content;">
