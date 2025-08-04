@@ -59,83 +59,424 @@
     </div>
 </section>
 
-<!-- Mission, Vision, Values Section -->
-<section id="mvv-section" class="mvv-section">
-    <div class="container">
-        <!-- Mission -->
-        <div class="mvv-item fade-in">
-            <div class="mvv-content">
-                <div class="mvv-icon">
-                    <i class="fas fa-bullseye"></i>
-                </div>
-                <div class="mvv-text">
-                    <h2>Our Mission</h2>
-                    <p>
-                        Our mission is to inspire, empower, and equip girls and young women to lead with confidence, advocate for their rights, and drive lasting change. 
-                        We are committed to fostering personal growth, promoting gender equality, and ensuring young women’s voices shape the future of their communities and our nation.
-                    </p>
-                </div>
-            </div>
+ <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow-x: hidden;
+        }
+
+        .mvv-carousel-container {
+            max-width: 1200px;
+            width: 90%;
+            position: relative;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 25px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+        }
+
+        .carousel-header {
+            background: linear-gradient(135deg, #D4AF37, #F4E06D);
+            text-align: center;
+            padding: 30px 20px;
+            color: white;
+            position: relative;
+        }
+
+        .carousel-header h1 {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .carousel-header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        .carousel-wrapper {
+            position: relative;
+            height: 600px;
+            overflow: hidden;
+        }
+
+        .carousel-track {
+            display: flex;
+            width: 300%;
+            height: 100%;
+            transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .mvv-slide {
+            width: 33.333%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 60px 40px;
+            position: relative;
+        }
+
+        .slide-content {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+            max-width: 900px;
+            width: 100%;
+        }
+
+        .slide-icon {
+            flex-shrink: 0;
+            width: 120px;
+            height: 120px;
+            background: linear-gradient(135deg, #D4AF37, #F4E06D);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.3);
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .slide-icon i {
+            font-size: 3rem;
+            color: white;
+        }
+
+        .slide-text {
+            flex: 1;
+        }
+
+        .slide-text h2 {
+            font-size: 2.5rem;
+            color: #333;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+
+        .slide-text p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #555;
+        }
+
+        .values-list {
+            display: grid;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .value-item {
+            background: rgba(212, 175, 55, 0.1);
+            padding: 15px 20px;
+            border-radius: 12px;
+            border-left: 4px solid #D4AF37;
+            font-size: 1rem;
+            line-height: 1.6;
+            transition: transform 0.3s ease;
+        }
+
+        .value-item:hover {
+            transform: translateX(5px);
+            background: rgba(212, 175, 55, 0.15);
+        }
+
+        .value-item strong {
+            color: #D4AF37;
+            font-weight: bold;
+        }
+
+        .carousel-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(212, 175, 55, 0.9);
+            border: none;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 10;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .carousel-nav:hover {
+            background: #D4AF37;
+            transform: translateY(-50%) scale(1.1);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        .nav-prev {
+            left: 20px;
+        }
+
+        .nav-next {
+            right: 20px;
+        }
+
+        .carousel-indicators {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 15px;
+            z-index: 10;
+        }
+
+        .indicator {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .indicator.active {
+            background: #D4AF37;
+            transform: scale(1.3);
+        }
+
+        .slide-number {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            background: rgba(212, 175, 55, 0.9);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        @media (max-width: 768px) {
+            .carousel-header h1 {
+                font-size: 2rem;
+            }
+
+            .slide-content {
+                flex-direction: column;
+                text-align: center;
+                gap: 30px;
+            }
+
+            .slide-icon {
+                width: 100px;
+                height: 100px;
+            }
+
+            .slide-icon i {
+                font-size: 2.5rem;
+            }
+
+            .slide-text h2 {
+                font-size: 2rem;
+            }
+
+            .carousel-nav {
+                width: 50px;
+                height: 50px;
+                font-size: 1.2rem;
+            }
+
+            .nav-prev {
+                left: 10px;
+            }
+
+            .nav-next {
+                right: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="mvv-carousel-container">
+        <div class="carousel-header">
+            <h1>OUR MISSON VISSION & VALUES</h1>
         </div>
-        
-        <!-- Vision -->
-        <div class="mvv-item fade-in">
-            <div class="mvv-content">
-                <div class="mvv-icon">
-                    <i class="fas fa-eye"></i>
+
+        <div class="carousel-wrapper">
+            <div class="slide-number" id="slideNumber">1 / 3</div>
+            
+            <div class="carousel-track" id="carouselTrack">
+                <!-- Mission Slide -->
+                <div class="mvv-slide">
+                    <div class="slide-content">
+                        <div class="slide-icon">
+                            <i class="fas fa-bullseye"></i>
+                        </div>
+                        <div class="slide-text">
+                            <h2>Our Mission</h2>
+                            <p>
+                                Our mission is to inspire, empower, and equip girls and young women to lead with confidence, advocate for their rights, and drive lasting change. 
+                                We are committed to fostering personal growth, promoting gender equality, and ensuring young women's voices shape the future of their communities and our nation.
+                            </p>
+                        </div>
+                    </div>
                 </div>
-                <div class="mvv-text">
-                    <h2>Our Vision</h2>
-                    <p>
-                        We envision a world where every girl and young woman is confident, capable, and free from violence. 
-                        It is a world where she is empowered to lead, supported to achieve her dreams, and equipped to shape a just, equitable, and inclusive future.
-                    </p>
+
+                <!-- Vision Slide -->
+                <div class="mvv-slide">
+                    <div class="slide-content">
+                        <div class="slide-icon">
+                            <i class="fas fa-eye"></i>
+                        </div>
+                        <div class="slide-text">
+                            <h2>Our Vision</h2>
+                            <p>
+                                We envision a world where every girl and young woman is confident, capable, and free from violence. 
+                                It is a world where she is empowered to lead, supported to achieve her dreams, and equipped to shape a just, equitable, and inclusive future.
+                            </p>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
-        
-        <!-- Values -->
-        <div class="mvv-item fade-in">
-            <div class="mvv-content">
-                <div class="mvv-icon">
-                    <i class="fas fa-compass"></i>
-                </div>
-                <div class="mvv-text">
-                    <h2>Our Values</h2>
-                    <div class="values-list">
-                        <div class="value-item">
-                            <strong>Empowerment:</strong> We equip girls and young women with the tools, voice, and opportunities to transform their lives and lead boldly.
+
+                <!-- Values Slide -->
+                <div class="mvv-slide">
+                    <div class="slide-content">
+                        <div class="slide-icon">
+                            <i class="fas fa-compass"></i>
                         </div>
-                        <div class="value-item">
-                            <strong>Gender Equality:</strong> We challenge discrimination, harmful norms, and power imbalances to ensure that girls and young women have equal rights, opportunities, and voices in all spheres of life.
-                        </div>
-                        <div class="value-item">
-                            <strong>Compassion:</strong> We lead with empathy, kindness, and respect, placing people and dignity at the center of our work.
-                        </div>
-                        <div class="value-item">
-                            <strong>Integrity:</strong> We uphold transparency, accountability, and strong ethical principles in everything we do.
-                        </div>
-                        <div class="value-item">
-                            <strong>Equity & Inclusion:</strong> We fight for fairness and justice, especially for those who are most marginalized and excluded.
-                        </div>
-                        <div class="value-item">
-                            <strong>Transformative Leadership:</strong> We nurture servant leaders who uplift others, challenge injustice, and drive meaningful change.
-                        </div>
-                        <div class="value-item">
-                            <strong>Resilience:</strong> We rise with courage in the face of adversity and remain committed through challenges.
-                        </div>
-                        <div class="value-item">
-                            <strong>Collaboration:</strong> We believe in the power of partnerships, community, and collective action to amplify our impact.
-                        </div>
-                        <div class="value-item">
-                            <strong>Sustainability & Innovation:</strong> We design solutions that are creative, lasting, and rooted in long-term community transformation.
+                        <div class="slide-text">
+                            <h2>Our Values</h2>
+                            <div class="values-list">
+                                <div class="value-item">
+                                    <strong>Empowerment:</strong> We equip girls and young women with the tools, voice, and opportunities to transform their lives and lead boldly.
+                                </div>
+                                <div class="value-item">
+                                    <strong>Gender Equality:</strong> We challenge discrimination, harmful norms, and power imbalances to ensure equal rights and opportunities.
+                                </div>
+                                <div class="value-item">
+                                    <strong>Compassion:</strong> We lead with empathy, kindness, and respect, placing people and dignity at the center of our work.
+                                </div>
+                                <div class="value-item">
+                                    <strong>Integrity:</strong> We uphold transparency, accountability, and strong ethical principles in everything we do.
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
+
+            <!-- Navigation Arrows -->
+            <button class="carousel-nav nav-prev" id="prevBtn">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+            <button class="carousel-nav nav-next" id="nextBtn">
+                <i class="fas fa-chevron-right"></i>
+            </button>
+
+            <!-- Indicators -->
+            <div class="carousel-indicators">
+                <div class="indicator active" data-slide="0"></div>
+                <div class="indicator" data-slide="1"></div>
+                <div class="indicator" data-slide="2"></div>
+            </div>
         </div>
     </div>
-</section>
+
+    <script>
+        class MVVCarousel {
+            constructor() {
+                this.currentSlide = 0;
+                this.totalSlides = 3;
+                this.track = document.getElementById('carouselTrack');
+                this.prevBtn = document.getElementById('prevBtn');
+                this.nextBtn = document.getElementById('nextBtn');
+                this.slideNumber = document.getElementById('slideNumber');
+                this.indicators = document.querySelectorAll('.indicator');
+                
+                this.init();
+            }
+
+            init() {
+                this.prevBtn.addEventListener('click', () => this.prevSlide());
+                this.nextBtn.addEventListener('click', () => this.nextSlide());
+                
+                this.indicators.forEach((indicator, index) => {
+                    indicator.addEventListener('click', () => this.goToSlide(index));
+                });
+
+                // Auto-play functionality (optional)
+                // this.startAutoPlay();
+            }
+
+            nextSlide() {
+                if (this.currentSlide < this.totalSlides - 1) {
+                    this.currentSlide++;
+                } else {
+                    this.currentSlide = 0;
+                }
+                this.updateCarousel();
+            }
+
+            prevSlide() {
+                if (this.currentSlide > 0) {
+                    this.currentSlide--;
+                } else {
+                    this.currentSlide = this.totalSlides - 1;
+                }
+                this.updateCarousel();
+            }
+
+            goToSlide(slideIndex) {
+                this.currentSlide = slideIndex;
+                this.updateCarousel();
+            }
+
+            updateCarousel() {
+                const translateX = -this.currentSlide * (100 / this.totalSlides);
+                this.track.style.transform = `translateX(${translateX}%)`;
+                
+                this.slideNumber.textContent = `${this.currentSlide + 1} / ${this.totalSlides}`;
+                
+                this.indicators.forEach((indicator, index) => {
+                    indicator.classList.toggle('active', index === this.currentSlide);
+                });
+            }
+
+            startAutoPlay() {
+                setInterval(() => {
+                    this.nextSlide();
+                }, 8000);
+            }
+        }
+
+        // Initialize carousel when DOM is loaded
+        document.addEventListener('DOMContentLoaded', () => {
+            new MVVCarousel();
+        });
+
+        // Add keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowLeft') {
+                document.getElementById('prevBtn').click();
+            } else if (e.key === 'ArrowRight') {
+                document.getElementById('nextBtn').click();
+            }
+        });
+    </script>
 
 <!-- Impact Statistics Section -->
 <section id="impact-stats-section" class="impact-stats-section scroll-reveal" data-aos="fade-up">
