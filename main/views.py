@@ -9,7 +9,7 @@ from django.core.paginator import Paginator
 from django.utils import timezone
 import stripe
 import json
-from .models import Event, Story, BlogPost, Resource, Donation, Contact, Newsletter, ImpactStory, ImpactStat, Comment, TeamMember, Supporter
+from .models import Event, Story, BlogPost, Resource, Donation, Contact, Newsletter, ImpactStory, ImpactStat, Comment, TeamMember, Supporter, Announcement
 from .forms import ContactForm, DonationForm, NewsletterForm
 from django.contrib.contenttypes.models import ContentType
 
@@ -26,6 +26,7 @@ def our_team_view(request):
 class HomeView(TemplateView):
     """Homepage with featured content"""
     template_name = 'index.html'
+    announcements = Announcement.objects.all()
     
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -85,7 +86,7 @@ class HomeView(TemplateView):
                 {'value': '120+', 'label': 'Programs Delivered', 'description': 'Across 3 West African countries.'},
                 {'value': '50+', 'label': 'Communities Reached', 'description': 'Urban, rural, and remote areas.'}
             ]
-
+        context['announcements'] = Announcement.objects.filter(is_active=True).order_by('-created_at')[:5]
         # Add testimonials to context for homepage carousel
         from .models import Testimonial
         context['testimonials'] = Testimonial.objects.all()

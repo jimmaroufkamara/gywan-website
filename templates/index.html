@@ -1057,6 +1057,28 @@
   </div>
 </section>
 
+<section class="announcements">
+  <div class="container">
+    <h2>Latest Announcements</h2>
+    <div class="announcements-grid">
+      {% for announcement in announcements %}
+        <div class="announcement-card">
+          <div class="announcement-content">
+            <h3>{{ announcement.title }}</h3>
+            <p>{{ announcement.content|truncatewords:40 }}</p>
+            {% if announcement.link %}
+              <a href="{{ announcement.link }}" class="announcement-link" target="_blank">Read More</a>
+            {% endif %}
+          </div>
+        </div>
+      {% empty %}
+        <p>No announcements at this time. Please check back later.</p>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+
 <!-- GLOBAL IMPACT (PIR.org style) -->
 <section class="global-impact scroll-reveal">
   <div class="container pir-impact-container">

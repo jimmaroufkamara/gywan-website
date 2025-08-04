@@ -175,7 +175,8 @@ textarea.form-control {
 }
 
 .contact-location p {
-  color: var(--text-light);
+  color: var(--accent-color);
+  font-style: bold;
   line-height: 1.6;
   margin: 0;
 }
@@ -194,7 +195,7 @@ textarea.form-control {
 }
 
 .contact-item p {
-  color: var(--text-light);
+  color: var(--accent-color);
   margin: 0;
   line-height: 1.5;
 }
@@ -263,7 +264,7 @@ textarea.form-control {
 
 .faq-answer p {
   padding: 0 1.5rem 1.5rem;
-  color: var(--text-light);
+  color: var(--text-muted);
   line-height: 1.6;
   margin: 0;
 }

@@ -1,5 +1,20 @@
 from django.db import models
 
+class Announcement(models.Model):
+    title = models.CharField(max_length=200)
+    content = models.TextField()
+    link = models.URLField(blank=True, null=True)
+    is_active = models.BooleanField(default=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        ordering = ['-created_at']
+
+    def __str__(self):
+        return self.title
+
+
+
 class Testimonial(models.Model):
     name = models.CharField(max_length=100)
     role = models.CharField(max_length=100, blank=True)

@@ -1,6 +1,14 @@
 
 from django.contrib import admin
-from .models import Testimonial
+from .models import Testimonial, Announcement
+
+@admin.register(Announcement)
+class AnnouncementAdmin(admin.ModelAdmin):
+    list_display = ('title', 'created_at', 'is_active')
+    list_filter = ('is_active', 'created_at')
+    search_fields = ('title', 'content')
+    date_hierarchy = 'created_at'
+    list_editable = ('is_active',)
 
 @admin.register(Testimonial)
 class TestimonialAdmin(admin.ModelAdmin):
