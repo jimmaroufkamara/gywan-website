@@ -7,12 +7,84 @@
 
 <!-- Styles -->
 <style>
-  /* Reset and base styles */
-  * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+
+.split-video-section {
+  display: flex;
+  min-height: 60vh;
+}
+
+.text-side {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+  background: #fff;
+}
+
+.text-content {
+  max-width: 500px;
+}
+
+.text-content h2 {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+  color: #222;
+}
+
+.text-content p {
+  font-size: 1.1rem;
+  margin-bottom: 20px;
+  line-height: 1.5;
+}
+
+.btn-highlight {
+  background: #8824C7;
+  color: #fff;
+  padding: 12px 24px;
+  border-radius: 25px;
+  text-decoration: none;
+  font-size: 1.05rem;
+  transition: background 0.3s, transform 0.3s;
+}
+
+.btn-highlight:hover {
+  background: #FFDE2F;
+  transform: scale(1.05);
+  color: white;
+}
+
+/* Video Side */
+.video-side {
+  flex: 1;
+  position: relative;
+  overflow: hidden;
+}
+
+
+
+.video-side video {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  min-width: 100%;
+  min-height: 100%;
+  object-fit: cover;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  opacity: 0.85; 
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .split-video-section {
+    flex-direction: column;
   }
+  .video-side {
+    height: 300px;
+  }
+}
+
 
   body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -21,16 +93,7 @@
     background-color: #f4f4f4;
   }
 
-  a {
-    text-decoration: none;
-  }
 
-  /* Container */
-  .container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px;
-  }
 
   /* Scroll reveal animation */
   .scroll-reveal {
@@ -43,84 +106,6 @@
     transform: translateY(0);
   }
 
-  /* Fade-in effect for resources */
-  .fade-in {
-    opacity: 0;
-    transform: translateY(20px);
-    transition: all 0.6s ease-out;
-  }
-  .fade-in.visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
-
-  /* Hero Section */
-  .hero {
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    position: relative;
-    background: linear-gradient(135deg, #FFDE2F 0%, #764ba2 100%);
-    overflow: hidden;
-  }
-
-  .hero-video-bg {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    z-index: 0;
-  }
-
-  .hero-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(120deg, rgba(160, 125, 90, 0.55), rgba(136,36,199,0.38), rgba(118,75,162,0.55));
-    box-shadow: 0 8px 32px rgba(136,36,199,0.10);
-    z-index: 1;
-  }
-
-  .hero-content {
-    position: relative;
-    z-index: 2;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: flex-start;
-    align-items: center;
-    padding: 60px 20px;
-  }
-
-  /* Hero two-column layout and deco */
-  .hero-content {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 32px;
-    position: relative;
-    z-index: 2;
-    flex-wrap: wrap;
-    padding: 60px 20px;
-  }
-  .hero-text {
-    flex: 1 1 350px;
-    max-width: 540px;
-    min-width: 300px;
-    margin-bottom: 20px;
-    text-align: left;
-  }
-  .hero-deco {
-    flex: 0 0 180px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-width: 120px;
-    animation: floatBlob 4s ease-in-out infinite alternate;
-  }
   @keyframes floatBlob {
     0% { transform: translateY(0); }
     100% { transform: translateY(-18px); }
@@ -142,66 +127,6 @@
     }
   }
 
-  /* Hero Text */
-  .hero-text {
-    flex: 1 1 350px;
-    max-width: 540px;
-    min-width: 300px;
-    margin-bottom: 20px;
-  }
-
-  .hero-badge {
-    display: inline-block;
-    padding: 8px 20px;
-    border-radius: 25px;
-    background: rgba(255,255,255,0.15);
-    color: #8824C7;
-    font-weight: 600;
-    font-size: 14px;
-    margin-bottom: 20px;
-  }
-
-  /* Hero Title */
-  .hero-title {
-    color: #8824C7;
-    font-size: 3.5rem;
-    font-weight: 700;
-    line-height: 1.1;
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    margin-bottom: 20px;
-  }
-
-  .hero-title span.gradient-text {
-    background-clip: text;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background: linear-gradient(45deg, #8824C7, #764ba2);
-  }
-
-  /* Spinner container */
-  .spinner-container {
-    display: flex;
-    align-items: center;
-    margin-left: 15px;
-  }
-
-  /* Loader (spinner) styles */
-  .loader {
-    border: 4px solid rgba(255, 222, 47, 0.2);
-    border-top: 4px solid #FFDE2F;
-    border-radius: 50%;
-    width: 20px;
-    height: 20px;
-    animation: spin 1s linear infinite;
-  }
-
-  @keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-  }
-
   /* Pulsing headers (h2) */
   h2 {
     font-size: 2.5rem;
@@ -220,393 +145,7 @@
       transform: scale(1.05);
     }
   }
-
-  /* Hero Description */
-  .hero-description {
-    font-size: 1.25rem;
-    color: white;
-    opacity: 0.9;
-    margin-bottom: 32px;
-    max-width: 90%;
-  }
-
-  /* Button styles */
-  .btn-primary {
-    background-color: #8824C7;
-    color: #fff;
-    padding: 16px 38px;
-    border-radius: 32px;
-    font-size: 1.1rem;
-    font-weight: 700;
-    box-shadow: 0 4px 16px rgba(136,36,199,0.13);
-    display: inline-block;
-    transition: background 0.3s;
-  }
-
-  .btn-primary:hover {
-    background-color: #764ba2;
-  }
-
-  /* Resources grid */
-  .resources-grid {
-    display: grid;
-    gap: 30px;
-  }
-
-  /* Resource Card */
-  .resource-card {
-    background: #fff;
-    border-radius: 15px;
-    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-    transition: transform 0.3s, box-shadow 0.3s;
-    border: 2px solid #FFDE2F;
-    display: flex;
-    flex-direction: column;
-  }
-
-  .resource-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 15px 40px rgba(0,0,0,0.15);
-  }
-
-  /* Resource Icon */
-  .resource-icon {
-    width: 60px;
-    height: 60px;
-    margin: 20px auto 10px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.5rem;
-    color: #fff;
-  }
-
-  /* Resource Content */
-  .resource-content {
-    padding: 0 25px 25px;
-  }
-
-  /* Other resource text styles */
-  .resource-category {
-    font-size: 0.9rem;
-    font-weight: 600;
-    margin-bottom: 10px;
-    color: #667eea;
-  }
-  .resource-title {
-    font-size: 1.3rem;
-    font-weight: 700;
-    margin-bottom: 10px;
-    color: #2c3e50;
-  }
-  .resource-description {
-    color: #666;
-    margin-bottom: 15px;
-  }
-  .resource-meta {
-    font-size: 0.9rem;
-    color: #888;
-    margin-bottom: 20px;
-  }
-
-  /* Small button inside resource cards */
-  .btn-small {
-    display: inline-block;
-    padding: 8px 16px;
-    background: #8824C7;
-    color: #fff;
-    border-radius: 20px;
-    font-size: 0.9rem;
-    transition: background 0.3s;
-  }
-  .btn-small:hover {
-    background: #764ba2;
-  }
-
-  /* Mission Statement */
-  .mission-statement {
-    position: relative;
-    overflow: hidden;
-  }
-  .mission-background {
-    position: absolute;
-    inset: 0;
-    background-image: url("{% static 'images/donation-hero-image.jpg' %}");
-    background-size: cover;
-    background-position: center;
-    filter: blur(1.5px) brightness(1);
-    z-index: -2;
-  }
-  .mission-statement::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background-color: rgba(0, 0, 0, 0.3);
-    z-index: -1;
-  }
-  .mission-content {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 60px;
-    align-items: center;
-    padding: 60px 20px;
-  }
-  .mission-text h2 {
-    font-size: 2.5rem;
-    color: #8920B1;
-    margin-bottom: 20px;
-  }
-  .mission-text p {
-    font-size: 1.2rem;
-    color: #FFDE2F;
-    margin-bottom: 30px;
-  }
-  .mission-logo {
-    width: 200px;
-    height: 200px;
-    margin: 0 auto;
-    border-radius: 50%;
-    backdrop-filter: blur(10px);
-    border: 2px solid rgba(255,255,255,0.2);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  /* Global Impact (PIR.org style) */
-  .pir-impact-container {
-    padding: 60px 20px;
-  }
-  .pir-impact-header {
-    text-align: center;
-    margin-bottom: 40px;
-  }
-  .pir-impact-intro {
-    font-size: 1.2rem;
-    color: #2c3e50;
-    max-width: 600px;
-    margin: 0 auto 24px auto;
-  }
-  .pir-impact-stats {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 40px;
-    margin-bottom: 40px;
-  }
-  .pir-stat-item {
-    flex: 1 1 220px;
-    min-width: 220px;
-    max-width: 320px;
-    background: #fff;
-    border-radius: 18px;
-    box-shadow: 0 4px 24px rgba(136,36,199,0.07);
-    padding: 40px 24px;
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  .pir-stat-number {
-    font-size: 2.7rem;
-    font-weight: 800;
-    color: #8824C7;
-    margin-bottom: 10px;
-  }
-  .pir-stat-label {
-    font-size: 1.15rem;
-    font-weight: 700;
-    color: #2c3e50;
-    margin-bottom: 8px;
-  }
-  .pir-stat-description {
-    color: #666;
-    font-size: 1rem;
-  }
-  .pir-impact-quote {
-    max-width: 700px;
-    margin: 0 auto;
-    background: #f8f9fa;
-    border-radius: 16px;
-    box-shadow: 0 4px 16px rgba(136,36,199,0.07);
-    padding: 32px 24px;
-    text-align: center;
-  }
-  .pir-impact-quote blockquote {
-    font-size: 1.2rem;
-    color: #2c3e50;
-    font-style: italic;
-    margin-bottom: 10px;
-  }
-  .pir-impact-quote cite {
-    display: block;
-    font-weight: 600;
-    color: #8824C7;
-  }
-  @media(max-width: 900px) {
-    .pir-impact-stats {
-      flex-direction: column;
-      gap: 24px;
-    }
-    .pir-stat-item {
-      max-width: 100%;
-    }
-  }
-
-  /* Responsive adjustments */
-  @media(max-width:768px){
-    .hero {
-      flex-direction: column;
-      text-align: center;
-    }
-    .hero-title {
-      font-size: 2.5rem;
-    }
-    .mission-content {
-      grid-template-columns: 1fr;
-    }
-    .resources-grid {
-      grid-template-columns: 1fr;
-    }
-    .impact-stats {
-      grid-template-columns: 1fr;
-    }
-  }
-
-  /* About GYWAN Section */
-  .about-gywan-container {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: 40px;
-    padding: 60px 0;
-  }
-  .about-gywan-content {
-    flex: 1 1 350px;
-    min-width: 320px;
-    max-width: 600px;
-  }
-  .about-gywan-content h2 {
-    color: #8824C7;
-    margin-bottom: 18px;
-  }
-  .about-gywan-content p {
-    font-size: 1.15rem;
-    color: #2c3e50;
-    margin-bottom: 24px;
-  }
-  .about-gywan-logo {
-    max-width: 220px;
-    border-radius: 50%;
-    box-shadow: 0 4px 24px rgba(136,36,199,0.10);
-    background: #fff;
-    padding: 16px;
-  }
-  .about-gywan-visual {
-    flex: 1 1 220px;
-    text-align: center;
-  }
-
-  /* Partners Section */
-  .partners-container {
-    padding: 60px 0;
-    text-align: center;
-  }
-  .partners-logos {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 32px;
-    margin-top: 32px;
-  }
-  .partners-logos img {
-    width: 120px;
-    height: 60px;
-    object-fit: contain;
-    background: #fff;
-    border-radius: 12px;
-    box-shadow: 0 2px 8px rgba(136,36,199,0.07);
-    padding: 8px 16px;
-  }
-
-  /* Testimonials Section */
-  .testimonials-container {
-    padding: 60px 0;
-    text-align: center;
-    max-width: 800px;
-    margin: 0 auto;
-  }
-  .testimonials-carousel {
-    position: relative;
-    min-height: 120px;
-    margin-bottom: 24px;
-  }
-  .testimonial-item {
-    display: none;
-    font-size: 1.2rem;
-    color: #2c3e50;
-    background: #fff;
-    border-radius: 16px;
-    box-shadow: 0 4px 16px rgba(136,36,199,0.07);
-    padding: 32px 24px;
-    margin: 0 auto;
-    max-width: 600px;
-    transition: opacity 0.5s;
-  }
-  .testimonial-item.active {
-    display: block;
-    opacity: 1;
-  }
-  .testimonial-author {
-    display: block;
-    margin-top: 16px;
-    font-weight: 600;
-    color: #8824C7;
-  }
-  .testimonials-controls {
-    display: flex;
-    justify-content: center;
-    gap: 16px;
-  }
-  .testimonials-controls button {
-    background: #8824C7;
-    color: #fff;
-    border: none;
-    border-radius: 50%;
-    width: 36px;
-    height: 36px;
-    font-size: 1.3rem;
-    cursor: pointer;
-    transition: background 0.3s;
-  }
-  .testimonials-controls button:hover {
-    background: #764ba2;
-  }
-
-  /* Call to Action Section */
-  .cta-container {
-    padding: 60px 0;
-    text-align: center;
-    background: linear-gradient(135deg, #FFDE2F 0%, #764ba2 100%);
-    border-radius: 24px;
-    box-shadow: 0 4px 24px rgba(136,36,199,0.10);
-    margin: 60px auto 0 auto;
-    max-width: 900px;
-  }
-  .cta-container h2 {
-    color: #2c3e50;
-    margin-bottom: 18px;
-  }
-  .cta-container p {
-    font-size: 1.2rem;
-    color: #2c3e50;
-    margin-bottom: 28px;
-  }
-  .cta-btn {
-    margin: 0 12px;
-    min-width: 160px;
-  }
+ 
 </style>
 
 <!-- HERO SECTION -->
@@ -679,7 +218,7 @@
           <div style="font-size: 1rem; color: #2c3e50; font-weight: 600;">Girls Empowered</div>
         </div>
       </div>
-      <a href="{% url 'about' %}" class="btn-primary">Learn More About Us</a>
+      <a href="{% url 'about' %}" class="btn-primary" style="display: flex; justify-content: center;">Learn More About Us</a>
     </div>
     <!-- Right: Image -->
     <div style="flex: 1 1 320px; text-align: center;">
@@ -689,17 +228,17 @@
   <!-- Why Choose Us Row -->
   <div class="container" style="margin-top: 48px;">
     <div style="display: flex; flex-wrap: wrap; gap: 32px; justify-content: center;">
-      <div style="flex: 1 1 220px; min-width: 220px; background: #f8f9fa; border-radius: 14px; padding: 32px 18px; text-align: center;">
+      <div style="flex: 1 1 220px; min-width: 220px; border-radius: 14px; padding: 32px 18px; text-align: center;">
         <div style="font-size: 2.5rem; color: #FFDE2F; margin-bottom: 12px;"><i class="fas fa-user-graduate"></i></div>
         <h4 style="font-size: 1.2rem; color: #8824C7; font-weight: 700; margin-bottom: 10px;">Skilled Mentors</h4>
         <p style="color: #2c3e50; font-size: 1rem;">Our team consists of experienced mentors dedicated to guiding and empowering girls and young women.</p>
       </div>
-      <div style="flex: 1 1 220px; min-width: 220px; background: #f8f9fa; border-radius: 14px; padding: 32px 18px; text-align: center;">
+      <div style="flex: 1 1 220px; min-width: 220px; border-radius: 14px; padding: 32px 18px; text-align: center;">
         <div style="font-size: 2.5rem; color: #FFDE2F; margin-bottom: 12px;"><i class="fas fa-certificate"></i></div>
         <h4 style="font-size: 1.2rem; color: #8824C7; font-weight: 700; margin-bottom: 10px;">Recognized Programs</h4>
         <p style="color: #2c3e50; font-size: 1rem;">We offer internationally recognized programs and resources for leadership and advocacy.</p>
       </div>
-      <div style="flex: 1 1 220px; min-width: 220px; background: #f8f9fa; border-radius: 14px; padding: 32px 18px; text-align: center;">
+      <div style="flex: 1 1 220px; min-width: 220px; border-radius: 14px; padding: 32px 18px; text-align: center;">
         <div style="font-size: 2.5rem; color: #FFDE2F; margin-bottom: 12px;"><i class="fas fa-globe"></i></div>
         <h4 style="font-size: 1.2rem; color: #8824C7; font-weight: 700; margin-bottom: 10px;">Global Community</h4>
         <p style="color: #2c3e50; font-size: 1rem;">Join a vibrant, supportive community making a real impact across the globe.</p>
@@ -756,120 +295,7 @@
   </div>
 </section>
 
-<style>
-  .netic-testimonials-slider {
-    display: flex;
-    overflow: hidden;
-    position: relative;
-    min-height: 260px;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 24px;
-  }
-  .netic-testimonial-card {
-    background: #fff;
-    border-radius: 18px;
-    box-shadow: 0 4px 24px rgba(136,36,199,0.07);
-    padding: 56px 48px 48px 48px;
-    margin: 0 24px;
-    min-width: 420px;
-    max-width: 650px;
-    opacity: 0;
-    transform: scale(0.96) translateY(30px);
-    transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    position: absolute;
-    left: 0; right: 0; top: 0; bottom: 0;
-    margin-left: auto; margin-right: auto;
-    z-index: 1;
-    pointer-events: none;
-  }
-  .netic-testimonial-card.active {
-    opacity: 1;
-    transform: scale(1) translateY(0);
-    z-index: 2;
-    pointer-events: auto;
-  }
-  .netic-testimonial-content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-  }
-  .netic-testimonial-quote {
-    font-size: 1.25rem;
-    color: #2c3e50;
-    font-style: italic;
-    margin-bottom: 32px;
-    position: relative;
-    padding: 0 10px;
-  }
-  .netic-testimonial-quote:before {
-    content: '\201C';
-    color: #FFDE2F;
-    font-size: 2.5rem;
-    position: absolute;
-    left: -18px;
-    top: -10px;
-    opacity: 0.7;
-  }
-  .netic-testimonial-user {
-    display: flex;
-    align-items: center;
-    gap: 18px;
-  }
-  .netic-testimonial-avatar {
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 3px solid #FFDE2F;
-    box-shadow: 0 2px 8px rgba(136,36,199,0.10);
-  }
-  .netic-testimonial-name {
-    font-weight: 700;
-    color: #8824C7;
-    font-size: 1.1rem;
-  }
-  .netic-testimonial-role {
-    font-size: 0.98rem;
-    color: #764ba2;
-  }
-  .netic-testimonials-controls {
-    display: flex;
-    justify-content: center;
-    gap: 18px;
-    margin-top: 10px;
-  }
-  .netic-testimonials-controls button {
-    background: #FFDE2F;
-    color: #8824C7;
-    border: none;
-    border-radius: 50%;
-    width: 44px;
-    height: 44px;
-    font-size: 1.5rem;
-    cursor: pointer;
-    box-shadow: 0 2px 8px rgba(136,36,199,0.07);
-    transition: background 0.3s, color 0.3s;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  .netic-testimonials-controls button:hover {
-    background: #8824C7;
-    color: #fff;
-  }
-  @media (max-width: 900px) {
-    .netic-testimonial-card {
-      min-width: 90vw;
-      max-width: 98vw;
-      padding: 32px 12px 28px 12px;
-    }
-    .netic-testimonials-slider {
-      min-height: 220px;
-    }
-  }
-</style>
+
 
 <script>
   // Netic-style testimonials slider
@@ -913,8 +339,8 @@
     {% if upcoming_events %}
       <div class="resources-grid" style="grid-template-columns:repeat(auto-fit,minmax(350px,1fr));">
         {% for event in upcoming_events %}
-          <div class="resource-card fade-in" style="border:2px solid #FFDE2F;">
-            <div class="resource-icon" style="background:linear-gradient(45deg,#FFDE2F,#fff); color:#8824C7;">
+          <div class="resource-card fade-in">
+            <div class="resource-icon">
               <i class="fas fa-calendar-alt"></i>
             </div>
             <div class="resource-content">
@@ -946,8 +372,8 @@
     {% if recent_stories %}
       <div class="resources-grid" style="grid-template-columns:repeat(auto-fit,minmax(350px,1fr));">
         {% for story in recent_stories %}
-          <div class="resource-card fade-in" style="border:2px solid #FFDE2F;">
-            <div class="resource-icon" style="background:linear-gradient(45deg,#FFDE2F,#fff); color:#8824C7;">
+          <div class="resource-card fade-in">
+            <div class="resource-icon">
               <i class="fas fa-book-open"></i>
             </div>
             <div class="resource-content">
@@ -978,8 +404,8 @@
     {% if blog_posts %}
       <div class="resources-grid" style="grid-template-columns:repeat(auto-fit,minmax(350px,1fr));">
         {% for post in blog_posts|slice:":5" %}
-          <div class="resource-card fade-in" style="border:2px solid #FFDE2F;">
-            <div class="resource-icon" style="background:linear-gradient(45deg,#FFDE2F,#fff); color:#8824C7;">
+          <div class="resource-card fade-in">
+            <div class="resource-icon">
               <i class="fas fa-bullhorn"></i>
             </div>
             <div class="resource-content">
@@ -1039,23 +465,23 @@
 </section>
 
 <!-- MISSION STATEMENT -->
-<section class="mission-statement scroll-reveal">
-  <div class="mission-background"></div>
-  <div class="container" style="padding:60px 20px;">
-    <div class="mission-content" style="display:grid; grid-template-columns:1fr 1fr; gap:60px; align-items:center;">
-      <div class="mission-text">
-        <h2>Committed to Building a Better World</h2>
-        <p>GYWAN is dedicated to providing secure environments and resources that empower girls and young women to increase their positive impact in our world.</p>
-        <a href="{% url 'about' %}" class="btn btn-outline">Learn More</a>
-      </div>
-      <div class="mission-visual" style="text-align:center;">
-        <div class="mission-logo">
-          <img src="{% static 'images/logo1.png' %}" alt="GYWAN Logo" style="max-width:100%; height:auto;">
-        </div>
-      </div>
+<section class="split-video-section">
+  <div class="text-side">
+    <div class="text-content">
+      <h2>Committed to Building a Better World</h2>
+      <p>We work every day to empower communities and create lasting change.</p>
+      <a href="{% url 'about' %}" class="btn btn-highlight">Learn More</a>
     </div>
   </div>
+  <div class="video-side">
+    <video autoplay loop muted playsinline>
+      <source src="{% static 'videos/mission-bg.mp4' %}" type="video/mp4">
+      Your browser doesn’t support HTML5 video.
+    </video>
+  </div>
 </section>
+
+
 
 <section class="announcements">
   <div class="container">
@@ -1125,53 +551,6 @@
     </div>
   </div>
 </section>
-<style>
-  .partners-slider-outer {
-    overflow: hidden;
-    width: 100%;
-    max-width: 1100px;
-    margin: 0 auto;
-    position: relative;
-    height: 90px;
-    display: flex;
-    align-items: center;
-  }
-  .partners-slider-track {
-    display: flex;
-    align-items: center;
-    gap: 40px;
-    animation: partners-slide 7s linear infinite;
-    will-change: transform;
-  }
-  .partner-logo {
-    height: 60px;
-    width: auto;
-    opacity: 0.7;
-    transition: filter 0.3s, opacity 0.3s;
-    max-width: 180px;
-    margin: 0 10px;
-    object-fit: contain;
-    background: #fff;
-    border-radius: 10px;
-    box-shadow: 0 2px 8px rgba(136,36,199,0.07);
-    padding: 8px 16px;
-    user-select: none;
-    pointer-events: auto;
-  }
-  .partner-logo:hover {
-    filter: grayscale(0%) brightness(1) contrast(1);
-    opacity: 1;
-  }
-  @keyframes partners-slide {
-    0% { transform: translateX(0); }
-    100% { transform: translateX(-50%); }
-  }
-  @media (max-width: 700px) {
-    .partners-slider-track { gap: 24px; }
-    .partner-logo { height: 40px; max-width: 110px; padding: 4px 8px; }
-    .partners-slider-outer { height: 60px; }
-  }
-</style>
 <script>
   // Pause slider on hover for accessibility
   document.addEventListener('DOMContentLoaded', function() {
@@ -1188,15 +567,6 @@
   });
 </script>
 
-<!-- CALL TO ACTION SECTION -->
-<section class="cta scroll-reveal">
-  <div class="container cta-container">
-    <h2>Ready to Make a Difference?</h2>
-    <p>Join GYWAN in empowering the next generation of leaders. Your support can change lives and communities.</p>
-    <a href="{% url 'donate' %}" class="btn-primary cta-btn">Donate Now</a>
-    <a href="{% url 'contact' %}" class="btn btn-outline cta-btn">Contact Us</a>
-  </div>
-</section>
 
 
 <!-- Scripts for scroll reveal animations -->

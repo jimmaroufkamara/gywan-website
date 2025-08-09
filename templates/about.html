@@ -255,53 +255,6 @@
     </div>
   </div>
 </section>
-<style>
-  .partners-slider-outer {
-    overflow: hidden;
-    width: 100%;
-    max-width: 1100px;
-    margin: 0 auto;
-    position: relative;
-    height: 90px;
-    display: flex;
-    align-items: center;
-  }
-  .partners-slider-track {
-    display: flex;
-    align-items: center;
-    gap: 40px;
-    animation: partners-slide 7s linear infinite;
-    will-change: transform;
-  }
-  .partner-logo {
-    height: 60px;
-    width: auto;
-    opacity: 0.7;
-    transition: filter 0.3s, opacity 0.3s;
-    max-width: 180px;
-    margin: 0 10px;
-    object-fit: contain;
-    background: #fff;
-    border-radius: 10px;
-    box-shadow: 0 2px 8px rgba(136,36,199,0.07);
-    padding: 8px 16px;
-    user-select: none;
-    pointer-events: auto;
-  }
-  .partner-logo:hover {
-    filter: grayscale(0%) brightness(1) contrast(1);
-    opacity: 1;
-  }
-  @keyframes partners-slide {
-    0% { transform: translateX(0); }
-    100% { transform: translateX(-50%); }
-  }
-  @media (max-width: 700px) {
-    .partners-slider-track { gap: 24px; }
-    .partner-logo { height: 40px; max-width: 110px; padding: 4px 8px; }
-    .partners-slider-outer { height: 60px; }
-  }
-</style>
 <script>
   // Pause slider on hover for accessibility
   document.addEventListener('DOMContentLoaded', function() {
@@ -437,7 +390,6 @@
 }
 
 .mvv-modern-section {
-  background: #fafafa;
   padding: 80px 0;
 }
 .mvv-header {
@@ -464,7 +416,6 @@
   background: none;
   border-radius: 16px;
   padding: 32px 24px;
-  box-shadow: 0 8px 20px rgba(136, 36, 199, 0.06);
   text-align: center;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }

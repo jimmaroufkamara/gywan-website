@@ -8,16 +8,16 @@
 <section class="team-hero-section">
     <div class="container hero-content">
         <h1 class="page-title fade-in">Our Team</h1>
-        <p class="page-subtitle fade-in">Meet the passionate people behind GYWAN's mission</p>
+       
     </div>
 </section>
 
 <!-- Team Members -->
 <section class="our-team-section" data-aos="fade-up">
     <div class="container">
-        <div class="section-header">
+        <div class="team-section-header">
             <h2 class="section-title fade-in">Our Team</h2>
-            <p class="section-subtitle fade-in">We are a diverse, dedicated group working to empower girls and young women globally.</p>
+            <p class="section-subtitle fade-in">Meet the passionate people behind GYWAN's mission</p>
         </div>
         <div class="team-grid">
             {% for member in team_members %}
@@ -117,53 +117,7 @@
     </div>
   </div>
 </section>
-<style>
-  .partners-slider-outer {
-    overflow: hidden;
-    width: 100%;
-    max-width: 1100px;
-    margin: 0 auto;
-    position: relative;
-    height: 90px;
-    display: flex;
-    align-items: center;
-  }
-  .partners-slider-track {
-    display: flex;
-    align-items: center;
-    gap: 40px;
-    animation: partners-slide 7s linear infinite;
-    will-change: transform;
-  }
-  .partner-logo {
-    height: 60px;
-    width: auto;
-    opacity: 0.7;
-    transition: filter 0.3s, opacity 0.3s;
-    max-width: 180px;
-    margin: 0 10px;
-    object-fit: contain;
-    background: #fff;
-    border-radius: 10px;
-    box-shadow: 0 2px 8px rgba(136,36,199,0.07);
-    padding: 8px 16px;
-    user-select: none;
-    pointer-events: auto;
-  }
-  .partner-logo:hover {
-    filter: grayscale(0%) brightness(1) contrast(1);
-    opacity: 1;
-  }
-  @keyframes partners-slide {
-    0% { transform: translateX(0); }
-    100% { transform: translateX(-50%); }
-  }
-  @media (max-width: 700px) {
-    .partners-slider-track { gap: 24px; }
-    .partner-logo { height: 40px; max-width: 110px; padding: 4px 8px; }
-    .partners-slider-outer { height: 60px; }
-  }
-</style>
+
 <script>
   // Pause slider on hover for accessibility
   document.addEventListener('DOMContentLoaded', function() {
@@ -185,10 +139,11 @@
 <style>
 /* Hero */
 .team-hero-section {
+    display: flex;
+    flex-direction: row;
     position: relative;
     padding: 6rem 0;
     color: #fff;
-    text-align: center;
     background: #000;
     overflow: hidden;
 }
@@ -208,6 +163,9 @@
     font-size: 3rem;
     font-weight: 700;
     margin-bottom: 0.25rem;
+    display: flex;
+    align-items: center;
+
 }
 .page-subtitle {
     font-size: 1.1rem;
