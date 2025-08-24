@@ -50,7 +50,7 @@
               {% if post.tags %}<span><i class="fas fa-tag"></i> {{ post.tags }}</span>{% endif %}
             </div>
             <p class="news-excerpt">{{ post.excerpt|truncatewords:30 }}</p>
-            <a href="{{ post.get_absolute_url }}" class="news-btn">Read More</a>
+            <a href="{{ post.get_absolute_url }}" class="btn btn-primary btn-sm">Read More</a>
           </div>
         </div>
         {% endfor %}
@@ -72,34 +72,6 @@
 
   </div>
 </section>
-
-<!-- Comments Section -->
-<section class="comments-section" style="margin-top:64px;">
-  <h2 class="comments-title">Comments</h2>
-  <form method="post" action="" class="comments-form" style="margin-bottom:32px;">
-    {% csrf_token %}
-    <input type="text" name="name" placeholder="Your Name" required class="comments-input">
-    <input type="email" name="email" placeholder="Your Email" required class="comments-input">
-    <textarea name="comment" rows="3" placeholder="Write your comment..." required class="comments-input"></textarea>
-    <button type="submit" class="comments-btn">Submit</button>
-  </form>
-  <div class="comments-list">
-    <h4 class="comments-subtitle">Recent Comments</h4>
-    <ul>
-      {% for comment in recent_comments %}
-        <li class="comment-item">
-          <span class="comment-text">{{ comment.text }}</span>
-          <span class="comment-meta">by {{ comment.name }} ({{ comment.email }})</span>
-          <span class="comment-date">{{ comment.created_at|date:"M d, Y H:i" }}</span>
-        </li>
-      {% empty %}
-        <li>No comments yet.</li>
-      {% endfor %}
-    </ul>
-  </div>
-</section>
-
-
 {% endblock %}
 
 {% block extra_css %}
@@ -279,74 +251,6 @@
 }
 .sidebar-search-btn:hover {
   background: #A13AFF;
-}
-.comments-section {
-  background: #fff;
-  border-radius: 16px;
-  box-shadow: 0 4px 24px rgba(136,36,199,0.08);
-  padding: 32px 24px;
-  margin-top: 64px;
-}
-.comments-title {
-  font-size: 1.2rem;
-  font-weight: 700;
-  color: #8824C7;
-  margin-bottom: 18px;
-}
-.comments-form {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  margin-bottom: 32px;
-}
-.comments-input {
-  border: 1.5px solid #8824C7;
-  border-radius: 12px;
-  padding: 12px;
-  font-size: 1rem;
-  resize: vertical;
-}
-.comments-btn {
-  background: #8824C7;
-  color: #fff;
-  border: none;
-  border-radius: 24px;
-  padding: 10px 24px;
-  font-size: 1rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition: background 0.2s;
-}
-.comments-btn:hover {
-  background: #A13AFF;
-}
-.comments-list {
-  margin-top: 24px;
-}
-.comments-subtitle {
-  font-size: 1rem;
-  font-weight: 600;
-  color: #7C1BB2;
-  margin-bottom: 12px;
-}
-.comment-item {
-  padding: 10px 0;
-  border-bottom: 1px solid #eee;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-.comment-text {
-  color: #444;
-}
-.comment-meta {
-  color: #888;
-  font-size: 0.9rem;
-  margin-left: 8px;
-}
-.comment-date {
-  color: #888;
-  font-size: 0.9rem;
 }
 @media (max-width: 900px) {
   .news-grid-wrap {

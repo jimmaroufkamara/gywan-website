@@ -335,6 +335,10 @@ a:hover {
 }
 
 /* Testimonials Section */
+.testimonials {
+  margin-top: 2px;
+  background: white;
+}
 .testimonials h2 {
   padding: 5rem 0;
   background: var(--bg-light);
@@ -2115,6 +2119,247 @@ section {
   font-style: italic;
   font-size: 1rem;
   margin: 0;
+}
+
+.comments-section {
+  background: #ffffff;
+  border-radius: 18px;
+  box-shadow: 0 6px 24px rgba(136, 36, 199, 0.08);
+  padding: 32px 28px;
+  margin-top: 48px;
+}
+
+.comments-title {
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: #7C1BB2;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.comments-title::before {
+  content: "💬";
+  font-size: 1.2rem;
+}
+
+.comments-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 32px;
+}
+
+.comments-input {
+  border: 1.5px solid #e0d3ef;
+  border-radius: 12px;
+  padding: 12px;
+  font-size: 1rem;
+  resize: vertical;
+  background: #faf7fc;
+  transition: border 0.2s, background 0.2s;
+}
+
+.comments-input:focus {
+  border-color: #7C1BB2;
+  background: #fff;
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(124, 27, 178, 0.1);
+}
+
+.comments-btn {
+  background:  #FFDE2F;
+  color: #fff;
+  border: none;
+  border-radius: 25px;
+  padding: 10px 22px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  align-self: flex-start;
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+
+.comments-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(124, 27, 178, 0.2);
+}
+
+.comments-list {
+  margin-top: 20px;
+}
+
+.comments-subtitle {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #7C1BB2;
+  margin-bottom: 16px;
+}
+
+.comment-thread {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.comment-item {
+  display: flex;
+  gap: 14px;
+  padding: 14px 0;
+  border-bottom: 1px solid #eee;
+}
+
+.comment-avatar {
+  flex-shrink: 0;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #7C1BB2, #FFDE2F);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+  color: #fff;
+}
+
+.comment-body {
+  flex: 1;
+}
+
+.comment-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 4px;
+}
+
+.comment-author {
+  font-weight: 700;
+  color: #7C1BB2;
+}
+
+.comment-date {
+  color: #999;
+  font-size: 0.85rem;
+}
+
+.comment-text {
+  color: #444;
+  line-height: 1.5;
+}
+
+.elixir-news-wrap {
+  display: flex;
+  gap: 40px;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 48px 0;
+}
+.elixir-news-main {
+  flex: 3;
+}
+.elixir-news-card {
+  background: #fff;
+  border-radius: 18px;
+  box-shadow: 0 6px 32px rgba(136,36,199,0.10);
+  overflow: hidden;
+  margin-bottom: 32px;
+}
+.elixir-news-img {
+  width: 100%;
+  height: 320px;
+  overflow: hidden;
+  background: #f3eaff;
+  border-top-left-radius: 18px;
+  border-top-right-radius: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.elixir-news-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s;
+}
+.elixir-news-content {
+  padding: 32px 28px 28px 28px;
+}
+.elixir-news-title {
+  font-size: 2.1rem;
+  font-weight: 800;
+  color: #7C1BB2;
+  margin-bottom: 16px;
+}
+.elixir-news-meta {
+  color: #888;
+  font-size: 1rem;
+  margin-bottom: 16px;
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+.elixir-news-social {
+  margin-bottom: 16px;
+  display: flex;
+  gap: 16px;
+}
+.elixir-news-body {
+  color: #333;
+  font-size: 1.08rem;
+  line-height: 1.75;
+  margin-bottom: 24px;
+}
+.elixir-news-sidebar {
+  flex: 1;
+  background: #fff;
+  border-radius: 18px;
+  box-shadow: 0 6px 32px rgba(136,36,199,0.10);
+  padding: 32px 22px;
+  min-width: 240px;
+  max-width: 320px;
+  height: fit-content;
+}
+.sidebar-block {
+  margin-bottom: 28px;
+}
+.sidebar-title {
+  font-size: 1.08rem;
+  font-weight: 700;
+  color: #7C1BB2;
+  margin-bottom: 10px;
+}
+.sidebar-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.sidebar-list li {
+  margin-bottom: 7px;
+}
+.sidebar-list a {
+  color: #8824C7;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s;
+}
+.sidebar-list a:hover {
+  color: #FFDE2F;
+}
+
+
+@media (max-width: 900px) {
+  .elixir-news-wrap {
+    flex-direction: column;
+    gap: 0;
+  }
+  .elixir-news-sidebar {
+    margin-top: 0;
+    max-width: 100%;
+    min-width: 0;
+    padding: 24px 10px;
+  }
 }
 
 

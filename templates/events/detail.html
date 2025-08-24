@@ -45,17 +45,24 @@
         <textarea name="comment" rows="3" placeholder="Write your comment..." required class="comments-input"></textarea>
         <button type="submit" class="comments-btn">Submit</button>
       </form>
-      <div class="comments-list">
+            <div class="comments-list">
         <h4 class="comments-subtitle">Recent Comments</h4>
-        <ul>
+        <ul class="comment-thread">
           {% for comment in recent_comments %}
             <li class="comment-item">
-              <span class="comment-text">{{ comment.text }}</span>
-              <span class="comment-meta">by {{ comment.name }} ({{ comment.email }})</span>
-              <span class="comment-date">{{ comment.created_at|date:"M d, Y H:i" }}</span>
+              <div class="comment-avatar">
+                <i class="fas fa-user-circle"></i>
+              </div>
+              <div class="comment-body">
+                <div class="comment-header">
+                  <span class="comment-author">{{ comment.name }}</span>
+                  <span class="comment-date">{{ comment.created_at|date:"M d, Y H:i" }}</span>
+                </div>
+                <p class="comment-text">{{ comment.text }}</p>
+              </div>
             </li>
           {% empty %}
-            <li>No comments yet.</li>
+            <li>No comments yet. Be the first to comment!</li>
           {% endfor %}
         </ul>
       </div>
@@ -76,185 +83,3 @@
 </div>
 {% endblock %}
 
-{% block extra_css %}
-<style>
-.elixir-news-wrap {
-  display: flex;
-  gap: 40px;
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: 48px 0;
-}
-.elixir-news-main {
-  flex: 3;
-}
-.elixir-news-card {
-  background: #fff;
-  border-radius: 18px;
-  box-shadow: 0 6px 32px rgba(136,36,199,0.10);
-  overflow: hidden;
-  margin-bottom: 32px;
-}
-.elixir-news-img {
-  width: 100%;
-  height: 320px;
-  overflow: hidden;
-  background: #f3eaff;
-  border-top-left-radius: 18px;
-  border-top-right-radius: 18px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.elixir-news-img img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 0.3s;
-}
-.elixir-news-content {
-  padding: 32px 28px 28px 28px;
-}
-.elixir-news-title {
-  font-size: 2.1rem;
-  font-weight: 800;
-  color: #7C1BB2;
-  margin-bottom: 16px;
-}
-.elixir-news-meta {
-  color: #888;
-  font-size: 1rem;
-  margin-bottom: 16px;
-  display: flex;
-  gap: 16px;
-  flex-wrap: wrap;
-}
-.elixir-news-social {
-  margin-bottom: 16px;
-  display: flex;
-  gap: 16px;
-}
-.elixir-news-body {
-  color: #333;
-  font-size: 1.08rem;
-  line-height: 1.75;
-  margin-bottom: 24px;
-}
-.elixir-news-sidebar {
-  flex: 1;
-  background: #fff;
-  border-radius: 18px;
-  box-shadow: 0 6px 32px rgba(136,36,199,0.10);
-  padding: 32px 22px;
-  min-width: 240px;
-  max-width: 320px;
-  height: fit-content;
-}
-.sidebar-block {
-  margin-bottom: 28px;
-}
-.sidebar-title {
-  font-size: 1.08rem;
-  font-weight: 700;
-  color: #7C1BB2;
-  margin-bottom: 10px;
-}
-.sidebar-list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-.sidebar-list li {
-  margin-bottom: 7px;
-}
-.sidebar-list a {
-  color: #8824C7;
-  text-decoration: none;
-  font-weight: 500;
-  transition: color 0.2s;
-}
-.sidebar-list a:hover {
-  color: #FFDE2F;
-}
-.comments-section {
-  background: #f8f9fa;
-  border-radius: 18px;
-  box-shadow: 0 2px 12px rgba(136,36,199,0.07);
-  padding: 28px 22px;
-  margin-top: 32px;
-}
-.comments-title {
-  font-size: 1.15rem;
-  font-weight: 700;
-  color: #7C1BB2;
-  margin-bottom: 14px;
-}
-.comments-form {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  margin-bottom: 24px;
-}
-.comments-input {
-  border: 1.5px solid #7C1BB2;
-  border-radius: 10px;
-  padding: 10px;
-  font-size: 1rem;
-  resize: vertical;
-  background: #fff;
-}
-.comments-btn {
-  background: linear-gradient(90deg,#8824C7,#FFDE2F);
-  color: #fff;
-  border: none;
-  border-radius: 20px;
-  padding: 8px 20px;
-  font-size: 1rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition: background 0.2s;
-}
-.comments-btn:hover {
-  background: linear-gradient(90deg,#A13AFF,#7C1BB2);
-}
-.comments-list {
-  margin-top: 18px;
-}
-.comments-subtitle {
-  font-size: 1rem;
-  font-weight: 600;
-  color: #7C1BB2;
-  margin-bottom: 10px;
-}
-.comment-item {
-  padding: 8px 0;
-  border-bottom: 1px solid #eee;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-.comment-text {
-  color: #444;
-}
-.comment-meta {
-  color: #888;
-  font-size: 0.92rem;
-}
-.comment-date {
-  color: #888;
-  font-size: 0.92rem;
-}
-@media (max-width: 900px) {
-  .elixir-news-wrap {
-    flex-direction: column;
-    gap: 0;
-  }
-  .elixir-news-sidebar {
-    margin-top: 0;
-    max-width: 100%;
-    min-width: 0;
-    padding: 24px 10px;
-  }
-}
-</style>
-{% endblock %}
