@@ -1,0 +1,103 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}404 - Page Not Found{% endblock %}
+
+{% block content %}
+<div class="notfound-wrapper">
+  <div class="notfound-graphic">
+    <img src="{% static 'images/404-illustration.svg' %}" alt="404 Illustration" class="notfound-img">
+  </div>
+  <div class="notfound-content">
+    <h1 class="notfound-title">OOPS!</h1>
+    <h2 class="notfound-subtitle">404 - PAGE NOT FOUND</h2>
+    <p class="notfound-message">The page you’re looking for may have been deleted, renamed, or temporarily unavailable.</p>
+    <a href="/" class="notfound-btn">GO TO HOME PAGE</a>
+  </div>
+</div>
+{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/main.css' %}">
+<style>
+.notfound-wrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  min-height: 80vh;
+  background: #fff;
+  gap: 48px;
+}
+.notfound-graphic {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.notfound-img {
+  max-width: 420px;
+  width: 100%;
+  height: auto;
+}
+.notfound-content {
+  flex: 1;
+  background: #ffb300;
+  border-radius: 48px;
+  padding: 48px 32px;
+  box-shadow: 0 4px 24px rgba(136,36,199,0.08);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.notfound-title {
+  font-size: 5rem;
+  font-weight: 900;
+  color: #7C1BB2;
+  margin-bottom: 0.5rem;
+  letter-spacing: 2px;
+}
+.notfound-subtitle {
+  font-size: 2rem;
+  color: #fff;
+  font-family: 'Permanent Marker', cursive;
+  margin-bottom: 1.5rem;
+}
+.notfound-message {
+  font-size: 1.2rem;
+  color: #fff;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+.notfound-btn {
+  background: transparent;
+  border: 2px solid #fff;
+  color: #fff;
+  font-size: 1.1rem;
+  font-weight: 700;
+  border-radius: 32px;
+  padding: 12px 32px;
+  text-decoration: none;
+  transition: background 0.2s, color 0.2s;
+}
+.notfound-btn:hover {
+  background: #fff;
+  color: #ffb300;
+}
+@media (max-width: 900px) {
+  .notfound-wrapper {
+    flex-direction: column;
+    gap: 24px;
+    padding: 24px 0;
+  }
+  .notfound-content {
+    border-radius: 24px;
+    padding: 32px 16px;
+  }
+  .notfound-title {
+    font-size: 3rem;
+  }
+}
+</style>
+{% endblock %}

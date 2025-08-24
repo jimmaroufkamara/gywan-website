@@ -5,151 +5,10 @@
 
 {% block content %}
 
-<!-- Styles -->
-<style>
-
-.split-video-section {
-  display: flex;
-  min-height: 60vh;
-}
-
-.text-side {
-  flex: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 40px;
-  background: #fff;
-}
-
-.text-content {
-  max-width: 500px;
-}
-
-.text-content h2 {
-  font-size: 2.5rem;
-  margin-bottom: 20px;
-  color: #222;
-}
-
-.text-content p {
-  font-size: 1.1rem;
-  margin-bottom: 20px;
-  line-height: 1.5;
-}
-
-.btn-highlight {
-  background: #8824C7;
-  color: #fff;
-  padding: 12px 24px;
-  border-radius: 25px;
-  text-decoration: none;
-  font-size: 1.05rem;
-  transition: background 0.3s, transform 0.3s;
-}
-
-.btn-highlight:hover {
-  background: #FFDE2F;
-  transform: scale(1.05);
-  color: white;
-}
-
-/* Video Side */
-.video-side {
-  flex: 1;
-  position: relative;
-  overflow: hidden;
-}
-
-
-
-.video-side video {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  min-width: 100%;
-  min-height: 100%;
-  object-fit: cover;
-  transform: translate(-50%, -50%);
-  z-index: 2;
-  opacity: 0.85; 
-}
-
-/* Responsive */
-@media (max-width: 900px) {
-  .split-video-section {
-    flex-direction: column;
-  }
-  .video-side {
-    height: 300px;
-  }
-}
-
-
-  body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    line-height: 1.6;
-    overflow-x: hidden;
-    background-color: #f4f4f4;
-  }
-
-
-
-  /* Scroll reveal animation */
-  .scroll-reveal {
-    opacity: 0;
-    transform: translateY(30px);
-    transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  }
-  .scroll-reveal.visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
-
-  @keyframes floatBlob {
-    0% { transform: translateY(0); }
-    100% { transform: translateY(-18px); }
-  }
-  @media (max-width: 900px) {
-    .hero-content {
-      flex-direction: column;
-      align-items: flex-start;
-      min-height: 70vh;
-      gap: 0;
-      left: 0;
-    }
-    .hero-text {
-      max-width: 100%;
-    }
-    .hero-deco {
-      margin-top: 32px;
-      align-self: center;
-    }
-  }
-
-  /* Pulsing headers (h2) */
-  h2 {
-    font-size: 2.5rem;
-    font-weight: 700;
-    margin-bottom: 15px;
-    animation: pulse 2s infinite;
-  }
-
-  @keyframes pulse {
-    0%, 100% {
-      opacity: 1;
-      transform: scale(1);
-    }
-    50% {
-      opacity: 0.7;
-      transform: scale(1.05);
-    }
-  }
- 
-</style>
+<!-- Styles are now in static/css/main.css -->
 
 <!-- HERO SECTION -->
-<section class="hero scroll-reveal" style="min-height:100vh;">
+<section class="hero scroll-reveal">
   <video class="hero-video-bg" autoplay loop muted poster="{% static 'images/hero-image.png' %}">
     <source src="{% static 'videos/gywan-hero.mp4' %}" type="video/mp4" />
   </video>
@@ -188,60 +47,58 @@
 
 
 <!-- ABOUT GYWAN SECTION (Edukate style) -->
-<section class="about-gywan scroll-reveal" style="background: #fff; padding: 60px 0;">
-  <div class="container" style="display: flex; flex-wrap: wrap; align-items: center; gap: 40px;">
+<section class="about-gywan scroll-reveal">
+  <div class="container about-gywan-container">
     <!-- Left: Text and Stats -->
-    <div style="flex: 1 1 400px; min-width: 320px; max-width: 600px;">
-      <div style="margin-bottom: 18px;">
-        <span style="color: #FFDE2F; font-weight: 700; letter-spacing: 2px; font-size: 1rem;">ABOUT US</span>
-      </div>
-      <h2 style="color: #8824C7; font-size: 2.7rem; font-weight: 800; margin-bottom: 18px;">First Choice For Girls & Young Women Empowerment</h2>
-      <p style="font-size: 1.15rem; color: #2c3e50; margin-bottom: 28px;">
+    <div class="about-gywan-text">
+      <div class="about-gywan-label">ABOUT US</div>
+      <h2 class="about-gywan-title">First Choice For Girls & Young Women Empowerment</h2>
+      <p class="about-gywan-desc">
         Girls and Young Women's Advocacy Network (GYWAN) is dedicated to empowering girls and young women through education, advocacy, and leadership development. Our mission is to create a world where every girl and young woman can reach her full potential and become a leader in her community.
       </p>
       <!-- Stats Row -->
-      <div style="display: flex; flex-wrap: wrap; gap: 24px; margin-bottom: 32px;">
-        <div style="flex: 1 1 120px; min-width: 120px; background: #f8f9fa; border-radius: 12px; text-align: center; padding: 18px 10px;">
-          <div style="font-size: 2rem; font-weight: 800; color: #8824C7;">4</div>
-          <div style="font-size: 1rem; color: #2c3e50; font-weight: 600;">Programs</div>
+      <div class="about-gywan-stats">
+        <div class="about-gywan-stat">
+          <div class="about-gywan-stat-value">4</div>
+          <div class="about-gywan-stat-label">Programs</div>
         </div>
-        <div style="flex: 1 1 120px; min-width: 120px; background: #f8f9fa; border-radius: 12px; text-align: center; padding: 18px 10px;">
-          <div style="font-size: 2rem; font-weight: 800; color: #8824C7;">90%</div>
-          <div style="font-size: 1rem; color: #2c3e50; font-weight: 600;">Success Rate</div>
+        <div class="about-gywan-stat">
+          <div class="about-gywan-stat-value">90%</div>
+          <div class="about-gywan-stat-label">Success Rate</div>
         </div>
-        <div style="flex: 1 1 120px; min-width: 120px; background: #f8f9fa; border-radius: 12px; text-align: center; padding: 18px 10px;">
-          <div style="font-size: 2rem; font-weight: 800; color: #8824C7;">50+</div>
-          <div style="font-size: 1rem; color: #2c3e50; font-weight: 600;">Volunteers</div>
+        <div class="about-gywan-stat">
+          <div class="about-gywan-stat-value">50+</div>
+          <div class="about-gywan-stat-label">Volunteers</div>
         </div>
-        <div style="flex: 1 1 120px; min-width: 120px; background: #f8f9fa; border-radius: 12px; text-align: center; padding: 18px 10px;">
-          <div style="font-size: 2rem; font-weight: 800; color: #8824C7;">500+</div>
-          <div style="font-size: 1rem; color: #2c3e50; font-weight: 600;">Girls Empowered</div>
+        <div class="about-gywan-stat">
+          <div class="about-gywan-stat-value">500+</div>
+          <div class="about-gywan-stat-label">Girls Empowered</div>
         </div>
       </div>
-      <a href="{% url 'about' %}" class="btn-primary" style="display: flex; justify-content: center;">Learn More About Us</a>
+      <a href="{% url 'about' %}" class="btn-primary about-gywan-btn">Learn More About Us</a>
     </div>
     <!-- Right: Image -->
-    <div style="flex: 1 1 320px; text-align: center;">
-      <img src="{% static 'images/millicentia.png' %}" alt="About GYWAN" style="max-width: 400px; width: 100%; border-radius: 18px; box-shadow: 0 4px 24px rgba(136,36,199,0.10); background: #fff;">
+    <div class="about-gywan-img-wrap">
+      <img src="{% static 'images/millicentia.png' %}" alt="About GYWAN" class="about-gywan-img">
     </div>
   </div>
   <!-- Why Choose Us Row -->
-  <div class="container" style="margin-top: 48px;">
-    <div style="display: flex; flex-wrap: wrap; gap: 32px; justify-content: center;">
-      <div style="flex: 1 1 220px; min-width: 220px; border-radius: 14px; padding: 32px 18px; text-align: center;">
-        <div style="font-size: 2.5rem; color: #FFDE2F; margin-bottom: 12px;"><i class="fas fa-user-graduate"></i></div>
-        <h4 style="font-size: 1.2rem; color: #8824C7; font-weight: 700; margin-bottom: 10px;">Skilled Mentors</h4>
-        <p style="color: #2c3e50; font-size: 1rem;">Our team consists of experienced mentors dedicated to guiding and empowering girls and young women.</p>
+  <div class="container about-gywan-why" >
+    <div class="about-gywan-why-row">
+      <div class="about-gywan-why-card">
+        <div class="about-gywan-why-icon"><i class="fas fa-user-graduate"></i></div>
+        <h4 class="about-gywan-why-title">Skilled Mentors</h4>
+        <p class="about-gywan-why-desc">Our team consists of experienced mentors dedicated to guiding and empowering girls and young women.</p>
       </div>
-      <div style="flex: 1 1 220px; min-width: 220px; border-radius: 14px; padding: 32px 18px; text-align: center;">
-        <div style="font-size: 2.5rem; color: #FFDE2F; margin-bottom: 12px;"><i class="fas fa-certificate"></i></div>
-        <h4 style="font-size: 1.2rem; color: #8824C7; font-weight: 700; margin-bottom: 10px;">Recognized Programs</h4>
-        <p style="color: #2c3e50; font-size: 1rem;">We offer internationally recognized programs and resources for leadership and advocacy.</p>
+      <div class="about-gywan-why-card">
+        <div class="about-gywan-why-icon"><i class="fas fa-certificate"></i></div>
+        <h4 class="about-gywan-why-title">Recognized Programs</h4>
+        <p class="about-gywan-why-desc">We offer internationally recognized programs and resources for leadership and advocacy.</p>
       </div>
-      <div style="flex: 1 1 220px; min-width: 220px; border-radius: 14px; padding: 32px 18px; text-align: center;">
-        <div style="font-size: 2.5rem; color: #FFDE2F; margin-bottom: 12px;"><i class="fas fa-globe"></i></div>
-        <h4 style="font-size: 1.2rem; color: #8824C7; font-weight: 700; margin-bottom: 10px;">Global Community</h4>
-        <p style="color: #2c3e50; font-size: 1rem;">Join a vibrant, supportive community making a real impact across the globe.</p>
+      <div class="about-gywan-why-card">
+        <div class="about-gywan-why-icon"><i class="fas fa-globe"></i></div>
+        <h4 class="about-gywan-why-title">Global Community</h4>
+        <p class="about-gywan-why-desc">Join a vibrant, supportive community making a real impact across the globe.</p>
       </div>
     </div>
   </div>
@@ -250,9 +107,9 @@
 
 
 <!-- TESTIMONIALS CAROUSEL SECTION -->
-<section class="testimonials scroll-reveal" style="background: #fff;">
-  <div class="container testimonials-container" style="max-width:1000px;">
-    <h2 style="margin-bottom: 40px;">Testimonials</h2>
+<section class="testimonials scroll-reveal">
+  <div class="container testimonials-container">
+    <h2 class="testimonials-title">Testimonials</h2>
     <div class="netic-testimonials-slider">
       {% if testimonials %}
         {% for testimonial in testimonials %}
@@ -337,7 +194,7 @@
       <a href="{% url 'events' %}" class="btn btn-outline">View All Events</a>
     </div>
     {% if upcoming_events %}
-      <div class="resources-grid" style="grid-template-columns:repeat(auto-fit,minmax(350px,1fr));">
+  <div class="resources-grid">
         {% for event in upcoming_events %}
           <div class="resource-card fade-in">
             <div class="resource-icon">
@@ -370,7 +227,7 @@
       <a href="{% url 'stories' %}" class="btn btn-outline">View All Stories</a>
     </div>
     {% if recent_stories %}
-      <div class="resources-grid" style="grid-template-columns:repeat(auto-fit,minmax(350px,1fr));">
+  <div class="resources-grid">
         {% for story in recent_stories %}
           <div class="resource-card fade-in">
             <div class="resource-icon">
@@ -402,7 +259,7 @@
       <p>Stay up to date with the latest news and blog posts from GYWAN.</p>
     </div>
     {% if blog_posts %}
-      <div class="resources-grid" style="grid-template-columns:repeat(auto-fit,minmax(350px,1fr));">
+  <div class="resources-grid">
         {% for post in blog_posts|slice:":5" %}
           <div class="resource-card fade-in">
             <div class="resource-icon">
@@ -436,7 +293,7 @@
       <a href="{% url 'resources' %}" class="btn btn-outline">View All Resources</a>
     </div>
     {% if recent_resources %}
-      <div class="resources-grid" style="grid-template-columns:repeat(auto-fit,minmax(300px,1fr));">
+  <div class="resources-grid">
         {% for resource in recent_resources %}
           <div class="resource-card fade-in">
             <div class="resource-icon">
@@ -533,9 +390,9 @@
 </section>
 
 <!-- PARTNERS SECTION ( with slider) -->
-<section class="partners scroll-reveal" style="background: #fff; padding: 48px 0 32px 0;">
-  <div class="container partners-container" style="text-align:center;">
-    <h2 style="font-size:2rem; color:#2c3e50; font-weight:700; margin-bottom:32px;">Our Partners</h2>
+<section class="partners scroll-reveal">
+  <div class="container partners-container">
+    <h2 class="partners-title">Our Partners</h2>
     <div class="partners-slider-outer">
       <div class="partners-slider-track">
         <img src="{% static 'images/partner1.png' %}" alt="Partner 1" class="partner-logo">

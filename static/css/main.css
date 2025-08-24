@@ -1,3 +1,300 @@
+/* === Homepage Styles (from index.html) === */
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  line-height: 1.6;
+  overflow-x: hidden;
+  background-color: #f4f4f4;
+}
+
+.split-video-section {
+  display: flex;
+  min-height: 60vh;
+}
+.text-side {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+  background: #fff;
+}
+.text-content {
+  max-width: 500px;
+}
+.text-content h2 {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+  color: #222;
+}
+.text-content p {
+  font-size: 1.1rem;
+  margin-bottom: 20px;
+  line-height: 1.5;
+}
+.btn-highlight {
+  background: #8824C7;
+  color: #fff;
+  padding: 12px 24px;
+  border-radius: 25px;
+  text-decoration: none;
+  font-size: 1.05rem;
+  transition: background 0.3s, transform 0.3s;
+}
+.btn-highlight:hover {
+  background: #FFDE2F;
+  transform: scale(1.05);
+  color: white;
+}
+.video-side {
+  flex: 1;
+  position: relative;
+  overflow: hidden;
+}
+.video-side video {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  min-width: 100%;
+  min-height: 100%;
+  object-fit: cover;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  opacity: 0.85; 
+}
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+  width: 100%;
+  box-sizing: border-box;
+}
+.resources-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 2rem;
+}
+.resource-card {
+  min-width: 0;
+  word-break: break-word;
+}
+.partner-logo {
+  max-width: 120px;
+  width: 100%;
+  height: auto;
+}
+@media (max-width: 900px) {
+  .split-video-section {
+    flex-direction: column;
+    min-height: 0;
+  }
+  .text-side {
+    padding: 24px 8px;
+  }
+  .text-content {
+    max-width: 100%;
+  }
+  .text-content h2 {
+    font-size: 2rem;
+  }
+  .video-side {
+    height: 220px;
+    min-height: 220px;
+  }
+  .container {
+    padding: 0 6px;
+  }
+  .resources-grid {
+    grid-template-columns: 1fr;
+    gap: 1.2rem;
+  }
+  .partner-logo {
+    max-width: 80px;
+  }
+  .about-gywan .container {
+    flex-direction: column;
+    gap: 18px !important;
+  }
+  .about-gywan img {
+    max-width: 100%;
+    border-radius: 12px;
+  }
+  .pir-impact-stats {
+    flex-direction: column;
+    gap: 18px;
+  }
+  .pir-stat-item {
+    max-width: 100%;
+    min-width: 0;
+    padding: 24px 10px;
+  }
+  .announcements-grid {
+    grid-template-columns: 1fr !important;
+    gap: 1rem !important;
+  }
+}
+@media (max-width: 600px) {
+  h2 {
+    font-size: 1.5rem;
+  }
+  .btn-highlight, .btn-primary, .btn-outline, .btn-small {
+    font-size: 0.95rem;
+    padding: 10px 16px;
+    border-radius: 18px;
+  }
+  .hero-title {
+    font-size: 2rem !important;
+  }
+}
+.scroll-reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+.scroll-reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+@keyframes floatBlob {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-18px); }
+}
+/* Pulsing headers (h2) */
+h2 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 15px;
+  animation: pulse 2s infinite;
+}
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.7;
+    transform: scale(1.05);
+  }
+}
+
+/* === Homepage Custom Classes for About, Why, Testimonials, Partners === */
+.about-gywan {
+  background: #fff;
+  padding: 60px 0;
+}
+.about-gywan-container {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 40px;
+}
+.about-gywan-text {
+  flex: 1 1 400px;
+  min-width: 320px;
+  max-width: 600px;
+}
+.about-gywan-label {
+  color: #FFDE2F;
+  font-weight: 700;
+  letter-spacing: 2px;
+  font-size: 1rem;
+  margin-bottom: 18px;
+}
+.about-gywan-title {
+  color: #8824C7;
+  font-size: 2.7rem;
+  font-weight: 800;
+  margin-bottom: 18px;
+}
+.about-gywan-desc {
+  font-size: 1.15rem;
+  color: #2c3e50;
+  margin-bottom: 28px;
+}
+.about-gywan-stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  margin-bottom: 32px;
+}
+.about-gywan-stat {
+  flex: 1 1 120px;
+  min-width: 120px;
+  background: #f8f9fa;
+  border-radius: 12px;
+  text-align: center;
+  padding: 18px 10px;
+}
+.about-gywan-stat-value {
+  font-size: 2rem;
+  font-weight: 800;
+  color: #8824C7;
+}
+.about-gywan-stat-label {
+  font-size: 1rem;
+  color: #2c3e50;
+  font-weight: 600;
+}
+.about-gywan-btn {
+  display: flex;
+  justify-content: center;
+}
+.about-gywan-img-wrap {
+  flex: 1 1 320px;
+  text-align: center;
+}
+.about-gywan-img {
+  max-width: 400px;
+  width: 100%;
+  border-radius: 18px;
+  box-shadow: 0 4px 24px rgba(136,36,199,0.10);
+  background: #fff;
+}
+.about-gywan-why {
+  margin-top: 48px;
+}
+.about-gywan-why-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 32px;
+  justify-content: center;
+}
+.about-gywan-why-card {
+  flex: 1 1 220px;
+  min-width: 220px;
+  border-radius: 14px;
+  padding: 32px 18px;
+  text-align: center;
+  background: #fff;
+  box-shadow: 0 2px 8px rgba(136,36,199,0.05);
+}
+.about-gywan-why-icon {
+  font-size: 2.5rem;
+  color: #FFDE2F;
+  margin-bottom: 12px;
+}
+.about-gywan-why-title {
+  font-size: 1.2rem;
+  color: #8824C7;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+.about-gywan-why-desc {
+  color: #2c3e50;
+  font-size: 1rem;
+}
+.testimonials-title {
+  margin-bottom: 40px;
+}
+.partners {
+  background: #fff;
+  padding: 48px 0 32px 0;
+}
+.partners-title {
+  font-size: 2rem;
+  color: #2c3e50;
+  font-weight: 700;
+  margin-bottom: 32px;
+}
 /* GYWAN Website Main Styles */
 
 .scroll-reveal {

@@ -28,9 +28,16 @@
 
         .footer-content {
             display: grid;
-            grid-template-columns: 2fr 1fr 1fr 1fr 1.5fr;
-            gap: 3rem;
-            margin-bottom: 3rem;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        @media (min-width: 900px) {
+            .footer-content {
+                grid-template-columns: 2fr 1fr 1fr 1fr 1.5fr;
+                gap: 3rem;
+                margin-bottom: 3rem;
+            }
         }
 
         .footer-logo {
@@ -41,8 +48,9 @@
         }
 
         .footer-logo img {
-            height: 60px;
+            height: 48px;
             width: auto;
+            max-width: 100%;
         }
 
         .footer-description {
@@ -54,8 +62,8 @@
 
         .footer-section h4 {
             color: white;
-            margin-bottom: 1.5rem;
-            font-size: 1.1rem;
+            margin-bottom: 1rem;
+            font-size: 1rem;
             font-weight: 600;
             text-transform: uppercase;
             letter-spacing: 0.5px;
@@ -76,6 +84,7 @@
             transition: var(--transition);
             font-size: 0.95rem;
             line-height: 1.4;
+            word-break: break-word;
         }
 
         .footer-links a:hover {
@@ -92,13 +101,14 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            width: 40px;
-            height: 40px;
+            width: 36px;
+            height: 36px;
             background: rgba(255, 255, 255, 0.1);
             color: white;
             border-radius: 50%;
             transition: var(--transition);
             text-decoration: none;
+            font-size: 1.2rem;
         }
 
         .social-link:hover {
@@ -128,7 +138,7 @@
 
         .input-group input {
             flex: 1;
-            padding: 1rem;
+            padding: 0.8rem;
             border: none;
             background: rgba(255, 255, 255, 0.1);
             color: white;
@@ -140,7 +150,7 @@
         }
 
         .newsletter-btn {
-            padding: 1rem 1.5rem;
+            padding: 0.8rem 1.2rem;
             background: var(--primary-color);
             border: none;
             color: white;
@@ -172,10 +182,19 @@
         .footer-bottom-content {
             display: flex;
             color: #FFDE2F;
-            justify-content: space-between;
+            justify-content: center;
             align-items: center;
             flex-wrap: wrap;
             gap: 1rem;
+            flex-direction: column;
+            text-align: center;
+        }
+        @media (min-width: 600px) {
+            .footer-bottom-content {
+                flex-direction: row;
+                justify-content: space-between;
+                text-align: left;
+            }
         }
 
         .footer-bottom-links {

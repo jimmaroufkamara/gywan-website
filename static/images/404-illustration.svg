@@ -1,0 +1,15 @@
+<!-- SVG illustration matching the style in the image, excluding the blurred face -->
+<svg width="420" height="320" viewBox="0 0 420 320" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <ellipse cx="210" cy="160" rx="200" ry="140" fill="#FFB300"/>
+  <path d="M120 220c0-40 40-80 90-80s90 40 90 80" fill="#7C1BB2"/>
+  <ellipse cx="210" cy="160" rx="80" ry="60" fill="#fff"/>
+  <rect x="140" y="180" width="140" height="80" rx="16" fill="#7C1BB2"/>
+  <rect x="160" y="200" width="100" height="40" rx="8" fill="#fff"/>
+  <text x="210" y="225" text-anchor="middle" font-size="32" font-family="Arial" fill="#7C1BB2">X</text>
+  <!-- Cartoon hand and arm -->
+  <ellipse cx="130" cy="250" rx="18" ry="12" fill="#FFB300"/>
+  <ellipse cx="290" cy="250" rx="18" ry="12" fill="#FFB300"/>
+  <!-- Decorative lines -->
+  <path d="M60 80c20 10 40 0 60-10" stroke="#7C1BB2" stroke-width="3"/>
+  <path d="M360 80c-20 10-40 0-60-10" stroke="#7C1BB2" stroke-width="3"/>
+</svg>
