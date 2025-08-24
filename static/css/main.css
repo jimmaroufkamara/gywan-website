@@ -1,3 +1,49 @@
+/* CSS Custom Properties */
+:root {
+  --primary-color: #8824C7;
+  --secondary-color: #FFDE2F;
+  --accent-color: #673ab7;
+  --text-dark: #2c3e50;
+  --text-light: #7f8c8d;
+  --text-muted: #95a5a6;
+  --background-light: #f8f9fa;
+  --background-white: #ffffff;
+  --border-color: #e9ecef;
+  --shadow-light: 0 2px 10px rgba(0, 0, 0, 0.1);
+  --shadow-medium: 0 8px 30px rgba(0, 0, 0, 0.15);
+  --shadow-strong: 0 15px 50px rgba(0, 0, 0, 0.2);
+  --gradient-primary: linear-gradient(135deg, #8920B1, #8920B1);
+  --gradient-secondary: linear-gradient(135deg, #FFDE2F, #8920B1);
+  --gradient-hero: linear-gradient(135deg, #8920B1, #FFDE2F);
+  --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-fast: all 0.2s ease;
+  --transition-slow: all 0.5s ease;
+  --border-radius: 8px;
+  --border-radius-large: 12px;
+  --font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+/* Reset and Base Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+}
+
+body {
+  padding-top: 70px;
+  font-family: var(--font-family);
+  line-height: 1.6;
+  color: var(--text-dark);
+  background-color: var(--background-white);
+  overflow-x: hidden;
+}
+
 /* === Homepage Styles (from index.html) === */
 body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -300,146 +346,6 @@ h2 {
 .scroll-reveal {
   opacity: 1 !important;
   transform: none !important;
-}
-
-
-/* CSS Custom Properties */
-:root {
-  --primary-color: #8824C7;
-  --secondary-color: #FFDE2F;
-  --accent-color: #673ab7;
-  --text-dark: #2c3e50;
-  --text-light: #7f8c8d;
-  --text-muted: #95a5a6;
-  --background-light: #f8f9fa;
-  --background-white: #ffffff;
-  --border-color: #e9ecef;
-  --shadow-light: 0 2px 10px rgba(0, 0, 0, 0.1);
-  --shadow-medium: 0 8px 30px rgba(0, 0, 0, 0.15);
-  --shadow-strong: 0 15px 50px rgba(0, 0, 0, 0.2);
-  --gradient-primary: linear-gradient(135deg, #8920B1, #8920B1);
-  --gradient-secondary: linear-gradient(135deg, #FFDE2F, #8920B1);
-  --gradient-hero: linear-gradient(135deg, #8920B1, #FFDE2F);
-  --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  --transition-fast: all 0.2s ease;
-  --transition-slow: all 0.5s ease;
-  --border-radius: 8px;
-  --border-radius-large: 12px;
-  --font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-}
-
-/* Dark Mode Variables */
-@media (prefers-color-scheme: dark) {
-  :root {
-    --text-dark: #f8f9fa;
-    --text-light: #adb5bd;
-    --text-muted: #6c757d;
-    --background-light: #212529;
-    --background-white: #343a40;
-    --border-color: #495057;
-    --shadow-light: 0 2px 10px rgba(0, 0, 0, 0.3);
-    --shadow-medium: 0 8px 30px rgba(0, 0, 0, 0.4);
-    --shadow-strong: 0 15px 50px rgba(0, 0, 0, 0.5);
-  }
-}
-
-/* Manual Dark Mode Support */
-[data-theme="dark"] {
-  --text-dark: #f8f9fa;
-  --text-light: #adb5bd;
-  --text-muted: #6c757d;
-  --background-light: #212529;
-  --background-white: #343a40;
-  --border-color: #495057;
-  --shadow-light: 0 2px 10px rgba(0, 0, 0, 0.3);
-  --shadow-medium: 0 8px 30px rgba(0, 0, 0, 0.4);
-  --shadow-strong: 0 15px 50px rgba(0, 0, 0, 0.5);
-}
-
-[data-theme="dark"] body {
-  background-color: var(--background-white);
-  color: var(--text-dark);
-}
-
-[data-theme="dark"] .navbar {
-  background: rgba(52, 58, 64, 0.95);
-}
-
-[data-theme="dark"] .navbar.scrolled {
-  background: rgba(52, 58, 64, 0.98);
-}
-
-[data-theme="dark"] .mission-item,
-[data-theme="dark"] .value-card,
-[data-theme="dark"] .event-card,
-[data-theme="dark"] .story-card,
-[data-theme="dark"] .resource-card,
-[data-theme="dark"] .highlight-card,
-[data-theme="dark"] .announcement-card,
-[data-theme="dark"] .stat-card,
-[data-theme="dark"] .approach-item,
-[data-theme="dark"] .team-member,
-[data-theme="dark"] .mvv-item,
-[data-theme="dark"] .way-item,
-[data-theme="dark"] .donation-form-wrapper,
-[data-theme="dark"] .donation-summary {
-  background: var(--background-white);
-  border-color: var(--border-color);
-}
-
-[data-theme="dark"] .dropdown-menu {
-  background: var(--background-white);
-  border-color: var(--border-color);
-}
-
-[data-theme="dark"] .tab-btn {
-  background: var(--background-white);
-  border-color: var(--border-color);
-  color: var(--text-dark);
-}
-
-[data-theme="dark"] .alert {
-  background: var(--background-white);
-  border-color: var(--border-color);
-  color: var(--text-dark);
-}
-
-[data-theme="dark"] .back-to-top {
-  background: var(--primary-color);
-  color: white;
-}
-
-[data-theme="dark"] #loading-screen {
-  background: var(--background-white);
-}
-
-[data-theme="dark"] .loading-text h2 {
-  color: var(--primary-color);
-}
-
-[data-theme="dark"] .loading-text p {
-  color: var(--text-dark);
-}
-
-/* Reset and Base Styles */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-html {
-  scroll-behavior: smooth;
-  font-size: 16px;
-}
-
-body {
-  padding-top: 70px;
-  font-family: var(--font-family);
-  line-height: 1.6;
-  color: var(--text-dark);
-  background-color: var(--background-white);
-  overflow-x: hidden;
 }
 
 /* Typography */
@@ -2322,7 +2228,7 @@ section {
   background-image: url("/static/images/team-hero.png");
   background-size: cover;
   background-position: center;
-  filter: blur(10px) brightness(0.8);
+  filter: blur(5px) brightness(0.75);
   z-index: -1; 
 }
 

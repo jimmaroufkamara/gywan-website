@@ -4,14 +4,14 @@
 {% block title %}Our Team - GYWAN{% endblock %}
 
 {% block content %}
-<!-- Hero Section with background image and blur -->
-<section class="team-hero-section">
-    <div class="container hero-content">
-        <h1 class="page-title fade-in">Our Team</h1>
-       
+<!-- Hero Section -->
+<section class="page-header">
+    <div class="container">
+         <h1 class="page-title fade-in">Our Team</h1>
+
+        <p class="page-subtitle fade-in">Meet the passionate people behind GYWAN's mission</p>
     </div>
 </section>
-
 <!-- Team Members -->
 <section class="our-team-section" data-aos="fade-up">
     <div class="container">
@@ -137,40 +137,6 @@
 
 {% block extra_css %}
 <style>
-/* Hero */
-.team-hero-section {
-    display: flex;
-    flex-direction: row;
-    position: relative;
-    padding: 6rem 0;
-    color: #fff;
-    background: #000;
-    overflow: hidden;
-}
-.team-hero-section::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: url("{% static 'images/team-hero.png' %}") center/cover no-repeat;
-    filter: blur(12px) brightness(0.55);
-    z-index: 0;
-}
-.hero-content {
-    position: relative;
-    z-index: 1;
-}
-.page-title {
-    font-size: 3rem;
-    font-weight: 700;
-    margin-bottom: 0.25rem;
-    display: flex;
-    align-items: center;
-
-}
-.page-subtitle {
-    font-size: 1.1rem;
-    margin-top: 0.5rem;
-}
 
 /* Layout */
 .our-team-section, .team-support-section {
@@ -231,31 +197,6 @@
     margin-bottom: 12px;
 }
 
-/* Social icons */
-.team-social {
-    display: flex;
-    justify-content: center;
-    gap: 10px;
-    margin: 8px 0 10px;
-}
-.social-link {
-    width: 44px;
-    height: 44px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 50%;
-    font-size: 1.25rem;
-    background: #f3eaff;
-    color: #8824C7;
-    transition: all .25s ease;
-    box-shadow: 0 6px 18px rgba(136,36,199,0.06);
-}
-.social-link:hover {
-    background: linear-gradient(135deg, #8824C7, #d18aff);
-    color: #fff;
-    transform: scale(1.1);
-}
 
 /* Read Bio button */
 .read-bio-btn {
@@ -373,12 +314,14 @@
 }
 .bio-social {
     display: flex;
+    color: #8824C7;
     gap: 12px;
     margin: 6px 0 4px;
 }
 .bio-social .social-link {
     width: 38px;
     height: 38px;
+    color: #8824C7;
     font-size: 1.15rem;
 }
 
