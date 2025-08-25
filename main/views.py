@@ -8,7 +8,6 @@ from django.conf import settings
 from django.db.models import Q
 from django.core.paginator import Paginator
 from django.utils import timezone
-import stripe
 import json
 from .models import Event, Story, BlogPost, Resource, Contact, Newsletter, ImpactStory, ImpactStat, Comment, TeamMember, Supporter, Announcement
 from .forms import ContactForm, Donation2Form, NewsletterForm
