@@ -6,442 +6,7 @@
 {% block extra_css %}
 <link rel="stylesheet" href="{% static 'css/donation.css' %}">
 <style>
-/* Enhanced donation styles */
-.donation-main {
-    background: linear-gradient(135deg, #f8f9ff 0%, #fff 100%);
-    padding: 60px 0;
-    min-height: 100vh;
-}
 
-.donation-layout {
-    display: grid;
-    grid-template-columns: 1fr 400px;
-    gap: 40px;
-    max-width: 1200px;
-    margin: 0 auto;
-}
-
-.donation-form-container {
-    background: white;
-    border-radius: 16px;
-    padding: 40px;
-    box-shadow: 0 8px 32px rgba(136, 36, 199, 0.08);
-    border: 1px solid #f0f0f0;
-}
-
-.donation-summary {
-    background: white;
-    border-radius: 16px;
-    padding: 30px;
-    box-shadow: 0 8px 32px rgba(136, 36, 199, 0.08);
-    border: 1px solid #f0f0f0;
-    height: fit-content;
-    position: sticky;
-    top: 120px;
-}
-
-.amount-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 12px;
-    margin-bottom: 20px;
-}
-
-.amount-option {
-    background: white;
-    border: 2px solid #e1e5e9;
-    border-radius: 12px;
-    padding: 16px 12px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    font-size: 16px;
-    font-weight: 600;
-    color: #333;
-    position: relative;
-    overflow: hidden;
-}
-
-.amount-option:hover {
-    border-color: #8824C7;
-    transform: translateY(-2px);
-    box-shadow: 0 4px 16px rgba(136, 36, 199, 0.15);
-}
-
-.amount-option.selected {
-    background: linear-gradient(135deg, #8824C7, #BA4BFF);
-    border-color: #8824C7;
-    color: white;
-    transform: scale(1.05);
-}
-
-.amount-option .amount {
-    display: block;
-    font-size: 18px;
-    font-weight: 700;
-}
-
-.amount-option .impact {
-    display: block;
-    font-size: 12px;
-    opacity: 0.8;
-    margin-top: 4px;
-}
-
-.custom-amount {
-    margin-top: 20px;
-    padding: 20px;
-    background: #f8f9ff;
-    border-radius: 12px;
-    border: 2px solid #e1e5e9;
-    transition: border-color 0.3s ease;
-}
-
-.custom-amount:focus-within {
-    border-color: #8824C7;
-}
-
-.amount-input {
-    position: relative;
-    margin-top: 8px;
-}
-
-.currency {
-    position: absolute;
-    left: 12px;
-    top: 50%;
-    transform: translateY(-50%);
-    font-weight: 600;
-    color: #666;
-}
-
-#custom-amount {
-    width: 100%;
-    padding: 12px 12px 12px 50px;
-    border: 2px solid #e1e5e9;
-    border-radius: 8px;
-    font-size: 16px;
-    font-weight: 600;
-    transition: border-color 0.3s ease;
-}
-
-#custom-amount:focus {
-    outline: none;
-    border-color: #8824C7;
-}
-
-.frequency-options, .payment-method-options {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-}
-
-.frequency-option, .payment-method-option {
-    display: flex;
-    align-items: center;
-    padding: 16px;
-    border: 2px solid #e1e5e9;
-    border-radius: 12px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    position: relative;
-}
-
-.frequency-option:hover, .payment-method-option:hover {
-    border-color: #8824C7;
-    background: #f8f9ff;
-}
-
-.frequency-option input:checked + .radio-custom + .option-content,
-.payment-method-option input:checked + .radio-custom + .option-title {
-    color: #8824C7;
-}
-
-.frequency-option input:checked,
-.payment-method-option input:checked {
-    & ~ * {
-        border-color: #8824C7;
-    }
-}
-
-.frequency-option:has(input:checked),
-.payment-method-option:has(input:checked) {
-    border-color: #8824C7;
-    background: #f8f9ff;
-}
-
-.radio-custom {
-    width: 20px;
-    height: 20px;
-    border: 2px solid #ddd;
-    border-radius: 50%;
-    margin-right: 12px;
-    position: relative;
-    transition: all 0.3s ease;
-}
-
-.frequency-option input:checked + .radio-custom,
-.payment-method-option input:checked + .radio-custom {
-    border-color: #8824C7;
-    background: #8824C7;
-}
-
-.frequency-option input:checked + .radio-custom::after,
-.payment-method-option input:checked + .radio-custom::after {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 8px;
-    height: 8px;
-    background: white;
-    border-radius: 50%;
-}
-
-.option-content {
-    flex: 1;
-}
-
-.option-title {
-    display: block;
-    font-weight: 600;
-    margin-bottom: 4px;
-}
-
-.option-desc {
-    display: block;
-    font-size: 14px;
-    color: #666;
-}
-
-.form-row {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 20px;
-}
-
-.form-group {
-    margin-bottom: 20px;
-}
-
-.form-group label {
-    display: block;
-    margin-bottom: 8px;
-    font-weight: 600;
-    color: #333;
-}
-
-.form-control {
-    width: 100%;
-    padding: 12px 16px;
-    border: 2px solid #e1e5e9;
-    border-radius: 8px;
-    font-size: 16px;
-    transition: border-color 0.3s ease;
-}
-
-.form-control:focus {
-    outline: none;
-    border-color: #8824C7;
-}
-
-.checkbox-group {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-}
-
-.checkbox-label {
-    display: flex;
-    align-items: center;
-    cursor: pointer;
-    font-weight: 500;
-}
-
-.checkmark {
-    width: 20px;
-    height: 20px;
-    border: 2px solid #ddd;
-    border-radius: 4px;
-    margin-right: 8px;
-    position: relative;
-    transition: all 0.3s ease;
-}
-
-input[type="checkbox"]:checked + .checkmark {
-    background: #8824C7;
-    border-color: #8824C7;
-}
-
-input[type="checkbox"]:checked + .checkmark::after {
-    content: '✓';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    color: white;
-    font-weight: bold;
-}
-
-.donate-button {
-    width: 100%;
-    background: linear-gradient(135deg, #8824C7, #BA4BFF);
-    color: white;
-    border: none;
-    padding: 18px 24px;
-    border-radius: 12px;
-    font-size: 18px;
-    font-weight: 700;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 12px;
-    margin-top: 30px;
-    position: relative;
-    overflow: hidden;
-}
-
-.donate-button:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 24px rgba(136, 36, 199, 0.3);
-}
-
-.donate-button:active {
-    transform: translateY(0);
-}
-
-.donate-button:disabled {
-    opacity: 0.6;
-    cursor: not-allowed;
-    transform: none;
-}
-
-.summary-header h3 {
-    color: #333;
-    margin-bottom: 20px;
-    font-size: 20px;
-}
-
-.summary-item {
-    display: flex;
-    justify-content: space-between;
-    padding: 12px 0;
-    border-bottom: 1px solid #eee;
-}
-
-.summary-item.total {
-    border-bottom: none;
-    border-top: 2px solid #8824C7;
-    font-size: 18px;
-    font-weight: 700;
-    color: #8824C7;
-    margin-top: 10px;
-    padding-top: 15px;
-}
-
-.impact-preview {
-    background: #f8f9ff;
-    padding: 20px;
-    border-radius: 12px;
-    margin: 20px 0;
-    border-left: 4px solid #8824C7;
-}
-
-.impact-preview h4 {
-    color: #8824C7;
-    margin-bottom: 10px;
-}
-
-.trust-info {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-    margin-top: 20px;
-}
-
-.trust-item {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    font-size: 14px;
-    color: #666;
-}
-
-.trust-item i {
-    color: #8824C7;
-    width: 16px;
-}
-
-.security-badges {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-    margin: 20px 0;
-}
-
-.security-badge {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 8px;
-    font-size: 12px;
-    color: #666;
-}
-
-.security-badge i {
-    font-size: 24px;
-    color: #8824C7;
-}
-
-.loading-spinner {
-    width: 20px;
-    height: 20px;
-}
-
-.spinner {
-    width: 100%;
-    height: 100%;
-    border: 2px solid transparent;
-    border-top: 2px solid white;
-    border-radius: 50%;
-    animation: spin 1s linear infinite;
-}
-
-@keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-}
-
-@media (max-width: 768px) {
-    .donation-layout {
-        grid-template-columns: 1fr;
-        gap: 20px;
-    }
-    
-    .donation-summary {
-        position: static;
-        order: -1;
-    }
-    
-    .amount-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-    
-    .form-row {
-        grid-template-columns: 1fr;
-    }
-}
-
-/* Hide all sections by default, show based on selection */
-.payment-section {
-    display: none;
-}
-
-.payment-section.active {
-    display: block;
-}
 </style>
 {% endblock %}
 
@@ -1127,7 +692,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
     async function processMobilePayment() {
         try {
-            const response = await fetch('/process-mobile-payment/', {
+            const response = await fetch('/process-donation/', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -1142,23 +707,15 @@ document.addEventListener('DOMContentLoaded', function() {
                     frequency: document.querySelector('input[name="frequency"]:checked').value,
                     is_anonymous: document.getElementById('anonymous').checked,
                     message: document.getElementById('donor-message').value,
+                    payment_method: 'mobile'
                 })
             });
-            
             const result = await response.json();
-            
             if (result.success) {
-                showSuccess(`
-                    Payment request sent! Please check your phone for SMS instructions to complete the payment.
-                    <br><br>
-                    <strong>Reference:</strong> ${result.reference}
-                    <br>
-                    You will receive a confirmation email once payment is completed.
-                `);
+                window.location.href = '/donate/thank-you/';
             } else {
                 showError(result.message || 'Mobile payment failed. Please try again.');
             }
-            
         } catch (error) {
             showError('Mobile payment processing failed. Please try again.');
             console.error('Mobile payment error:', error);
@@ -1167,7 +724,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
     async function processBankTransfer() {
         try {
-            const response = await fetch('/process-bank-transfer/', {
+            const response = await fetch('/process-donation/', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -1181,24 +738,15 @@ document.addEventListener('DOMContentLoaded', function() {
                     frequency: document.querySelector('input[name="frequency"]:checked').value,
                     is_anonymous: document.getElementById('anonymous').checked,
                     message: document.getElementById('donor-message').value,
+                    payment_method: 'bank'
                 })
             });
-            
             const result = await response.json();
-            
             if (result.success) {
-                showSuccess(`
-                    Bank transfer instructions sent to your email!
-                    <br><br>
-                    <strong>Reference:</strong> ${result.reference}
-                    <br><br>
-                    Please complete the transfer using the details provided in your email.
-                    Your donation will be confirmed once we receive the transfer.
-                `);
+                window.location.href = '/donate/thank-you/';
             } else {
                 showError(result.message || 'Bank transfer setup failed. Please try again.');
             }
-            
         } catch (error) {
             showError('Bank transfer processing failed. Please try again.');
             console.error('Bank transfer error:', error);

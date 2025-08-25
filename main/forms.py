@@ -1,7 +1,6 @@
 from django import forms
 from django.core.validators import MinValueValidator
-from .models import Contact, Donation, Newsletter
-
+from .models import Contact, Newsletter, Donation2, MobileProvider, Bank
 
 class ContactForm(forms.ModelForm):
     """Contact form with enhanced styling"""
@@ -30,42 +29,61 @@ class ContactForm(forms.ModelForm):
             'rows': 6
         })
 
-
-class DonationForm(forms.ModelForm):
-    """Donation form with validation"""
-    
-    class Meta:
-        model = Donation
-        fields = ['amount', 'donation_type', 'donor_name', 'donor_email', 'message', 'is_anonymous']
-        
+class Donation2Form(forms.ModelForm):
     amount = forms.DecimalField(
-        validators=[MinValueValidator(1.00)],
+        required=False,
         widget=forms.NumberInput(attrs={
             'class': 'form-control',
-            'placeholder': '25.00',
-            'min': '1.00',
-            'step': '0.01'
+            'min': '1',
+            'step': '0.01',
+            'placeholder': 'Enter Amount'
         })
     )
-    
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self.fields['donor_name'].widget.attrs.update({
-            'class': 'form-control',
-            'placeholder': 'Your Full Name'
-        })
-        self.fields['donor_email'].widget.attrs.update({
-            'class': 'form-control',
-            'placeholder': 'your.email@example.com'
-        })
-        self.fields['message'].widget.attrs.update({
-            'class': 'form-control',
-            'placeholder': 'Optional message with your donation...',
-            'rows': 4
-        })
-        self.fields['donation_type'].widget.attrs.update({
-            'class': 'form-control'
-        })
+    mobile_provider = forms.ModelChoiceField(
+        queryset=MobileProvider.objects.all(),
+        required=False,
+        widget=forms.Select(attrs={'class': 'form-control'}),
+        empty_label="Select Mobile Provider"
+    )
+    bank_name = forms.ModelChoiceField(
+        queryset=Bank.objects.all(),
+        required=False,
+        widget=forms.Select(attrs={'class': 'form-control'}),
+        empty_label="Select Bank"
+    )
+    mobile_number = forms.CharField(
+        required=False,
+        widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Mobile Number'})
+    )
+
+    class Meta:
+        model = Donation2
+        fields = [
+            'amount', 'donor_name', 'donor_email',
+            'payment_method', 'frequency',
+            'mobile_provider', 'mobile_number',
+            'bank_name',
+            'is_anonymous', 'message'
+        ]
+        widgets = {
+            'donor_name': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Full Name'}),
+            'donor_email': forms.EmailInput(attrs={'class': 'form-control', 'placeholder': 'Email Address'}),
+            'payment_method': forms.Select(attrs={'class': 'form-control'}),
+            'frequency': forms.Select(choices=[('one_time', 'One Time'), ('monthly', 'Monthly')],attrs={'class': 'form-control'}),
+            'is_anonymous': forms.CheckboxInput(attrs={'class': 'form-check-input'}),
+            'message': forms.Textarea(attrs={'class': 'form-control', 'rows': 3, 'placeholder': 'Message (optional)'}),
+        }
+
+    def clean(self):
+        cleaned_data = super().clean()
+        predefined = cleaned_data.get('predefined_amount')
+        amount = cleaned_data.get('amount')
+        if predefined and predefined != 'amount':
+            cleaned_data['amount'] = predefined
+        elif predefined == 'amount' and not amount:
+            self.add_error('amount', 'Please enter an amount.')
+        return cleaned_data
+
 
 
 class NewsletterForm(forms.ModelForm):

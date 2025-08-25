@@ -1,4 +1,9 @@
 from django.db import models
+from django.contrib.auth.models import User
+from django.urls import reverse
+from django.utils.text import slugify
+from django.contrib.contenttypes.fields import GenericForeignKey
+from django.contrib.contenttypes.models import ContentType
 
 class Announcement(models.Model):
     title = models.CharField(max_length=200)
@@ -27,12 +32,7 @@ class Testimonial(models.Model):
 
     def __str__(self):
         return f"{self.name} - {self.role}" if self.role else self.name
-from django.db import models
-from django.contrib.auth.models import User
-from django.urls import reverse
-from django.utils.text import slugify
-from django.contrib.contenttypes.fields import GenericForeignKey
-from django.contrib.contenttypes.models import ContentType
+
 
 # Base model
 class BaseModel(models.Model):
@@ -40,8 +40,57 @@ class BaseModel(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
     is_active = models.BooleanField(default=True)
 
+    
     class Meta:
-        abstract = True
+        abstract = True 
+
+
+
+
+class MobileProvider(models.Model):
+    name = models.CharField(max_length=100, unique=True)
+
+    def __str__(self):
+        return self.name
+
+
+class Bank(models.Model):
+    name = models.CharField(max_length=100, unique=True)
+
+    def __str__(self):
+        return self.name
+
+
+class Donation2(models.Model):
+    PAYMENT_METHODS = [
+        ('mobile', 'Mobile Money'),
+        ('bank', 'Bank Transfer'),
+    ]
+
+    FREQUENCY_CHOICES = [
+        ('one_time', 'One Time'),
+        ('monthly', 'Monthly'),
+        ('yearly', 'Yearly'),
+    ]
+
+    amount = models.DecimalField(max_digits=10, decimal_places=2)
+    donor_name = models.CharField(max_length=200)
+    donor_email = models.EmailField()
+    payment_method = models.CharField(max_length=20, choices=PAYMENT_METHODS)
+
+    # Related fields
+    mobile_provider = models.ForeignKey(MobileProvider, on_delete=models.SET_NULL, null=True, blank=True)
+    mobile_number = models.CharField(max_length=50, blank=True, null=True)
+    bank_name = models.ForeignKey(Bank, on_delete=models.SET_NULL, null=True, blank=True)
+
+    frequency = models.CharField(max_length=20, choices=FREQUENCY_CHOICES, default='one_time')
+    is_anonymous = models.BooleanField(default=False)
+    message = models.TextField(blank=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"{self.amount} - {self.donor_name} ({self.payment_method})"
+
 
 # Team Member
 class TeamMember(BaseModel):
@@ -214,28 +263,8 @@ class Resource(BaseModel):
     def __str__(self):
         return self.title
 
-# Donation
-class Donation(BaseModel):
-    DONATION_TYPES = [
-        ('one_time', 'One Time'),
-        ('monthly', 'Monthly'),
-    ]
-    amount = models.DecimalField(max_digits=10, decimal_places=2)
-    donation_type = models.CharField(max_length=20, choices=DONATION_TYPES, default='one_time')
-    donor_name = models.CharField(max_length=200)
-    donor_email = models.EmailField()
-    stripe_payment_id = models.CharField(max_length=200, blank=True)
-    is_anonymous = models.BooleanField(default=False)
-    message = models.TextField(blank=True)
-    processed = models.BooleanField(default=False)
+    
 
-    class Meta:
-        ordering = ['-created_at']
-        verbose_name = 'Donation'
-        verbose_name_plural = 'Donations'
-
-    def __str__(self):
-        return f"${self.amount} - {self.donor_name}"
 
 # Contact
 class Contact(BaseModel):

@@ -1,0 +1,349 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Donate to GYWAN - Support Girls' Empowerment{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/donation.css' %}">
+{% endblock %}
+
+{% block content %}
+<section class="page-header">
+  <div class="container">
+    <h1 class="page-title fade-in">Your Support Changes Lives</h1>
+    <p class="page-subtitle fade-in">Every donation empowers girls and young women to become confident leaders and changemakers.</p>
+  </div>
+</section>
+
+<section class="donation-main">
+  <div class="container">
+    <div class="donation-layout">
+      <div class="donation-form-container">
+        <form method="post" class="donation-form">
+          {% csrf_token %}
+          {{ form.non_field_errors }}
+
+          <!-- Amount Input -->
+          <div class="form-group">
+            <label for="id_amount">Donation Amount</label>
+            {{ form.amount }}
+            {{ form.amount.errors }}
+          </div>
+
+          <!-- Frequency Selector -->
+          <div class="form-group">
+            <label for="id_frequency">Frequency</label>
+            {{ form.frequency }}
+          </div>
+
+          <!-- Payment Method -->
+          <div class="form-group">
+            <label for="id_payment_method">Payment Method</label>
+            {{ form.payment_method }}
+          </div>
+
+          <!-- Mobile Fields -->
+          <div id="mobile-fields" style="display:none;">
+            <div class="form-group">
+              <label for="id_mobile_provider">Mobile Provider</label>
+              {{ form.mobile_provider }}
+              {{ form.mobile_provider.errors }}
+            </div>
+            <div class="form-group">
+              <label for="id_mobile_number">Mobile Number</label>
+              {{ form.mobile_number }}
+              {{ form.mobile_number.errors }}
+            </div>
+            <div class="mobile-instructions" style="display:none;">
+              <div class="alert alert-info">
+                <i class="fas fa-info-circle"></i>
+                <p>You will receive an SMS shortly after submitting with instructions to complete your payment via your selected mobile money provider.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Bank Fields -->
+          <div id="bank-fields" style="display:none;">
+            <div class="form-group">
+              <label for="id_bank_name">Bank Name</label>
+              {{ form.bank_name }}
+              {{ form.bank_name.errors }}
+            </div>
+            <div class="bank-instructions" style="display:none;">
+              <div class="alert alert-info">
+                <i class="fas fa-university"></i>
+                <p>After submitting, you will receive detailed bank transfer instructions via email.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Donor Info -->
+          <div class="form-group">
+            <label for="id_donor_name">Your Name</label>
+            {{ form.donor_name }}
+            {{ form.donor_name.errors }}
+          </div>
+
+          <div class="form-group">
+            <label for="id_donor_email">Email</label>
+            {{ form.donor_email }}
+            {{ form.donor_email.errors }}
+          </div>
+
+          <div class="form-check">
+            {{ form.is_anonymous }} <label for="id_is_anonymous" class="form-check-label">Donate anonymously</label>
+          </div>
+
+          <div class="form-group">
+            <label for="id_message">Message (optional)</label>
+            {{ form.message }}
+          </div>
+
+          <button type="submit" class="donate-button">
+            <span class="button-text">Complete Donation</span>
+          </button>
+        </form>
+      </div>
+
+      <!-- Donation Summary Panel -->
+      <div class="donation-summary">
+        <div class="summary-header"><h3>Donation Summary</h3></div>
+        <div class="summary-content">
+          <div class="summary-item"><span>Amount:</span><span id="summary-amount">SLE0</span></div>
+          <div class="summary-item"><span>Frequency:</span><span id="summary-frequency">One Time</span></div>
+          <div class="summary-item total"><span>Total:</span><span id="summary-total">SLE0</span></div>
+        </div>
+        <div class="impact-preview">
+          <h4>Your Impact</h4>
+          <p id="impact-description">Select an amount to see your impact</p>
+        </div>
+        <div class="trust-info">
+          <div class="trust-item"><i class="fas fa-heart"></i><span>100% goes to programs</span></div>
+          <div class="trust-item"><i class="fas fa-receipt"></i><span>Tax receipt emailed</span></div>
+          <div class="trust-item"><i class="fas fa-handshake"></i><span>Secure & trusted</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const amountInput = document.getElementById('id_amount');
+  const frequencyInput = document.getElementById('id_frequency');
+  const paymentMethod = document.getElementById('id_payment_method');
+
+  const summaryAmount = document.getElementById('summary-amount');
+  const summaryFrequency = document.getElementById('summary-frequency');
+  const summaryTotal = document.getElementById('summary-total');
+  const impactDesc = document.getElementById('impact-description');
+
+  const mobileFields = document.getElementById('mobile-fields');
+  const bankFields = document.getElementById('bank-fields');
+  const mobileInstructions = mobileFields.querySelector('.mobile-instructions');
+  const bankInstructions = bankFields.querySelector('.bank-instructions');
+
+  function formatSLE(value) {
+    return `SLE${value.toFixed(2)}`;
+  }
+
+  function updateSummary() {
+    let amount = parseFloat(amountInput.value);
+    if (isNaN(amount) || amount < 0) amount = 0;
+
+    let freq = frequencyInput.value === 'monthly' ? 'Monthly' : 'One Time';
+
+    summaryAmount.textContent = formatSLE(amount);
+    summaryFrequency.textContent = freq;
+
+    let total = amount;
+    if (frequencyInput.value === 'monthly') total = amount * 12;
+
+    summaryTotal.textContent = formatSLE(total);
+
+    if (amount === 0) {
+      impactDesc.textContent = 'Select an amount to see your impact';
+    } else if (amount < 50) {
+      impactDesc.textContent = 'Your donation provides school supplies for one girl.';
+    } else if (amount < 100) {
+      impactDesc.textContent = 'Your donation supports leadership workshops.';
+    } else {
+      impactDesc.textContent = 'Your donation empowers multiple girls with mentoring programs.';
+    }
+  }
+
+  function togglePaymentFields() {
+    mobileFields.style.display = 'none';
+    bankFields.style.display = 'none';
+    if (mobileInstructions) mobileInstructions.style.display = 'none';
+    if (bankInstructions) bankInstructions.style.display = 'none';
+
+    if (paymentMethod.value === 'mobile') {
+      mobileFields.style.display = 'block';
+      if (mobileInstructions) mobileInstructions.style.display = 'block';
+    } else if (paymentMethod.value === 'bank') {
+      bankFields.style.display = 'block';
+      if (bankInstructions) bankInstructions.style.display = 'block';
+    }
+  }
+
+  amountInput.addEventListener('input', updateSummary);
+  frequencyInput.addEventListener('change', updateSummary);
+  paymentMethod.addEventListener('change', togglePaymentFields);
+
+  // Initialize states
+  updateSummary();
+  togglePaymentFields();
+});
+</script>
+
+<!-- Impact Stories -->
+<section class="impact-stories" data-aos="fade-up">
+    <div class="container">
+        <div class="section-header">
+            <h2>Real Impact Stories</h2>
+            <p>See how your donations are changing lives</p>
+        </div>
+        <div class="stories-grid">
+            {% for story in impact_stories %}
+            <div class="story-card">
+                <div class="story-image">
+                    <img src="{{ story.image.url }}" alt="{{ story.title }}">
+                </div>
+                <div class="story-content">
+                    <h3>{{ story.title }}</h3>
+                    <p>{{ story.quote }}</p>
+                    <span class="story-location">{{ story.location }}</span>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- Other Ways to Support -->
+<section class="other-ways" data-aos="fade-up">
+    <div class="container">
+        <div class="section-header">
+            <h2>Other Ways to Support</h2>
+            <p>Multiple ways to make a difference</p>
+        </div>
+        <div class="ways-grid">
+            <div class="way-card">
+                <div class="way-icon">
+                    <i class="fas fa-envelope"></i>
+                </div>
+                <h3>Mail a Check</h3>
+                <p>Send your donation to:<br>GYWAN at: <br> 4 Old Railway Line Tengbeh Town, Freetown, Sierra Leone</p>
+            </div>
+            <div class="way-card">
+                <div class="way-icon">
+                    <i class="fas fa-phone"></i>
+                </div>
+                <h3>Call Us</h3>
+                <p>Donate by phone:<br><strong>+232 78554262</strong></p>
+            </div>
+            <div class="way-card">
+                <div class="way-icon">
+                    <i class="fas fa-users"></i>
+                </div>
+                <h3>Volunteer</h3>
+                <p>Share your time and skills to directly impact girls' lives</p>
+                <a href="{% url 'contact' %}" class="btn btn-outline">Get Involved</a>
+            </div>
+            <div class="way-card">
+                <div class="way-icon">
+                    <i class="fas fa-building"></i>
+                </div>
+                <h3>Corporate Partnership</h3>
+                <p>Partner with us for workplace programs and CSR initiatives</p>
+                <a href="{% url 'contact' %}" class="btn btn-outline">Learn More</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- PARTNERS SECTION ( with slider) -->
+<section class="partners scroll-reveal" style="background: #fff; padding: 48px 0 32px 0;">
+  <div class="container partners-container" style="text-align:center;">
+    <h2 style="font-size:2rem; color:#2c3e50; font-weight:700; margin-bottom:32px;">Our Partners</h2>
+    <div class="partners-slider-outer">
+      <div class="partners-slider-track">
+        <img src="{% static 'images/partner1.png' %}" alt="Partner 1" class="partner-logo">
+        <img src="{% static 'images/partner2.png' %}" alt="Partner 2" class="partner-logo">
+        <img src="{% static 'images/partner1.png' %}" alt="Partner 3" class="partner-logo">
+        <img src="{% static 'images/partner2.png' %}" alt="Partner 4" class="partner-logo">
+        <!-- Duplicate for seamless loop -->
+        <img src="{% static 'images/partner1.png' %}" alt="Partner 1" class="partner-logo">
+        <img src="{% static 'images/partner2.png' %}" alt="Partner 2" class="partner-logo">
+        <img src="{% static 'images/partner1.png' %}" alt="Partner 3" class="partner-logo">
+        <img src="{% static 'images/partner2.png' %}" alt="Partner 4" class="partner-logo">
+      </div>
+    </div>
+  </div>
+</section>
+<style>
+  .partners-slider-outer {
+    overflow: hidden;
+    width: 100%;
+    max-width: 1100px;
+    margin: 0 auto;
+    position: relative;
+    height: 90px;
+    display: flex;
+    align-items: center;
+  }
+  .partners-slider-track {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    animation: partners-slide 7s linear infinite;
+    will-change: transform;
+  }
+  .partner-logo {
+    height: 60px;
+    width: auto;
+    opacity: 0.7;
+    transition: filter 0.3s, opacity 0.3s;
+    max-width: 180px;
+    margin: 0 10px;
+    object-fit: contain;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(136,36,199,0.07);
+    padding: 8px 16px;
+    user-select: none;
+    pointer-events: auto;
+  }
+  .partner-logo:hover {
+    filter: grayscale(0%) brightness(1) contrast(1);
+    opacity: 1;
+  }
+  @keyframes partners-slide {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+  @media (max-width: 700px) {
+    .partners-slider-track { gap: 24px; }
+    .partner-logo { height: 40px; max-width: 110px; padding: 4px 8px; }
+    .partners-slider-outer { height: 60px; }
+  }
+</style>
+<script>
+  // Pause slider on hover for accessibility
+  document.addEventListener('DOMContentLoaded', function() {
+    var track = document.querySelector('.partners-slider-track');
+    var outer = document.querySelector('.partners-slider-outer');
+    if (track && outer) {
+      outer.addEventListener('mouseenter', function() {
+        track.style.animationPlayState = 'paused';
+      });
+      outer.addEventListener('mouseleave', function() {
+        track.style.animationPlayState = 'running';
+      });
+    }
+  });
+</script>
+
+
+{% endblock %}

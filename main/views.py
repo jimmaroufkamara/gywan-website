@@ -1,3 +1,4 @@
+
 from django.shortcuts import render, get_object_or_404, redirect
 from django.views.generic import ListView, DetailView, CreateView, TemplateView
 from django.contrib import messages
@@ -9,8 +10,8 @@ from django.core.paginator import Paginator
 from django.utils import timezone
 import stripe
 import json
-from .models import Event, Story, BlogPost, Resource, Donation, Contact, Newsletter, ImpactStory, ImpactStat, Comment, TeamMember, Supporter, Announcement
-from .forms import ContactForm, DonationForm, NewsletterForm
+from .models import Event, Story, BlogPost, Resource, Contact, Newsletter, ImpactStory, ImpactStat, Comment, TeamMember, Supporter, Announcement
+from .forms import ContactForm, Donation2Form, NewsletterForm
 from django.contrib.contenttypes.models import ContentType
 
 
@@ -130,62 +131,18 @@ class ContactView(CreateView):
         return super().form_valid(form)
 
 
-class DonateView(TemplateView):
-    """Donation page with Stripe integration"""
-    template_name = 'donate.html'
-    
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['stripe_public_key'] = settings.STRIPE_PUBLIC_KEY
-        context['donation_form'] = DonationForm()
-        impact_stories = ImpactStory.objects.order_by('-created_at')[:4]
-        context['impact_stories'] = impact_stories
-        return context
+def donate2_view(request):
+    if request.method == 'POST':
+        form = Donation2Form(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('donate2_thank_you')
+    else:
+        form = Donation2Form()
+    return render(request, 'donate2.html', {'form': form})
 
-
-class ProcessDonationView(TemplateView):
-    """Process Stripe donation"""
-    
-    def post(self, request, *args, **kwargs):
-        try:
-            data = json.loads(request.body)
-            
-            # Configure Stripe
-            stripe.api_key = settings.STRIPE_SECRET_KEY
-            
-            # Create payment intent
-            intent = stripe.PaymentIntent.create(
-                amount=int(float(data['amount']) * 100),  # Convert to cents
-                currency='usd',
-                metadata={
-                    'donor_name': data['donor_name'],
-                    'donor_email': data['donor_email'],
-                    'donation_type': data['donation_type']
-                }
-            )
-            
-            # Create donation record
-            donation = Donation.objects.create(
-                amount=data['amount'],
-                donation_type=data['donation_type'],
-                donor_name=data['donor_name'],
-                donor_email=data['donor_email'],
-                message=data.get('message', ''),
-                is_anonymous=data.get('is_anonymous', False),
-                stripe_payment_id=intent.id
-            )
-            
-            return JsonResponse({
-                'success': True,
-                'client_secret': intent.client_secret,
-                'donation_id': donation.id
-            })
-            
-        except Exception as e:
-            return JsonResponse({
-                'success': False,
-                'error': str(e)
-            }, status=400)
+def donate2_thank_you(request):
+    return render(request, 'donate2_thank_you.html')
 
 
 class EventListView(ListView):
@@ -386,6 +343,7 @@ class ResourceListView(ListView):
         if comment_text:
             Comment.objects.create(text=comment_text)
         return redirect(request.path)
+
 
 
 def newsletter_subscribe(request):

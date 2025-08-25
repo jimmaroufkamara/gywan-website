@@ -1,7 +1,7 @@
-from django.urls import path
+from django.urls import path, include
 from . import views
 from .views import our_team_view
-from .views import DonateView
+
 
 urlpatterns = [
     # Main pages
@@ -9,7 +9,9 @@ urlpatterns = [
     path('about/', views.AboutView.as_view(), name='about'),
     path('team/', views.our_team_view, name='our_team'),
     path('contact/', views.ContactView.as_view(), name='contact'),
-    path('donate/', DonateView.as_view(), name='donate'),
+    path('donate2/', views.donate2_view, name='donate2'),
+    path('donate2/thank-you/', views.donate2_thank_you, name='donate2_thank_you'),
+
     
     # Events
     path('events/', views.EventListView.as_view(), name='events'),
@@ -27,7 +29,7 @@ urlpatterns = [
     path('resources/', views.ResourceListView.as_view(), name='resources'),
     
     # AJAX endpoints
-    path('process-donation/', views.ProcessDonationView.as_view(), name='process_donation'),
-    path('newsletter-subscribe/', views.newsletter_subscribe, name='newsletter_subscribe'),
-    path('api/track-download/<int:resource_id>/', views.track_download, name='track_download'),
+  #  path('process-donation/', views.ProcessDonationView.as_view(), name='process_donation'),
+   # path('newsletter-subscribe/', views.newsletter_subscribe, name='newsletter_subscribe'),
+   # path('api/track-download/<int:resource_id>/', views.track_download, name='track_download'),
 ]

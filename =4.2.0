@@ -1,0 +1,9 @@
+Collecting Django
+  Obtaining dependency information for Django from https://files.pythonhosted.org/packages/9d/6e/98a1d23648e0085bb5825326af17612ecd8fc76be0ce96ea4dc35e17b926/django-5.2.5-py3-none-any.whl.metadata
+  Using cached django-5.2.5-py3-none-any.whl.metadata (4.1 kB)
+Requirement already satisfied: asgiref>=3.8.1 in c:\users\josy\downloads\gywan_website\gywan-website\env\lib\site-packages (from Django) (3.9.1)
+Requirement already satisfied: sqlparse>=0.3.1 in c:\users\josy\downloads\gywan_website\gywan-website\env\lib\site-packages (from Django) (0.5.3)
+Requirement already satisfied: tzdata in c:\users\josy\downloads\gywan_website\gywan-website\env\lib\site-packages (from Django) (2025.2)
+Using cached django-5.2.5-py3-none-any.whl (8.3 MB)
+Installing collected packages: Django
+Successfully installed Django-5.2.5

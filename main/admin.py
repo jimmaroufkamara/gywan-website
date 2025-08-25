@@ -1,6 +1,11 @@
 
 from django.contrib import admin
 from .models import Testimonial, Announcement
+from .models import ImpactStat, MobileProvider, Bank
+from django.contrib import admin
+from django.utils.html import format_html
+from .models import Event, Story, BlogPost, Resource, Contact, Newsletter, ImpactStory, TeamMember, Comment, Supporter, Donation2, MobileProvider, Bank
+ 
 
 @admin.register(Announcement)
 class AnnouncementAdmin(admin.ModelAdmin):
@@ -15,10 +20,16 @@ class TestimonialAdmin(admin.ModelAdmin):
     list_display = ("name", "role", "created_at")
     search_fields = ("name", "role", "quote")
     list_filter = ("created_at",)
-from .models import ImpactStat
-from django.contrib import admin
-from django.utils.html import format_html
-from .models import Event, Story, BlogPost, Resource, Donation, Contact, Newsletter, ImpactStory, TeamMember, Comment, Supporter
+
+@admin.register(MobileProvider)
+class MobileProviderAdmin(admin.ModelAdmin):
+    list_display = ('name',)
+    search_fields = ('name',)
+
+@admin.register(Bank)
+class BankAdmin(admin.ModelAdmin):
+    list_display = ('name',)
+    search_fields = ('name',)
 
 
 @admin.register(ImpactStat)
@@ -138,18 +149,29 @@ class ResourceAdmin(admin.ModelAdmin):
               'facebook_url', 'instagram_url', 'youtube_url', 'twitter_url')
 
 
-@admin.register(Donation)
-class DonationAdmin(admin.ModelAdmin):
-    list_display = ('donor_name', 'amount', 'donation_type', 'processed', 'created_at')
-    list_filter = ('donation_type', 'processed', 'is_anonymous', 'created_at')
-    search_fields = ('donor_name', 'donor_email', 'stripe_payment_id')
-    readonly_fields = ('stripe_payment_id', 'created_at', 'updated_at')
-    list_editable = ('processed',)
-    
+@admin.register(Donation2)
+class Donation2Admin(admin.ModelAdmin):
+    list_display = ('donor_name', 'donor_email', 'amount', 'payment_method', 'created_at')
+    search_fields = ('donor_name', 'donor_email', 'mobile_number')
+    list_filter = ('payment_method', 'frequency', 'is_anonymous', 'created_at')
+    readonly_fields = ('created_at',)
+
     def get_readonly_fields(self, request, obj=None):
-        if obj:  # editing an existing object
-            return self.readonly_fields + ('amount', 'donation_type', 'donor_name', 'donor_email')
+        if obj:  # When editing an existing donation
+            return self.readonly_fields + (
+                'amount',
+                'donor_name',
+                'donor_email',
+                'payment_method',
+                'mobile_provider',
+                'mobile_number',
+                'bank_name',
+                'frequency',
+                'is_anonymous',
+                'message',
+            )
         return self.readonly_fields
+
 
 
 @admin.register(Contact)
